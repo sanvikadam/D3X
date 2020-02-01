@@ -1,74 +1,71 @@
-<div class="container" style="width: 960px; margin: 0 auto;">
-    <h4>Recipient Information</h4>
-    <div>
-        <mat-form-field appearance="outline">
-          <mat-label>Name</mat-label>
-          <input matInput placeholder="Name">
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Paste US Address</mat-label>
-            <mat-select>
-              <mat-option >
-                
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field appearance="outline">
-          <mat-label>Company</mat-label>
-          <input matInput placeholder="Company">
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field appearance="outline">
-          <mat-label>Address Line 1</mat-label>
-          <input matInput placeholder="Address 1">
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field appearance="outline">
-          <mat-label>Address Line 2</mat-label>
-          <input matInput placeholder="Address 2">
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field appearance="outline">
-          <mat-label>city</mat-label>
-          <input matInput placeholder="city">
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field>
-            <mat-label>Paste US Address</mat-label>
-            <mat-select>
-              <mat-option >
-                
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>postal Code</mat-label>
-            <input matInput placeholder="postal Code">
-          </mat-form-field>
+<div class="form-wrapper">
+<h4>Recipient Information</h4>
+<form>
+<div class="form-group row">
+        <label for="recipient-name" class="col-sm-4 col-form-label text-right">Name</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="recipient-name" placeholder="Name" />
+        </div>
+    <div class="col-sm-4">
+        <select class="form-control">
+            <option>Paste US Address</option>
+        </select>
+    </div>
+</div>
+<div class="form-group row">
+        <label for="recipient-company" class="col-sm-4 col-form-label text-right">Company</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="recipient-company" placeholder="Company" />
+          </div>
+</div>
+<div class="form-group row">
+    <label for="recipient-email" class="col-sm-4 col-form-label float-right text-right">Email</label>
+    <div class="col-sm-8">
+        <input type="text" class="form-control" id="recipient-email" placeholder="Email" />
+    </div>
+</div>
+<div class="form-group row">
+        <label for="recipient-addr1" class="col-sm-4 col-form-label text-right">Address</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="recipient-addr1" placeholder="Address Line 1" />
+            <input type="text" class="form-control addr-2" id="recipient-add2" placeholder="Address Line 2" />
+        </div>
+</div>
+<div class="form-group row">
+        <label for="recipient-city" class="col-sm-4 col-form-label text-right">City</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="recipient-city" placeholder="City" />
+          </div>
+</div>
+<div class="form-group row">
+        <label for="recipient-state" class="col-sm-4 col-form-label text-right">State</label>
+        <div class="col-sm-8">
+        <select class="form-control" id="recipient-state">
+            <option>Select State</option>
+        </select>
+        </div>
+</div>
+<div class="form-group row">
+        <label for="recipient-postal" class="col-sm-4 col-form-label text-right">Postal Code</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="recipient-postal" placeholder="Postal Code" />
+        </div>
+</div>
 
+<div class="form-group row">
+    <label for="recipient-country" class="col-sm-4 col-form-label text-right">Country</label>
+    <div class="col-sm-8">
+        <select class="form-control" id="recipient-country">
+          <option>Select Country</option>
+        </select>
     </div>
-      <div>
-        <mat-form-field appearance="outline">
-            <mat-label>United States</mat-label>
-            <input matInput placeholder="postal Code">
-          </mat-form-field>
+</div>
+<div class="form-group row">
+    <label for="recipient-teleno" class="col-sm-4 col-form-label text-right">Phone Number</label>
+    <div class="col-sm-4">
+        <input type="text" class="form-control" id="recipient-teleno" placeholder="Phone Number" />
     </div>
-      <div>
-        <mat-form-field appearance="outline">
-          <mat-label>Phone number</mat-label>
-          <input matInput placeholder="Phone number">
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field appearance="outline">
-          <mat-label>email</mat-label>
-          <input matInput placeholder="email">
-        </mat-form-field>
-    </div>
-  </div>
+</div>
+</form>
+</div>
+

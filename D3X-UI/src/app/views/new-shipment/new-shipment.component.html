@@ -1,3 +1,28 @@
-<p>new-shipment works!</p>
-<app-recipient-information></app-recipient-information>
-<app-order-summary-information></app-order-summary-information>
+<div class="row">
+
+  <div class="col-sm-7">
+    <div class="recipient-info-wrapper form-content">
+      <app-recipient-information></app-recipient-information>
+    </div>
+  </div>
+  <div class="col-sm-5">
+    <div class="order-summary-wrapper form-content">
+    <app-order-summary-information></app-order-summary-information>
+  </div>
+</div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="order-items form-content">
+      <app-order-line-items></app-order-line-items>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="submit-order form-content text-right">
+      <button type="button" class="btn btn-secondary mx-5" id="addrow">Cancel</button>
+      <button type="button" class="btn btn-primary mx-5" id="addrow">Save Order</button>
+    </div>
+  </div>
+</div>

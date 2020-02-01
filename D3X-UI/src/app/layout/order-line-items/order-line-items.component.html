@@ -1,1 +1,36 @@
-<p>order-line-items works!</p>
+<div class="form-wrapper">
+    <h4>Order Line Items</h4>
+    <form>
+        <table class="table table-bordered order-list">
+            <thead>
+              <tr>
+                <th scope="col">SKU</th>
+                <th scope="col">Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col" colspan="2">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" class="form-control" name="sku"/></td>
+                <td><input type="text" class="form-control" name="name"/></td>
+                <td><input type="text" class="form-control" name="quantity"/></td>
+                <td class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input type="text" class="form-control" name="price" value="0" />
+                </td>
+                <td class="col-sm-2"><a class="deleteRow"></a></td>
+              </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5" style="text-align: left;">
+                        <button type="button" class="btn btn-primary" id="addrow">+ Add a Line item</button>
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+            </tfoot>
+          </table>
+    </form>
+</div>

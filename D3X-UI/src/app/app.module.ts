@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecipientInformationComponent } from './layout/recipient-information/recipient-information.component';
-import {MatFormFieldModule, MatInputModule, MatGridListModule, MatCheckboxModule, MatSelectModule, MatDatepickerModule } from '@angular/material';
 import { OrderSummaryInformationComponent } from './layout/order-summary-information/order-summary-information.component';
 import { OrderLineItemsComponent } from './layout/order-line-items/order-line-items.component';
 import { NewShipmentComponent } from './views/new-shipment/new-shipment.component';
@@ -22,12 +21,6 @@ import { NewShipmentComponent } from './views/new-shipment/new-shipment.componen
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatGridListModule,
-    MatCheckboxModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,7 +2,7 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-/**/
+/* New Shipment Page */
 .wrapper {border: 1px solid #000; margin: 40px 0;}
 .form-content {padding: 15px 30px;}
 .order-summary-wrapper {background-color: #f6f6f6;}
@@ -13,3 +13,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .order-items thead th {background-color: #eef8fd;}
 .order-box-prechecked {margin-top: 15px; margin-left: 10px;}
 .submit-order .btn {margin: 0 5px;}
+
+/* Shipment Order detaild Page */
+.order-details-tab > li .active > a, 
+.order-details-tab .tab-pane {background-color: #f6f6f6;}

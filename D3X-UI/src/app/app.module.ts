@@ -8,6 +8,10 @@ import { RecipientInformationComponent } from './layout/recipient-information/re
 import { OrderSummaryInformationComponent } from './layout/order-summary-information/order-summary-information.component';
 import { OrderLineItemsComponent } from './layout/order-line-items/order-line-items.component';
 import { NewShipmentComponent } from './views/new-shipment/new-shipment.component';
+import { ShipmentDetailsComponent } from './views/shipment-details/shipment-details.component';
+import { OrderSummaryComponent } from './layout/order-summary/order-summary.component';
+import { CustomerRecipientDetailsComponent } from './layout/customer-recipient-details/customer-recipient-details.component';
+import { DeliveryShipmentDetailsComponent } from './layout/delivery-shipment-details/delivery-shipment-details.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +19,16 @@ import { NewShipmentComponent } from './views/new-shipment/new-shipment.componen
     RecipientInformationComponent,
     OrderSummaryInformationComponent,
     OrderLineItemsComponent,
-    NewShipmentComponent
+    NewShipmentComponent,
+    ShipmentDetailsComponent,
+    OrderSummaryComponent,
+    CustomerRecipientDetailsComponent,
+    DeliveryShipmentDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

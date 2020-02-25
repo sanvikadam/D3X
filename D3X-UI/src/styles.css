@@ -1,9 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background: #f9f9f9;}
+
+/* Common style */
+.form-control {border-radius: 2px;}
+
+/* Login Page */
+.login-form {width: 340px; margin: 150px auto;}
+.login-form form {background: #f7f7f7; box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3); padding: 30px;margin-bottom: 15px;}
+/* .remember-me {margin: 8px 0 0 12px;} */
 
 /* New Shipment Page */
-.wrapper {border: 1px solid #000; margin: 40px 0;}
+.wrapper {margin: 40px 0;}
 .form-content {padding: 15px 30px;}
 .order-summary-wrapper {background-color: #f6f6f6;}
 .form-wrapper h4 {margin-bottom: 30px; font-size: 14px; font-weight: 700;color: #565656;}
@@ -15,5 +23,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .submit-order .btn {margin: 0 5px;}
 
 /* Shipment Order detaild Page */
-.order-details-tab > li .active > a, 
-.order-details-tab .tab-pane {background-color: #f6f6f6;}
+#order-details {padding: 10px 20px; background-color: #f6f6f6;border: 1px solid #ccc; border-top: none;}
+.order-details-tab>li>a {background-color: #f6f6f6;}
+.order-details-tab>li.active>a,.nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover,
+.order-details-tab>li.active>a,.nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover { border-bottom: none; background-color: #f6f6f6; }
+.ship-detail-wrapper {border: 1px solid #ccc; padding: 10px;}
+.ship-detail-wrapper {background: #ffffff;}
+.reciept-addr-check ul li {display: inline-block; padding: 0 5px;}
+.reciept-addr-check ul li a:hover {text-decoration: none;}

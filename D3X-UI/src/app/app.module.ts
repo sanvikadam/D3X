@@ -12,6 +12,11 @@ import { ShipmentDetailsComponent } from './views/shipment-details/shipment-deta
 import { OrderSummaryComponent } from './layout/order-summary/order-summary.component';
 import { CustomerRecipientDetailsComponent } from './layout/customer-recipient-details/customer-recipient-details.component';
 import { DeliveryShipmentDetailsComponent } from './layout/delivery-shipment-details/delivery-shipment-details.component';
+import { LoginComponent } from './views/login/login.component';
+import { ProfileComponent } from './views/profile/profile.component';
+import { LoginFormComponent } from './layout/login-form/login-form.component';
+import { SidebarNavigationComponent } from './layout/sidebar-navigation/sidebar-navigation.component';
+import { ProfileDetailsComponent } from './layout/profile-details/profile-details.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +28,12 @@ import { DeliveryShipmentDetailsComponent } from './layout/delivery-shipment-det
     ShipmentDetailsComponent,
     OrderSummaryComponent,
     CustomerRecipientDetailsComponent,
-    DeliveryShipmentDetailsComponent
+    DeliveryShipmentDetailsComponent,
+    LoginComponent,
+    ProfileComponent,
+    LoginFormComponent,
+    SidebarNavigationComponent,
+    ProfileDetailsComponent
   ],
   imports: [
     BrowserModule,

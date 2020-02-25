@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LoginComponent } from './views/login/login.component';
+import { ProfileComponent } from './views/profile/profile.component';
 import { NewShipmentComponent } from './views/new-shipment/new-shipment.component';
 import { ShipmentDetailsComponent } from './views/shipment-details/shipment-details.component';
+
 
 const appRoutes: Routes = [
   {path: 'create-shipment', component : NewShipmentComponent }, 
   {path: 'shipment-details', component: ShipmentDetailsComponent},
-  {path: '', redirectTo: '/create-shipment', pathMatch: 'full'}
+  {path: 'login', component: LoginComponent},
+  {path: 'profile', component: ProfileComponent},
+  {path: '', redirectTo: '/login', pathMatch: 'full'}
 ];
 
 

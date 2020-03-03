@@ -11,7 +11,7 @@ const appRoutes: Routes = [
   {path: 'shipment-details', component: ShipmentDetailsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'profile', component: ProfileComponent},
-  {path: '', redirectTo: '/login', pathMatch: 'full'}
+  {path: '', component: LoginComponent}
 ];
 
 

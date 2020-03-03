@@ -1,14 +1,14 @@
 <div class="login-form">
-    <form><!-- action="/." method="post" -->
+    <form (submit)="loginUser($event)"><!-- action="/." method="post" -->
         <h2 class="text-center">Log in</h2>
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Username" required="required" />
+            <input type="text" class="form-control" placeholder="Username" required="required" id="username" />
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" placeholder="Password" required="required" />
+            <input type="password" class="form-control" placeholder="Password" required="required" id="password" />
         </div>
         <div class="form-group clearfix">
-            <button type="submit" class="btn btn-primary btn-block" routerLink="/profile">Sign in</button>
+            <button class="btn btn-primary btn-block">Sign in</button>
             
         </div>
         <div class="clearfix">

@@ -18,6 +18,7 @@ import { ProfileComponent } from './views/profile/profile.component';
 import { LoginFormComponent } from './layout/login-form/login-form.component';
 import { SidebarNavigationComponent } from './layout/sidebar-navigation/sidebar-navigation.component';
 import { ProfileDetailsComponent } from './layout/profile-details/profile-details.component';
+import { ViewPageComponent } from './views/view-page/view-page.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ProfileDetailsComponent } from './layout/profile-details/profile-detail
     ProfileComponent,
     LoginFormComponent,
     SidebarNavigationComponent,
-    ProfileDetailsComponent
+    ProfileDetailsComponent,
+    ViewPageComponent
   ],
   imports: [
     HttpClientModule,

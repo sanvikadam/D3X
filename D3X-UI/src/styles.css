@@ -31,7 +31,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background:
 /* New Shipment Page */
 .wrapper {margin: 40px 0;}
 .form-content {padding: 15px 30px;}
-.order-summary-wrapper {background-color: #f6f6f6;}
 .form-wrapper h4 {margin-bottom: 30px; font-size: 14px; font-weight: 700;color: #565656;}
 .form-wrapper .form-group label {color: #656565; font-weight: normal;}
 .form-wrapper .addr-2 {margin-top: 15px;}

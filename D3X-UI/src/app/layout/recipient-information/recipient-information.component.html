@@ -1,15 +1,33 @@
 <div class="form-wrapper">
 <h4>Recipient Information</h4>
-<form>
+<form #shipmentForm="ngForm" (ngSubmit)="saveShipment()">
 <div class="form-group row">
             <div class="col-sm-6">
-                <label for="pickup-address" class=" col-form-label text-right">Pickup</label>
-                <input type="text" class="form-control" id="pickup-address" placeholder="pickup address"/>
+                <label for="pickupAddr" class=" col-form-label text-right">Pickup</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="pickupAddr" 
+                    placeholder="pickup address" 
+                    [(ngModel)] = "shipment.pickupAddr" 
+                    name="pickupAddr" 
+                    #pickupAddr="ngModel" 
+                    required/>
+                <!-- <div class="alert alert-danger" *ngIf="pickupAddr.touched && !pickupAddr.valid">
+                    Pickup address is required
+                </div> -->
             </div>
 
             <div class="col-sm-6">
-                <label for="drop-address" class=" col-form-label text-right">Drop</label>
-                <input type="text" class="form-control" id="drop-address" placeholder="Delivery address"/>
+                <label for="dropAddr" class=" col-form-label text-right">Drop</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="dropAddr" 
+                    placeholder="Delivery address" 
+                    [(ngModel)]="shipment.dropAddr"
+                    name="dropAddr" 
+                    #dropAddr="ngModel" />
             </div>
 </div>
 <div class="form-group row">
@@ -19,21 +37,104 @@
     <div class="col-sm-12">
     <div class="row">
     <div class="col-sm-4">
-        <label for="pickup-address" class=" col-form-label text-right">Width</label>
-        <input type="text" class="form-control" id="pickup-address" placeholder="Width"/>
+        <label for="packWidth" class=" col-form-label text-right">Width</label>
+        <input 
+            type="text" 
+            class="form-control" 
+            id="packWidth" 
+            placeholder="Width" 
+            [(ngModel)] ="shipment.packWidth"
+            name="packWidth" 
+            #packWidth="ngModel"/>
     </div>
 
     <div class="col-sm-4">
-        <label for="drop-address" class=" col-form-label text-right">Height</label>
-        <input type="text" class="form-control" id="drop-address" placeholder="Height"/>
+        <label for="packHeight" class=" col-form-label text-right">Height</label>
+        <input 
+            type="text" 
+            class="form-control" 
+            id="packHeight" 
+            placeholder="Height" 
+            [(ngModel)]="shipment.packHeight"
+            name="packHeight" 
+            #packHeight="ngModel"/>
     </div>
     <div class="col-sm-4">
-        <label for="drop-address" class=" col-form-label text-right">Weight</label>
-        <input type="text" class="form-control" id="drop-address" placeholder="Weight"/>
+        <label for="packWeight" class=" col-form-label text-right">Weight</label>
+        <input 
+            type="text" 
+            class="form-control" 
+            id="packWeight" 
+            placeholder="Weight" 
+            [(ngModel)]="shipment.packWeight" 
+            name="packWeight" 
+            #packWeight="ngModel"/>
     </div>
     </div>
     </div>
 </div>
+
+<div class="order-items form-content">
+    <h4>Order Line Items</h4>
+    <table class="table table-bordered order-list">
+        <thead>
+          <tr>
+            <th scope="col">SKU</th>
+            <th scope="col">Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col" colspan="2">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    name="sku" 
+                    [(ngModel)]="shipment.sku" />
+            </td>
+            <td>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    name="name" 
+                    [(ngModel)]="shipment.name" />
+            </td>
+            <td>
+                <input 
+                    type="text" 
+                    class="form-control"
+                    name="quantity" 
+                    [(ngModel)]="shipment.quantity" />
+            </td>
+            <td class="input-group">
+                <span class="input-group-addon">$</span>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    name="price" value="0" 
+                    [(ngModel)]=shipment.price />
+            </td>
+            <td class="col-sm-2"><a class="deleteRow"></a></td>
+          </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5" style="text-align: left;">
+                    <button type="button" class="btn btn-primary" id="addrow">+ Add a Line item</button>
+                </td>
+            </tr>
+            <tr>
+            </tr>
+        </tfoot>
+      </table>
+</div>
+<div class="submit-order form-content text-right">
+    <button type="button" class="btn btn-secondary mx-5" id="addrow">Cancel</button>
+    <button type="button" type="submit" class="btn btn-primary mx-5" id="addrow">Save Order</button> <!-- routerLink="/shipment-details" -->
+  </div>
 </form>
+<p>Value : {{shipment | json}}</p>
 </div>
 

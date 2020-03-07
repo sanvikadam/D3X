@@ -34,7 +34,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background:
 .form-wrapper h4 {margin-bottom: 30px; font-size: 14px; font-weight: 700;color: #565656;}
 .form-wrapper .form-group label {color: #656565; font-weight: normal;}
 .form-wrapper .addr-2 {margin-top: 15px;}
-.order-items {border-top: 1px solid #656565;}
+.order-items {border-top: 1px solid #656565; padding: 10px 0;}
 .order-items thead th {background-color: #eef8fd;}
 .order-box-prechecked {margin-top: 15px; margin-left: 10px;}
 .submit-order .btn {margin: 0 5px;}

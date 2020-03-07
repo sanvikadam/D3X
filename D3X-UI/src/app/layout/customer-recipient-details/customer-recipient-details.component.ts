@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-customer-recipient-details',
@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerRecipientDetailsComponent implements OnInit {
 
+  @Input() childMessage: string;
+
   constructor() { }
 
   ngOnInit() {
+    //console.log("Hello there : " +this.getmyData);
+    
   }
 
 }

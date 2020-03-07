@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginauthService } from '../../service/loginauth.service';
+import { Router } from '@angular/router';
+import { DataserviceService } from '../../service/dataservice.service';
 
 @Component({
   selector: 'app-login-form',
@@ -7,8 +8,13 @@ import { LoginauthService } from '../../service/loginauth.service';
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent implements OnInit {
+  credentials: any = [];
 
-  constructor(private Auth: LoginauthService) { }
+  constructor(
+    private Auth: DataserviceService,
+    private router: Router
+
+    ) { }
 
   ngOnInit() {
   }
@@ -21,9 +27,15 @@ export class LoginFormComponent implements OnInit {
      const password = target.querySelector('#password').value;
      console.log(userName +" and " +password);
 
-     this.Auth.getUserDetails(userName, password);
-
-    //this.http.post('http://localhost:4200/login.json', {})
+     const mydata = this.Auth.getUserDetails();
+     mydata.subscribe(data=> {
+      this.credentials = data;
+      if(this.credentials.username == userName && this.credentials.password == password) {
+        //window.alert('You have success');
+         return this.router.navigate(['/profile'])
+      } else {
+        window.alert('You have failed');
+      }
+    })
   }
-
 }

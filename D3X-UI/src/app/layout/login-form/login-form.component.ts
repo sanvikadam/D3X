@@ -32,7 +32,7 @@ export class LoginFormComponent implements OnInit {
       this.credentials = data;
       if(this.credentials.username == userName && this.credentials.password == password) {
         //window.alert('You have success');
-         return this.router.navigate(['/profile'])
+         return this.router.navigate(['dashboard'])
       } else {
         window.alert('You have failed');
       }

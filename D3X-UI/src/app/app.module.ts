@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecipientInformationComponent } from './layout/recipient-information/recipient-information.component';
 import { OrderSummaryInformationComponent } from './layout/order-summary-information/order-summary-information.component';
 import { OrderLineItemsComponent } from './layout/order-line-items/order-line-items.component';
@@ -20,6 +20,8 @@ import { LoginFormComponent } from './layout/login-form/login-form.component';
 import { SidebarNavigationComponent } from './layout/sidebar-navigation/sidebar-navigation.component';
 import { ProfileDetailsComponent } from './layout/profile-details/profile-details.component';
 import { ViewPageComponent } from './views/view-page/view-page.component';
+import { OrderQuoteComponent } from './layout/order-quote/order-quote.component';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -37,13 +39,15 @@ import { ViewPageComponent } from './views/view-page/view-page.component';
     LoginFormComponent,
     SidebarNavigationComponent,
     ProfileDetailsComponent,
-    ViewPageComponent
+    ViewPageComponent,
+    OrderQuoteComponent,
+    DashboardComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
+    // BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule
   ],

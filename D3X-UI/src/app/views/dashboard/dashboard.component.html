@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-md-3">
+        <nav class="navbar sidebar-nav">
+            <ul class="nav flex-column">
+                <li class="nav-item active">
+                  <a class="nav-link active">User Profile</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" [routerLink]='createShipment'>Book Shipment</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" [routerLink]='shipmentDetails'>Track Shipment</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" [routerLink]='shipmentDetails'>Cancel Shipment</a>
+                </li>
+              </ul>
+        </nav>
+    </div>
+    <div class="col-md-8">
+        <router-outlet></router-outlet>
+    </div>
+</div>

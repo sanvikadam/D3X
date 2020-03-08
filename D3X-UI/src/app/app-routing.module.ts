@@ -11,24 +11,29 @@ import { CustomerRecipientDetailsComponent } from './layout/customer-recipient-d
 
 
 const appRoutes: Routes = [
-  {path: '', redirectTo: '/login', pathMatch: "full"},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent,
     children: [
+      { path: '', redirectTo: 'profile', pathMatch: 'full' },
       {
-        path: 'createShipment',
-        component : RecipientInformationComponent
+        path: 'profile',
+        component : ProfileComponent
       },
       {
-        path: 'shipmentDetails',
+        path: 'create-shipment',
+        component : NewShipmentComponent
+      },
+      {
+        path: 'shipment-details',
         component: CustomerRecipientDetailsComponent
+      },
+      {
+        path: 'cancel-shipment',
+        component: NewShipmentComponent
       }
     ]
   }
-  // {path: 'dashboard/create-shipment', component : RecipientInformationComponent, outlet: 'secondRouter' }, 
-  // {path: 'dashboard/shipment-details', component: CustomerRecipientDetailsComponent, outlet: 'secondRouter'},
-  
-
 ];
 
 

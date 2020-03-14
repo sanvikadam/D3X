@@ -22,7 +22,7 @@ export class DataserviceService {
   }
 
   public getQuote(getResponse){
-    console.log(getResponse);
+    console.log("What have you passed : " +getResponse);
     return this.postData = {
       carrierId: getResponse.xml_root.carrier_id,
       deliverDuty: getResponse.xml_root.delivered_duty_paid,

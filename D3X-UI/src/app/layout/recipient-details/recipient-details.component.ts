@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataserviceService } from '../../service/dataservice.service';
 
 
 @Component({
@@ -8,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecipientDetailsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dataService: DataserviceService) { }
 
   ngOnInit() {
+    console.log('hello :' +JSON.stringify(this.dataService.postData));
 
   }
 

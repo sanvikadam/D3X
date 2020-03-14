@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataserviceService } from '../../service/dataservice.service';
 
 @Component({
   selector: 'app-order-summary',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderSummaryComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dataService: DataserviceService) { }
 
   ngOnInit() {
+    console.log('hello :' +this.dataService.postData);
   }
 
 }

@@ -1,1 +1,33 @@
-<p>delivery-shipment-details works!</p>
+<div class="order-lists">
+<ul>
+    <li *ngFor = "let tags of dataService.postData.rates">
+        <div class="row">
+            <div class="col-md-12">
+                <h4>{{tags.carrier_friendly_name}}</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="info-wrapper">
+                    <p class="txt-label">Ship Date:</p>
+                    <p class="txt-value">{{tags.ship_date | date}}</p>
+                </div>
+                <div class="info-wrapper">
+                    <p class="txt-label">Estimated Date:</p>
+                    <p class="txt-value">{{tags.estimated_delivery_date | date}}</p>
+                </div>
+                <div class="info-wrapper">
+                    <p class="txt-label">Estimated Day:</p>
+                    <p class="txt-value">{{tags.carrier_delivery_days}}</p>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <p class="price">{{tags.shipping_currency | uppercase}} {{tags.shipping_amount}}</p>
+            </div>
+            <div class="col-md-3 text-right">
+                <button class="btn btn-primary">Place Order</button>
+            </div>
+        </div>
+    </li>
+</ul>
+</div>

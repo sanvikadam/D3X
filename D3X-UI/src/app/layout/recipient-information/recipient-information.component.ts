@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CreateShipment } from '../../models/create-shipment';
 import { DataserviceService } from '../../service/dataservice.service';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router } from '@angular/router';
 
 @Component({
@@ -24,19 +25,46 @@ export class RecipientInformationComponent {
 
   constructor(
       private _shipmentquote: DataserviceService,
-      private router: Router
+      private router: Router,
+      private httpClient: HttpClient
     ) {
   }
 
   passData;
 
   public saveShipment(): void {
-    const jsonData = this._shipmentquote.getQuote();
-    jsonData.subscribe(data=> {
-      console.log(data);
-      this.passData = data;
-      console.log(this.passData);
-    })
-    this.router.navigate(["/shipment-details"]);
+    var reqUrl = 'assets/local/ship-details.json';
+    this.httpClient.get(reqUrl).subscribe(res=> {
+      this._shipmentquote.getQuote(res);
+    });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // const jsonData = this._shipmentquote.getQuote();
+
+
+
+
+
+
+
+
+    // jsonData.subscribe(res=> {
+    //   //console.log(res.xml_root);
+    //   this.passData = res.xml_root;
+    //   console.log(this.passData);
+    // })
+    this.router.navigate(["/dashboard/shipment-details"]);
   }
 }

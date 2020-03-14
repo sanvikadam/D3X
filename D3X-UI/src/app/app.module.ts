@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecipientInformationComponent } from './layout/recipient-information/recipient-information.component';
-import { OrderSummaryInformationComponent } from './layout/order-summary-information/order-summary-information.component';
 import { OrderLineItemsComponent } from './layout/order-line-items/order-line-items.component';
 import { OrderSummaryComponent } from './layout/order-summary/order-summary.component';
 import { CustomerRecipientDetailsComponent } from './layout/customer-recipient-details/customer-recipient-details.component';
@@ -18,12 +17,12 @@ import { SidebarNavigationComponent } from './layout/sidebar-navigation/sidebar-
 import { ProfileDetailsComponent } from './layout/profile-details/profile-details.component';
 import { OrderQuoteComponent } from './layout/order-quote/order-quote.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { RecipientDetailsComponent } from './layout/recipient-details/recipient-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipientInformationComponent,
-    OrderSummaryInformationComponent,
     OrderLineItemsComponent,
     OrderSummaryComponent,
     CustomerRecipientDetailsComponent,
@@ -33,7 +32,8 @@ import { DashboardComponent } from './views/dashboard/dashboard.component';
     SidebarNavigationComponent,
     ProfileDetailsComponent,
     OrderQuoteComponent,
-    DashboardComponent
+    DashboardComponent,
+    RecipientDetailsComponent
   ],
   imports: [
     HttpClientModule,

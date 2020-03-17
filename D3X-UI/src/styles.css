@@ -13,7 +13,7 @@ h5 {font-weight: 700;}
 /* .remember-me {margin: 8px 0 0 12px;} */
 
 /* Sidebar navigation */
-.sidebar-nav {padding-top: 33px; position: relative; left: 30px;}
+.sidebar-nav {padding-top: 33px; position: relative;}
 .sidebar-nav li {border: 1px solid transparent; border-top-color: rgba(0, 0, 0, 0.05); border-right: 0;position: relative; right: -1px;}
 .sidebar-nav li a.active {border: 1px solid #ccc; border-right: 0; box-shadow: 1px 0 #fff; z-index: 2; position: relative;background: #fff;}
 .sidebar-nav ul li a {padding: 10px 13px; font-size: 17px; line-height: 24px; text-decoration: none; text-shadow: 0 2x #fff; display: block; color: #999; font-size: 14px;}
@@ -22,7 +22,7 @@ h5 {font-weight: 700;}
 .sidebar-nav ul li a.active::after {background-image: url('./assets/images/icons8-more-than-active.png')}
 
 /* Profile details */
-.content-wrapper {border: 1px solid #ddd; background: #fff; box-shadow: -2px 0 2px #eee, 2px 0 2px #eee;padding: 40px;}
+.content-wrapper {border: 1px solid #ddd; background: #fff; box-shadow: -2px 0 2px #eee, 2px 0 2px #eee;padding: 30px;position: relative; left: -30px;}
 .user-profile {position: relative;}
 .user-profile h2 {font-weight: bold; margin-bottom: 10px; line-height: 30px; margin-top: 0;}
 .user-info {margin-top: 40px;}
@@ -67,3 +67,12 @@ h5 {font-weight: 700;}
 
 .trackcheck {background: url('./assets/images/track-check.png'); width: 25px; height: 30px;display: inline-block; vertical-align: top;}
 .trackuncheck {background: url('./assets/images/track-uncheck.png');  width: 25px; height: 30px;display: inline-block; vertical-align: top;}
+
+/* table css */
+.table.table-dark {width: 100%; margin-bottom: 1rem; color: #212529;}
+.thead-dark {background: #000 !important;}
+.table.table-dark thead.thead-dark th {vertical-align: bottom; border-bottom: 2px solid #dee2e6; padding: 16px 12px; color: #fff;display: table-cell;text-align: center;}
+.table.table-dark td {padding: .75rem; padding-top: 1.1rem; padding-bottom: 1rem; vertical-align: top; border-top: 1px solid #dee2e6;font-size: 12px; text-align: center;}
+.table.table-dark td.text-left {text-align: left;}
+.table.table-dark td span {float: left;}
+.table.table-dark td span.logis-name {position: relative; left: 20px;}

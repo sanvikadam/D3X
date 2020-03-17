@@ -9,6 +9,7 @@ import { DataserviceService } from '../../service/dataservice.service';
 export class DeliveryShipmentDetailsComponent implements OnInit {
 
   constructor(public dataService: DataserviceService) { }
+  searchText;
 
   ngOnInit() {
   }

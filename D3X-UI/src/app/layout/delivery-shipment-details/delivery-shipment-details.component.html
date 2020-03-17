@@ -3,7 +3,13 @@
     <li *ngFor = "let tags of dataService.postData.rates">
         <div class="row">
             <div class="col-md-12">
-                <h4>{{tags.carrier_friendly_name}}</h4>
+                <h4>
+                    <p class="logo-content">
+                        <img [src]="tags.carrier_delivery_name=='UPS' ? '../../../assets/images/ups-logo.png' : tags.carrier_delivery_name=='FedEx' ? '../../../assets/images/fedex-logo.png' : tags.carrier_delivery_name=='Stamps.com' ? '../../../assets/images/stamps_logo.jpg' : 'bye.png' "/>
+                    </p>
+                    <p class="logistic-name">{{tags.carrier_friendly_name}}</p>
+                    <!-- <img src="tags.carrier_friendly_name == 'UPS' ? '../../../../../assets/images/ups-logo.png' : tags.carrier_friendly_name == 'FedEx' ? '../../../../assets/images/fedex.logo.png' : tags.carrier_friendly_name == 'Stamps.com' ? '../../../../assets/images/stamps_logo.jpg'"/> -->
+                </h4>
             </div>
         </div>
         <div class="row">
@@ -19,6 +25,14 @@
                 <div class="info-wrapper">
                     <p class="txt-label">Estimated Day:</p>
                     <p class="txt-value">{{tags.carrier_delivery_days}}</p>
+                </div>
+                <div class="info-wrapper">
+                    <p class="txt-label">Service Type:</p>
+                    <p class="txt-value">{{tags.service_type}}</p>
+                </div>
+                <div class="info-wrapper">
+                    <p class="txt-label">Trackable:</p>
+                    <p class="txt-value"><span [ngClass]= "(tags.trackable=='true') ? 'trackcheck' : 'trackuncheck'"></span></p>
                 </div>
             </div>
             <div class="col-md-3 text-center">

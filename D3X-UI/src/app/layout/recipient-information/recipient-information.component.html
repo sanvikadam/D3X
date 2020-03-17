@@ -9,25 +9,25 @@
                     class="form-control" 
                     id="pickupAddr" 
                     placeholder="pickup address" 
-                    [(ngModel)] = "shipment.pickupAddr" 
+                    [(ngModel)] = "pickupAddr" 
                     name="pickupAddr" 
-                    #pickupAddr="ngModel" 
+                    #pickAddr="ngModel" 
                     required/>
-                <!-- <div class="alert alert-danger" *ngIf="pickupAddr.touched && !pickupAddr.valid">
-                    Pickup address is required
-                </div> -->
+                <span class="error-field" *ngIf="pickAddr.invalid && pickAddr.touched">Please enter valid pickup address</span>
             </div>
 
             <div class="col-sm-6">
-                <label for="dropAddr" class=" col-form-label text-right">Drop</label>
+                <label for="dropofAddr" class=" col-form-label text-right">Drop</label>
                 <input 
                     type="text" 
                     class="form-control" 
-                    id="dropAddr" 
+                    id="dropofAddr" 
                     placeholder="Delivery address" 
-                    [(ngModel)]="shipment.dropAddr"
-                    name="dropAddr" 
-                    #dropAddr="ngModel" />
+                    [(ngModel)]="dropofAddr"
+                    name="dropofAddr" 
+                    #dropAddr="ngModel"
+                    required />
+                <span class="error-field" *ngIf="dropAddr.invalid && dropAddr.touched">Please enter valid drop address</span>
             </div>
 </div>
 <div class="form-group row">
@@ -36,39 +36,58 @@
     </div>
     <div class="col-sm-12">
     <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-3">
         <label for="packWidth" class=" col-form-label text-right">Width</label>
         <input 
-            type="text" 
+            type="number" 
             class="form-control" 
             id="packWidth" 
             placeholder="Width" 
-            [(ngModel)] ="shipment.packWidth"
+            [(ngModel)] ="packWidth"
             name="packWidth" 
-            #packWidth="ngModel"/>
+            #palateWidth="ngModel"
+            required />
+        <span class="error-field" *ngIf="palateWidth.invalid && palateWidth.touched">Please enter valid palate width</span>
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-sm-3">
         <label for="packHeight" class=" col-form-label text-right">Height</label>
         <input 
-            type="text" 
+            type="number" 
             class="form-control" 
             id="packHeight" 
             placeholder="Height" 
-            [(ngModel)]="shipment.packHeight"
+            [(ngModel)]="packHeight"
             name="packHeight" 
-            #packHeight="ngModel"/>
+            #palateHeight="ngModel"
+            required />
+        <span class="error-field" *ngIf="palateHeight.invalid && palateHeight.touched">Please enter valid palate height</span>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
         <label for="packWeight" class=" col-form-label text-right">Weight</label>
         <input 
-            type="text" 
+            type="number" 
             class="form-control" 
             id="packWeight" 
             placeholder="Weight" 
-            [(ngModel)]="shipment.packWeight" 
+            [(ngModel)]="packWeight" 
             name="packWeight" 
-            #packWeight="ngModel"/>
+            #palateWeight="ngModel"
+            required />
+        <span class="error-field" *ngIf="palateWeight.invalid && palateWeight.touched">Please enter valid palate weight</span>
+    </div>
+    <div class="col-sm-3">
+        <label for="packLength" class=" col-form-label text-right">Length</label>
+        <input 
+            type="number" 
+            class="form-control" 
+            id="packLength" 
+            placeholder="Length" 
+            [(ngModel)]="packLength" 
+            name="packLength" 
+            #palateLength="ngModel"
+            required />
+        <span class="error-field" *ngIf="palateLength.invalid && palateLength.touched">Please enter valid palate length</span>
     </div>
     </div>
     </div>
@@ -90,31 +109,56 @@
             <td>
                 <input 
                     type="text" 
-                    class="form-control" 
-                    name="sku" 
-                    [(ngModel)]="shipment.sku" />
-            </td>
-            <td>
-                <input 
-                    type="text" 
-                    class="form-control" 
-                    name="name" 
-                    [(ngModel)]="shipment.name" />
-            </td>
-            <td>
-                <input 
-                    type="text" 
                     class="form-control"
+                    id="sku"
+                    name="sku" 
+                    [(ngModel)]="sku"
+                    #skuNo="ngModel"
+                    required />
+                <!-- <div class="error-field" 
+                        *ngIf="skuNo.invalid && (skuNo.dirty || skuNo.touched)">
+                        <span *ngIf="skuNo.errors.required">Required</span>
+                        <span *ngIf="skuNo.errors.invalid">Required</span>
+                </div> -->
+                <span class="error-field" *ngIf="skuNo.touched && skuNo.invalid">Enter Valid SKU</span>
+            </td>
+            <td>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="name"
+                    name="name" 
+                    [(ngModel)]="name"
+                    #packageName="ngModel"
+                    required />
+                <span class="error-field" *ngIf="packageName.invalid && packageName.touched">Enter valid Name</span>
+                <!-- <span class="error-field" *ngIf="packageName.touched">Enter Name</span> -->
+            </td>
+            <td>
+                <input 
+                    type="number" 
+                    class="form-control"
+                    id="quantity"
                     name="quantity" 
-                    [(ngModel)]="shipment.quantity" />
+                    [(ngModel)]="quantity" 
+                    #packQuantity="ngModel"
+                    required />
+                <span class="error-field" *ngIf="packQuantity.invalid && packQuantity.touched">Enter valid quantity</span>
+                <!-- <span class="error-field" *ngIf="packQuantity.touched">Enter quantity</span> -->
             </td>
             <td class="input-group">
                 <span class="input-group-addon">$</span>
                 <input 
-                    type="text" 
-                    class="form-control" 
-                    name="price" value="0" 
-                    [(ngModel)]=shipment.price />
+                    type="number" 
+                    class="form-control"
+                    id="price"
+                    name="price" 
+                    value="0" 
+                    [(ngModel)]="price"
+                    #prodPrice="ngModel"
+                    required />
+                <span class="error-field" *ngIf="prodPrice.invalid && prodPrice.touched">Enter valid price</span>
+                <!-- <span class="error-field" *ngIf="prodPrice.touched">Enter the price</span>  -->
             </td>
             <td class="col-sm-2"><a class="deleteRow"></a></td>
           </tr>
@@ -131,8 +175,8 @@
       </table>
 </div>
 <div class="submit-order form-content text-right">
-    <button type="button" class="btn btn-secondary mx-5" id="addrow">Cancel</button>
-    <button type="button" type="submit" class="btn btn-primary mx-5" id="addrow">Save Order</button> <!-- routerLink="/shipment-details" -->
+    <button type="button" class="btn btn-secondary mx-5" id="cancelOrder">Cancel</button>
+    <button type="button" type="submit" class="btn btn-primary mx-5" id="addrow" [disabled]="shipmentForm.invalid">Save Order</button> <!-- routerLink="/shipment-details" -->
   </div>
 </form>
 <!-- <p>Value : {{shipment | json}}</p> -->

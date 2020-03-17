@@ -5,6 +5,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background:
 /* Common style */
 .form-control {border-radius: 2px;}
 h5 {font-weight: 700;}
+.error-field {color: #FF0000; font-size: 12px;}
 
 /* Login Page */
 .login-form {width: 340px; margin: 150px auto;}
@@ -52,10 +53,17 @@ h5 {font-weight: 700;}
 .title-txt {color: #999; margin-bottom: 5px;}
 .txt-bold {font-weight: 700;}
 .show-address p {margin-bottom: 5px;}
+.logo-content {width: 40px; height: 40px;display: inline-block;}
+.logistic-name {display: inline-block; margin-left: 10px;}
+.logo-content img {width: 100%;}
+.info-wrapper {margin-bottom: 10px; display: inline-block; width: 100%; vertical-align: text-top;}
 
 .order-lists {margin: 20px 0 0;}
 .order-lists ul {list-style: none; padding: 0;}
 .order-lists ul li {border: 1px solid #ccc; padding: 10px; margin-bottom: 15px;}
-.order-lists .info-wrapper p {width: 50%; display: inline-block; vertical-align: top; font-size: 13px;margin-bottom: 5px;}
+.order-lists .info-wrapper p {width: 50%; display: inline-block; vertical-align: top; font-size: 13px;margin-bottom: 0;}
 .order-lists .info-wrapper p.txt-label {font-weight: 700;}
-.order-lists .price {color: #337ab7; font-weight: 700; font-size: 24px;}
+.order-lists .price {color: #337ab7; font-weight: 700; font-size: 22px;}
+
+.trackcheck {background: url('./assets/images/track-check.png'); width: 25px; height: 30px;display: inline-block; vertical-align: top;}
+.trackuncheck {background: url('./assets/images/track-uncheck.png');  width: 25px; height: 30px;display: inline-block; vertical-align: top;}

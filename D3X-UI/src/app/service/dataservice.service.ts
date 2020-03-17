@@ -42,6 +42,5 @@ export class DataserviceService {
         toPhone: getResponse.xml_root.ship_to.phone
       }
     }
-    //return this.httpClient.get('assets/local/ship-details.json');
   }
 }

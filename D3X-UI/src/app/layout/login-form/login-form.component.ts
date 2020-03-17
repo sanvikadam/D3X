@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataserviceService } from '../../service/dataservice.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login-form',
@@ -8,33 +9,29 @@ import { DataserviceService } from '../../service/dataservice.service';
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent implements OnInit {
+  @ViewChild('loginForm', {static: false}) public createLoginForm: NgForm;
+
   credentials: any = [];
+  name: string="";
+  password: string="";
 
   constructor(
     private Auth: DataserviceService,
-    private router: Router
+    private router: Router,
 
     ) { }
 
   ngOnInit() {
   }
 
-  loginUser(e){
-    e.preventDefault();
-    console.log(e);
-     const target = e.target;
-     const userName = target.querySelector('#username').value;
-     const password = target.querySelector('#password').value;
-     console.log(userName +" and " +password);
+  loginUser(data){
 
-     const mydata = this.Auth.getUserDetails();
-     mydata.subscribe(data=> {
-      this.credentials = data;
-      if(this.credentials.username == userName && this.credentials.password == password) {
-        //window.alert('You have success');
-         return this.router.navigate(['dashboard'])
+      this.Auth.getUserDetails().subscribe((resp:any)=> {
+      if(resp.username==data.name && resp.password==data.password) {
+        return this.router.navigate(['dashboard']);
       } else {
-        window.alert('You have failed');
+        window.alert('Usernam or Password maybe incorrect');
+        this.createLoginForm.reset();
       }
     })
   }

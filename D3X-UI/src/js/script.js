@@ -1,7 +1,7 @@
 $(document).ready(function(){
     var counter = 1;
 
-    $("#addrow").on("click", function () {
+    $("body").on("click", '#addrow', function () {
         var newRow = $("<tr>");
         var cols = "";
 
@@ -18,7 +18,7 @@ $(document).ready(function(){
         counter++;
     });
 
-    $("table.order-list").on("click", ".ibtnDel", function (event) {
+    $("body").on("click", "table.order-list .ibtnDel", function (event) {
         $(this).closest("tr").remove();
         counter -= 1
          if(counter <= 9) {

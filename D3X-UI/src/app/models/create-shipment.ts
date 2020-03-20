@@ -9,3 +9,12 @@ export class CreateShipment {
     quantity: number;
     price: number;
 }
+
+export class GetShipment {
+    name : string;
+    date: number;
+    day: string;
+    serviceType: string;
+    currency: string;
+    amount: number;
+}

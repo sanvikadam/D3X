@@ -12,7 +12,7 @@ export class RecipientDetailsComponent implements OnInit {
   constructor(public dataService: DataserviceService) { }
 
   ngOnInit() {
-    console.log('hello :' +JSON.stringify(this.dataService.postData));
+    //console.log('hello :' +JSON.stringify(this.dataService.postData));
 
   }
 

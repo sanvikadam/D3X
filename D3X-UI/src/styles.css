@@ -72,7 +72,9 @@ h5 {font-weight: 700;}
 .table.table-dark {width: 100%; margin-bottom: 1rem; color: #212529;}
 .thead-dark {background: #000 !important;}
 .table.table-dark thead.thead-dark th {vertical-align: bottom; border-bottom: 2px solid #dee2e6; padding: 16px 12px; color: #fff;display: table-cell;text-align: center;}
-.table.table-dark td {padding: .75rem; padding-top: 1.1rem; padding-bottom: 1rem; vertical-align: top; border-top: 1px solid #dee2e6;font-size: 12px; text-align: center;}
+.table.table-dark td {padding: .75rem; padding-top: 1.1rem; padding-bottom: 1rem; vertical-align: top; border-bottom: 1px solid #dee2e6;font-size: 12px; text-align: center;line-height: 32px;}
 .table.table-dark td.text-left {text-align: left;}
-.table.table-dark td span {float: left;}
-.table.table-dark td span.logis-name {position: relative; left: 20px;}
+.table.table-dark td.logis-name span {float: left;}
+.table.table-dark td span.logis-name {position: relative; left: 10px;}
+.table.table-dark td span.logis-img {width: 30px; height: 30px;}
+.table.table-dark td span.logis-img img {width: 100%;}

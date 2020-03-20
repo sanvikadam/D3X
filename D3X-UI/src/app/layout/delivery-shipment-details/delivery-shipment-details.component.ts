@@ -10,8 +10,11 @@ export class DeliveryShipmentDetailsComponent implements OnInit {
 
   constructor(public dataService: DataserviceService) { }
   searchText;
+  getData;
 
   ngOnInit() {
+    this.getData = this.dataService;
+    console.log("Heelo : " +this.dataService);
   }
 
 }

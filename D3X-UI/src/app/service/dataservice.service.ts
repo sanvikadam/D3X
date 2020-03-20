@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 })
 export class DataserviceService {
   postData: any = {};
-  rate: any = [];
+  //rate: any = [];
   
 
   constructor(

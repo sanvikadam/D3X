@@ -18,6 +18,7 @@ import { ProfileDetailsComponent } from './layout/profile-details/profile-detail
 import { OrderQuoteComponent } from './layout/order-quote/order-quote.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { RecipientDetailsComponent } from './layout/recipient-details/recipient-details.component';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { RecipientDetailsComponent } from './layout/recipient-details/recipient-
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

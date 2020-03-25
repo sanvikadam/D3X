@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { ShipmentQuote } from '../models/shipment-quote';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataserviceService {
   postData: any = {};
-  //rate: any = [];
+  quote: ShipmentQuote[];
+ // rates: any = [];
   
 
   constructor(
@@ -21,12 +24,14 @@ export class DataserviceService {
      return this.httpClient.get("assets/local/login.json");
   }
 
+
+
   public getQuote(getResponse){
-    console.log("What have you passed : " +getResponse);
-    return this.postData = {
+    this.quote = getResponse.xml_root.rate_response.rates;
+    
+    this.postData = {
       carrierId: getResponse.xml_root.carrier_id,
       deliverDuty: getResponse.xml_root.delivered_duty_paid,
-      rates : getResponse.xml_root.rate_response.rates,
       shipFrom: {
         fromAddress: getResponse.xml_root.ship_from.address_line1,
         fromCity: getResponse.xml_root.ship_from.city_locality,

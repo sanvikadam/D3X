@@ -13,7 +13,7 @@ export class CustomerRecipientDetailsComponent implements OnInit {
 
   ngOnInit() {
     //console.log("Hello there : " +this.getmyData);
-    console.log("Hi : " +this.dataService.postData);
+    // console.log("Hi : " +this.dataService);
     // console.log(this.dataService.getQuote);
     
   }

@@ -7,7 +7,7 @@
                 <input type="text"
                 class="form-control"
                 placeholder="Search By Name"
-                name="logsName"
+                name="searchTerm"
                 [(ngModel)]="searchTerm"
                 />
             </div>
@@ -28,7 +28,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor = "let tags of getData.postData.rates">
+            <tr *ngFor = "let tags of getData.quote">
                 <td colspan="3" class="text-left logis-name">
 
                     <span class="logis-img" *ngIf="tags.carrier_friendly_name == 'UPS'">

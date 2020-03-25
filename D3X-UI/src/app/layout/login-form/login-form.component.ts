@@ -25,7 +25,6 @@ export class LoginFormComponent implements OnInit {
   }
 
   loginUser(data){
-
       this.Auth.getUserDetails().subscribe((resp:any)=> {
       if(resp.username==data.name && resp.password==data.password) {
         return this.router.navigate(['dashboard']);

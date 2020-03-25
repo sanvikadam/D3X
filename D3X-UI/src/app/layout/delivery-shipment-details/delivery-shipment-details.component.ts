@@ -17,6 +17,5 @@ export class DeliveryShipmentDetailsComponent implements AfterContentChecked {
 
   ngAfterContentChecked() {
     this.quotes = this.dataService.quote;
-    console.log(this.quotes);
   }
 }

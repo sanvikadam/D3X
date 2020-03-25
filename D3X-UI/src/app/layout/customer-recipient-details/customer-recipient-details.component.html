@@ -20,9 +20,9 @@
             <p class="txt-bold">Reciever</p>
         </div>
         <div class="col-md-12 show-address">
-            <p>{{dataService.postData.shipTo.toAddress}}</p>
-            <p>{{dataService.postData.shipTo.toCity}}, {{dataService.postData.shipTo.toCountry}}</p>
-            <p>{{dataService.postData.shipTo.toZipcode}}</p>
+            <p>{{pickupSummary.toAddress}}</p>
+            <p>{{pickupSummary.toCity}}, {{pickupSummary.toCountry}}</p>
+            <p>{{pickupSummary.toZipcode}}</p>
         </div>
     </div>
     <div class="row">
@@ -30,7 +30,7 @@
             <p>Contact No.</p>
         </div>
         <div class="col-md-4">
-            <p>{{dataService.postData.shipTo.toPhone}}</p>
+            <p>{{pickupSummary.toPhone}}</p>
         </div>
     </div>
     <!-- <div class="row">

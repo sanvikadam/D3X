@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentChecked } from '@angular/core';
 import { DataserviceService } from '../../service/dataservice.service';
 
 @Component({
@@ -6,16 +6,16 @@ import { DataserviceService } from '../../service/dataservice.service';
   templateUrl: './customer-recipient-details.component.html',
   styleUrls: ['./customer-recipient-details.component.css']
 })
-export class CustomerRecipientDetailsComponent implements OnInit {
+export class CustomerRecipientDetailsComponent implements AfterContentChecked {
 
+  pickupSummary: any = {}
 
   constructor(public dataService: DataserviceService) { }
 
-  ngOnInit() {
-    //console.log("Hello there : " +this.getmyData);
-    // console.log("Hi : " +this.dataService);
-    // console.log(this.dataService.getQuote);
-    
+  
+
+  ngAfterContentChecked() {
+    this.pickupSummary = this.dataService.postData.shipTo;    
   }
 
 }

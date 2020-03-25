@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentInit, AfterViewChecked, DoCheck, OnChanges } from '@angular/core';
+import { Component, OnInit, AfterContentChecked } from '@angular/core';
 import { DataserviceService } from '../../service/dataservice.service';
 import { ShipmentQuote } from '../../models/shipment-quote';
 
@@ -7,33 +7,16 @@ import { ShipmentQuote } from '../../models/shipment-quote';
   templateUrl: './delivery-shipment-details.component.html',
   styleUrls: ['./delivery-shipment-details.component.css']
 })
-export class DeliveryShipmentDetailsComponent implements OnInit {
+export class DeliveryShipmentDetailsComponent implements AfterContentChecked {
 
-  getData: any = {};
   quotes: any = [];
-  newArray: any = [];
-
-
 
   constructor(public dataService: DataserviceService) { 
     
-     this.getData = this.dataService;
-
-    //  console.log("Length : " +this.dataService.quote);
-    
-     
-
   }
 
-  ngOnInit() {
-    console.log(this.getData);
-    if(this.getData.quote) {
-      console.log(this.getData.quote);
-    }
-    // this.getData = this.dataService;
-    // console.log(this.getData);
-    // this.quotes = this.dataService.quote;
-    // console.log(typeof(this.quotes));
+  ngAfterContentChecked() {
+    this.quotes = this.dataService.quote;
+    console.log(this.quotes);
   }
-
 }

@@ -9,6 +9,7 @@ import { ShipmentQuote } from '../models/shipment-quote';
 })
 export class DataserviceService {
   postData: any = {};
+  confirmation: string;
   quote: ShipmentQuote[];
  // rates: any = [];
   
@@ -27,6 +28,8 @@ export class DataserviceService {
 
 
   public getQuote(getResponse){
+    // this.confirmation = getResponse.xml_root.confirmation;
+    // console.log(this.confirmation);
     this.quote = getResponse.xml_root.rate_response.rates;
     
     this.postData = {
@@ -47,5 +50,5 @@ export class DataserviceService {
         toPhone: getResponse.xml_root.ship_to.phone
       }
     }
-  }
+   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentChecked } from '@angular/core';
 import { DataserviceService } from '../../service/dataservice.service';
 
 @Component({
@@ -6,11 +6,14 @@ import { DataserviceService } from '../../service/dataservice.service';
   templateUrl: './order-summary.component.html',
   styleUrls: ['./order-summary.component.css']
 })
-export class OrderSummaryComponent implements OnInit {
+export class OrderSummaryComponent implements AfterContentChecked {
+
+  dropSummary: any = {};
 
   constructor(public dataService: DataserviceService) { }
 
-  ngOnInit() {
+  ngAfterContentChecked() {
+    this.dropSummary = this.dataService.postData.shipFrom;
 
   }
 

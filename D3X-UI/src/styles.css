@@ -69,12 +69,22 @@ h5 {font-weight: 700;}
 .trackuncheck {background: url('./assets/images/track-uncheck.png');  width: 25px; height: 30px;display: inline-block; vertical-align: top;}
 
 /* table css */
+body .ui-table .ui-table-thead > tr > th {background: #000 !important; width: 0%; text-align: center !important; color: #fff !important; font-size: 13px; padding: 1em 0.4em !important;}
+body .ui-table .ui-table-caption {float: left; width: 100%;}
+.pi-sort:before, .pi-sort-up:before, .pi-sort-down:before {color: #fff;}
+body .ui-table .ui-sortable-column:focus {box-shadow: none !important;}
+body .ui-table .ui-table-tbody > tr > td {vertical-align: middle; border: none !important;}
+body .ui-table-customers .ui-paginator {border: none; padding: 1rem;}
+body .ui-table-customers .ui-paginator .ui-dropdown {float: left; border: 1px solid #c8c8c8; height: auto;}
+body .ui-table-customers .ui-paginator .ui-paginator-current {float: right;}
+.table-title {float: left; font-weight: 700;}
+.search-filter {float: right; margin: 8px 0;}
 .table.table-dark {width: 100%; margin-bottom: 1rem; color: #212529;}
 .thead-dark {background: #000 !important;}
 .table.table-dark thead.thead-dark th {vertical-align: bottom; border-bottom: 2px solid #dee2e6; padding: 16px 12px; color: #fff;display: table-cell;text-align: center;}
 .table.table-dark td {padding: .75rem; padding-top: 1.1rem; padding-bottom: 1rem; vertical-align: top; border-bottom: 1px solid #dee2e6;font-size: 12px; text-align: center;line-height: 32px;}
 .table.table-dark td.text-left {text-align: left;}
-.table.table-dark td.logis-name span {float: left;}
+.table.table-dark td.logis-name span {display: inline-block; vertical-align: middle;}
 .table.table-dark td span.logis-name {position: relative; left: 10px;}
-.table.table-dark td span.logis-img {width: 30px; height: 30px;}
+.table.table-dark td span.logis-img {width: 40px; height: 40px;}
 .table.table-dark td span.logis-img img {width: 100%;}

@@ -1,20 +1,66 @@
 <div class="order-lists">
-
-    <form #filterSearch="ngForm">
-        <h3>Group Filter</h3>
-        <div class="row">
-            <div class="col-md-3">
-                <input type="text"
-                class="form-control"
-                placeholder="Search By Name"
-                name="searchTerm"
-                [(ngModel)]="searchTerm"
-                />
+    <p-table 
+        #dt
+        [columns]="cols" 
+        [value]="quotes" class="table table-dark" 
+        [paginator]="true" 
+        [rows]="10"
+        styleClass="ui-table-customers" 
+        [rowHover]="true"
+        [rowsPerPageOptions]="[5, 10, 20, 30, 40]" 
+        [showCurrentPageReport]="true"
+        [loading]="loading"
+        [globalFilterFields]="['carrier_friendly_name']"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+        <ng-template pTemplate="caption">
+            <h4 class="text-left table-title">List of Quotations</h4>
+            <div class="ui-table-globalfilter-container text-right search-filter">
+                <i class="pi pi-search" style="margin:0 7px 0 0; display: inline-block; vertical-align: text-bottom;"></i>
+                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search" />
             </div>
-        </div>
-        </form>
+        </ng-template>
+        <ng-template pTemplate="header" class="thead-dark" let-columns>
+            <tr>
+                <th scope="col" colspan="2" pSortableColumn="carrier_friendly_name">Name <p-sortIcon field="carrier_friendly_name"></p-sortIcon></th>
+                <th scope="col" colspan="2" pSortableColumn="ship_date">Ship Date <p-sortIcon field="ship_date"></p-sortIcon></th>
+                <th scope="col" colspan="2" pSortableColumn="estimated_delivery_date">Estimated Date <p-sortIcon field="estimated_delivery_date"></p-sortIcon></th>
+                <th scope="col" colspan="2" pSortableColumn="carrier_delivery_days">Estimated Day <p-sortIcon field="carrier_delivery_days"></p-sortIcon></th>
+                <th scope="col" colspan="2" pSortableColumn="service_type">Service Type <p-sortIcon field="service_type"></p-sortIcon></th>
+                <th scope="col" colspan="2" pSortableColumn="trackable">Trackable <p-sortIcon field="trackable"></p-sortIcon></th>
+                <th scope="col" pSortableColumn="shipping_amount">Price <p-sortIcon field="shipping_amount"></p-sortIcon></th>
+                <th scope="col">Order</th>
+                
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-quotes let-columns="columns">
+            <tr>
+                <td colspan="2" class="text-left logis-name">
 
-    <table class="table table-dark">
+                    <span class="logis-img" *ngIf="quotes.carrier_friendly_name == 'UPS'">
+                        <img src="../../../assets/images/ups-logo.png" />
+                    </span>
+                    <span class="logis-img" *ngIf="quotes.carrier_friendly_name == 'FedEx'">
+                        <img src="../../../assets/images/fedex-logo.png" />
+                    </span>
+                    <span class="logis-img" *ngIf="quotes.carrier_friendly_name == 'Stamps.com'">
+                        <img src="../../../assets/images/stamps_logo.jpg" />
+                    </span>
+                    <span class="logis-name">
+                        {{quotes.carrier_friendly_name}}
+                    </span>
+                </td>
+                <td colspan="2">{{quotes.ship_date | date}}</td>
+                <td colspan="2">{{quotes.estimated_delivery_date | date}}</td>
+                <td colspan="2">{{quotes.carrier_delivery_days}}</td>
+                <td colspan="2">{{quotes.service_type}}</td>
+                <td colspan="2"><span [ngClass]= "(quotes.trackable=='true') ? 'trackcheck' : 'trackuncheck'"></span></td>
+                <td>{{quotes.shipping_currency | uppercase}} {{quotes.shipping_amount}}</td>
+                <td><button class="btn btn-primary">Place Order</button></td>
+            </tr>
+            
+        </ng-template>
+    </p-table>
+    <!-- <table class="table table-dark">
         <thead class="thead-dark">
             <tr>
                 <th scope="col" colspan="3">Name</th>
@@ -53,50 +99,5 @@
                 <td><button class="btn btn-primary">Place Order</button></td>
             </tr>
         </tbody>
-    </table>
-<!-- <ul>
-    <li *ngFor = "let tags of dataService.postData.rates">
-        <div class="row">
-            <div class="col-md-12">
-                <h4>
-                    <p class="logo-content">
-                        <img [src]="tags.carrier_delivery_name=='UPS' ? '../../../assets/images/ups-logo.png' : tags.carrier_delivery_name=='FedEx' ? '../../../assets/images/fedex-logo.png' : tags.carrier_delivery_name=='Stamps.com' ? '../../../assets/images/stamps_logo.jpg' : 'bye.png' "/>
-                    </p>
-                    <p class="logistic-name">{{tags.carrier_friendly_name}}</p>
-                    <img src="tags.carrier_friendly_name == 'UPS' ? '../../../../../assets/images/ups-logo.png' : tags.carrier_friendly_name == 'FedEx' ? '../../../../assets/images/fedex.logo.png' : tags.carrier_friendly_name == 'Stamps.com' ? '../../../../assets/images/stamps_logo.jpg'"/>
-                </h4>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="info-wrapper">
-                    <p class="txt-label">Ship Date:</p>
-                    <p class="txt-value">{{tags.ship_date | date}}</p>
-                </div>
-                <div class="info-wrapper">
-                    <p class="txt-label">Estimated Date:</p>
-                    <p class="txt-value">{{tags.estimated_delivery_date | date}}</p>
-                </div>
-                <div class="info-wrapper">
-                    <p class="txt-label">Estimated Day:</p>
-                    <p class="txt-value">{{tags.carrier_delivery_days}}</p>
-                </div>
-                <div class="info-wrapper">
-                    <p class="txt-label">Service Type:</p>
-                    <p class="txt-value">{{tags.service_type}}</p>
-                </div>
-                <div class="info-wrapper">
-                    <p class="txt-label">Trackable:</p>
-                    <p class="txt-value"><span [ngClass]= "(tags.trackable=='true') ? 'trackcheck' : 'trackuncheck'"></span></p>
-                </div>
-            </div>
-            <div class="col-md-3 text-center">
-                <p class="price">{{tags.shipping_currency | uppercase}} {{tags.shipping_amount}}</p>
-            </div>
-            <div class="col-md-3 text-right">
-                <button class="btn btn-primary">Place Order</button>
-            </div>
-        </div>
-    </li>
-</ul> -->
+    </table> -->
 </div>

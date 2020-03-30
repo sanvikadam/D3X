@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterContentChecked } from '@angular/core';
 import { DataserviceService } from '../../service/dataservice.service';
 import { ShipmentQuote } from '../../models/shipment-quote';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Component({
   selector: 'app-delivery-shipment-details',
@@ -19,7 +20,10 @@ export class DeliveryShipmentDetailsComponent implements AfterContentChecked {
 
   rows: number = 10;
 
-  constructor(public dataService: DataserviceService) { 
+  constructor(
+    public dataService: DataserviceService,
+    private httpClient: HttpClient
+    ) { 
     
   }
 
@@ -57,4 +61,5 @@ export class DeliveryShipmentDetailsComponent implements AfterContentChecked {
   isFirstPage(): boolean {
     return this.first === 0;
   }
+  
 }

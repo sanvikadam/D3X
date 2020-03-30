@@ -15,8 +15,19 @@ export class RecipientInformationComponent {
       private router: Router,
       private httpClient: HttpClient
     ) {
-  }
 
+      
+  }
+  pickupAddr: null;
+  dropofAddr: null;
+  packWidth: null;
+  packHeight: null;
+  packWeight: null;
+  packLength: null;
+  sku: null;
+  name: null;
+  quantity: null;
+  price: null;
   passData;
 
   public saveShipment(): void {

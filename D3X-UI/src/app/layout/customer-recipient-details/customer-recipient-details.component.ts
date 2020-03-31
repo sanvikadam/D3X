@@ -9,6 +9,7 @@ import { DataserviceService } from '../../service/dataservice.service';
 export class CustomerRecipientDetailsComponent implements AfterContentChecked {
 
   pickupSummary: any = {}
+  toAddress: string;
 
   constructor(public dataService: DataserviceService) { }
 

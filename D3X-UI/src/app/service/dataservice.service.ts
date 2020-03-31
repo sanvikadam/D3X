@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { ShipmentQuote } from '../models/shipment-quote';
+import { ShipmentQuote } from '../models/shipment-quotes/shipment-quote';
 
 
 @Injectable({
@@ -9,9 +9,7 @@ import { ShipmentQuote } from '../models/shipment-quote';
 })
 export class DataserviceService {
   postData: any = {};
-  confirmation: string;
   quote: ShipmentQuote[];
- // rates: any = [];
   
 
   constructor(
@@ -28,8 +26,6 @@ export class DataserviceService {
 
 
   public getQuote(getResponse){
-    // this.confirmation = getResponse.xml_root.confirmation;
-    // console.log(this.confirmation);
     this.quote = getResponse.xml_root.rate_response.rates;
     
     this.postData = {

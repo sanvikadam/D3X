@@ -14,6 +14,7 @@ export class OrderSummaryComponent implements AfterContentChecked {
 
   ngAfterContentChecked() {
     this.dropSummary = this.dataService.postData.shipFrom;
+    console.log("Drop summanry : " +this.dropSummary);
 
   }
 

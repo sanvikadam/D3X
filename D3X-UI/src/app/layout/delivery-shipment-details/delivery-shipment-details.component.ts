@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterContentChecked } from '@angular/core';
 import { DataserviceService } from '../../service/dataservice.service';
-import { ShipmentQuote } from '../../models/shipment-quote';
+// import { ShipmentQuote } from '../../models/shipment-quote';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Component({
@@ -29,6 +29,7 @@ export class DeliveryShipmentDetailsComponent implements AfterContentChecked {
 
   ngAfterContentChecked() {
     this.quotes = this.dataService.quote;
+    console.log("Quotes : " +this.quotes);
 
     this.cols = [
       {fields: 'name', header:'Name'},
@@ -61,5 +62,51 @@ export class DeliveryShipmentDetailsComponent implements AfterContentChecked {
   isFirstPage(): boolean {
     return this.first === 0;
   }
-  
+
+  // confirmQuote(serviceCode): void {
+  //   console.log("Service code : " +serviceCode);
+  //   let reqURL = "https://s0020806703trial-trial.apim1.hanatrial.ondemand.com/s0020806703trial/http/get_Order_Shipment/json";
+  //   let passData = JSON.stringify({
+  //     "shipments": [
+  //       {
+  //         "validate_address": "no_validation",
+  //         "service_code": "ups_ground",
+  //         "ship_to": {
+  //           "name": "Amanda Miller",
+  //           "phone": "555-555-5555",
+  //           "address_line1": "525 S Winchester Blvd",
+  //           "city_locality": "San Jose",
+  //           "state_province": "CA",
+  //           "postal_code": "95128",
+  //           "country_code": "US",
+  //           "address_residential_indicator": "yes"
+  //         },
+  //         "ship_from": {
+  //           "company_name": "Example Corp.",
+  //           "name": "John Doe",
+  //           "phone": "111-111-1111",
+  //           "address_line1": "4009 Marathon Blvd",
+  //           "address_line2": "Suite 300",
+  //           "city_locality": "Austin",
+  //           "state_province": "TX",
+  //           "postal_code": "78756",
+  //           "country_code": "US",
+  //           "address_residential_indicator": "no"
+  //         },
+  //         "packages": [
+  //           {
+  //             "weight": {
+  //               "value": 1.0,
+  //               "unit": "ounce"
+  //             }
+  //           }
+  //         ]
+  //       }
+  //     ]
+  //   });
+
+  //   this.httpClient.post(reqURL, passData).subscribe(resp=> {
+  //     console.log("Response : " +resp.shipments[0].created_at);
+  //   })
+  // }
 }

@@ -47,4 +47,9 @@ export class DataserviceService {
       }
     }
    }
+
+   public confirmQuote(response){
+     console.log("Response: " +response);
+
+   }
 }

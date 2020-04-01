@@ -36,13 +36,13 @@
                 <td colspan="2" class="text-left logis-name">
 
                     <span class="logis-img" *ngIf="quotes.carrier_friendly_name == 'UPS'">
-                        <img src="../../../assets/images/ups-logo.png" />
+                        <img src="./assets/images/ups-logo.png" />
                     </span>
                     <span class="logis-img" *ngIf="quotes.carrier_friendly_name == 'FedEx'">
-                        <img src="../../../assets/images/fedex-logo.png" />
+                        <img src="./assets/images/fedex-logo.png" />
                     </span>
                     <span class="logis-img" *ngIf="quotes.carrier_friendly_name == 'Stamps.com'">
-                        <img src="../../../assets/images/stamps_logo.jpg" />
+                        <img src="./assets/images/stamps_logo.jpg" />
                     </span>
                     <span class="logis-name">
                         {{quotes.carrier_friendly_name}}
@@ -54,7 +54,7 @@
                 <td colspan="2">{{quotes.service_type}}</td>
                 <td colspan="2"><span [ngClass]= "(quotes.trackable=='true') ? 'trackcheck' : 'trackuncheck'"></span></td>
                 <td>{{quotes.shipping_currency | uppercase}} {{quotes.shipping_amount}}</td>
-                <td><button class="btn btn-primary">Place Order</button></td>
+                <td><button class="btn btn-primary" (click)="confirmQuote(quotes.service_code)">Place Order</button></td>
             </tr>
             
         </ng-template>

@@ -28,3 +28,7 @@ export interface ShipmentQuote {
     warning_messages: string;
     zone: string;
 }
+
+export interface ConfirmQuote {
+    
+}

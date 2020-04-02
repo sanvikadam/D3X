@@ -6,6 +6,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background:
 .form-control {border-radius: 2px;}
 h5 {font-weight: 700;}
 .error-field {color: #FF0000; font-size: 12px;}
+.mt-15 {margin-top: 15px;}
 
 /* Login Page */
 .login-form {width: 340px; margin: 150px auto;}
@@ -31,8 +32,9 @@ h5 {font-weight: 700;}
 .user-info .user-data p.field-label {font-weight: bold;}
 .user-info .user-data p.field-value {font-weight: normal;}
 .red-astrik {color: red;}
+.loader {margin: 40px 0;}
 .loader span{background: url('./assets/images/loading.gif') no-repeat center; height: 48px; width: 48px; display: inline-block;}
-.loader h2 {margin-top: 0;}
+.loader h4 {margin-top: 0;}
 /* New Shipment Page */
 .wrapper {margin: 40px 0;}
 .form-content {padding: 15px 30px;}

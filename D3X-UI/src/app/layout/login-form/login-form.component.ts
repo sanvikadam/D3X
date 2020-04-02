@@ -27,7 +27,7 @@ export class LoginFormComponent implements OnInit {
   loginUser(data){
       this.Auth.getUserDetails().subscribe((resp:any)=> {
       if(resp.username==data.name && resp.password==data.password) {
-        return this.router.navigate(['dashboard']);
+        return this.router.navigate(['dashboard/create-shipment']);
       } else {
         window.alert('Usernam or Password maybe incorrect');
         this.createLoginForm.reset();

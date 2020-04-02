@@ -3,7 +3,7 @@
 <form #shipmentForm="ngForm" (ngSubmit)="saveShipment()">
 <div class="form-group row">
             <div class="col-sm-6">
-                <label for="pickupAddr" class=" col-form-label text-right">Pickup</label>
+                <label for="pickupAddr" class=" col-form-label text-right">Pickup Address<span class="red-astrik">*</span></label>
                 <input 
                     type="text" 
                     class="form-control" 
@@ -17,7 +17,7 @@
             </div>
 
             <div class="col-sm-6">
-                <label for="dropofAddr" class=" col-form-label text-right">Drop</label>
+                <label for="dropofAddr" class=" col-form-label text-right">Drop Address<span class="red-astrik">*</span></label>
                 <input 
                     type="text" 
                     class="form-control" 
@@ -36,60 +36,61 @@
     </div>
     <div class="col-sm-12">
     <div class="row">
-    <div class="col-sm-3">
-        <label for="packWidth" class=" col-form-label text-right">Width</label>
+    <div class="col-sm-4">
+        <label for="packWidth" class=" col-form-label text-right">Width (in)<span class="red-astrik">*</span></label>
         <input 
             type="number" 
             class="form-control" 
             id="packWidth" 
-            placeholder="Width" 
+            value="1" 
             [(ngModel)] ="packWidth"
-            name="packWidth" 
+            
             #palateWidth="ngModel"
             required />
         <span class="error-field" *ngIf="palateWidth.invalid && palateWidth.touched">Please enter valid palate width</span>
     </div>
 
-    <div class="col-sm-3">
-        <label for="packHeight" class=" col-form-label text-right">Height</label>
+    <div class="col-sm-4">
+        <label for="packHeight" class=" col-form-label text-right">Height (in)<span class="red-astrik">*</span></label>
         <input 
             type="number" 
             class="form-control" 
             id="packHeight" 
-            placeholder="Height" 
+            value="1"
             [(ngModel)]="packHeight"
-            name="packHeight" 
             #palateHeight="ngModel"
             required />
         <span class="error-field" *ngIf="palateHeight.invalid && palateHeight.touched">Please enter valid palate height</span>
     </div>
-    <div class="col-sm-3">
-        <label for="packWeight" class=" col-form-label text-right">Weight</label>
-        <input 
-            type="number" 
-            class="form-control" 
-            id="packWeight" 
-            placeholder="Weight" 
-            [(ngModel)]="packWeight" 
-            name="packWeight" 
-            #palateWeight="ngModel"
-            required />
-        <span class="error-field" *ngIf="palateWeight.invalid && palateWeight.touched">Please enter valid palate weight</span>
-    </div>
-    <div class="col-sm-3">
-        <label for="packLength" class=" col-form-label text-right">Length</label>
+    <div class="col-sm-4">
+        <label for="packLength" class=" col-form-label text-right">Length (in)<span class="red-astrik">*</span></label>
         <input 
             type="number" 
             class="form-control" 
             id="packLength" 
-            placeholder="Length" 
+            value="1"
             [(ngModel)]="packLength" 
-            name="packLength" 
             #palateLength="ngModel"
             required />
         <span class="error-field" *ngIf="palateLength.invalid && palateLength.touched">Please enter valid palate length</span>
     </div>
     </div>
+    </div>
+    <div class="col-md-12">
+      <div class="row ">
+        <div class="col-sm-4">
+            <label for="packWeight" class=" col-form-label text-right">Weight (lb)<span class="red-astrik">*</span></label>
+            <input 
+                type="number" 
+                class="form-control" 
+                id="packWeight" 
+                value="1"
+                [(ngModel)]="packWeight" 
+                #palateWeight="ngModel"
+                required />
+            <span class="error-field" *ngIf="palateWeight.invalid && palateWeight.touched">Please enter valid palate weight</span>
+        </div>
+      </div>
     </div>
 </div>
 
@@ -114,13 +115,13 @@
                     name="sku" 
                     [(ngModel)]="sku"
                     #skuNo="ngModel"
-                    required />
+                     />
                 <!-- <div class="error-field" 
                         *ngIf="skuNo.invalid && (skuNo.dirty || skuNo.touched)">
                         <span *ngIf="skuNo.errors.required">Required</span>
                         <span *ngIf="skuNo.errors.invalid">Required</span>
                 </div> -->
-                <span class="error-field" *ngIf="skuNo.touched && skuNo.invalid">Enter Valid SKU</span>
+                <!-- <span class="error-field" *ngIf="skuNo.touched && skuNo.invalid">Enter Valid SKU</span> -->
             </td>
             <td>
                 <input 
@@ -130,8 +131,8 @@
                     name="name" 
                     [(ngModel)]="name"
                     #packageName="ngModel"
-                    required />
-                <span class="error-field" *ngIf="packageName.invalid && packageName.touched">Enter valid Name</span>
+                     />
+                <!-- <span class="error-field" *ngIf="packageName.invalid && packageName.touched">Enter valid Name</span> -->
                 <!-- <span class="error-field" *ngIf="packageName.touched">Enter Name</span> -->
             </td>
             <td>
@@ -142,12 +143,11 @@
                     name="quantity" 
                     [(ngModel)]="quantity" 
                     #packQuantity="ngModel"
-                    required />
-                <span class="error-field" *ngIf="packQuantity.invalid && packQuantity.touched">Enter valid quantity</span>
+                     />
+                <!-- <span class="error-field" *ngIf="packQuantity.invalid && packQuantity.touched">Enter valid quantity</span> -->
                 <!-- <span class="error-field" *ngIf="packQuantity.touched">Enter quantity</span> -->
             </td>
             <td class="input-group">
-                <span class="input-group-addon">$</span>
                 <input 
                     type="number" 
                     class="form-control"
@@ -156,8 +156,8 @@
                     value="0" 
                     [(ngModel)]="price"
                     #prodPrice="ngModel"
-                    required />
-                <span class="error-field" *ngIf="prodPrice.invalid && prodPrice.touched">Enter valid price</span>
+                     />
+                <!-- <span class="error-field" *ngIf="prodPrice.invalid && prodPrice.touched">Enter valid price</span> -->
                 <!-- <span class="error-field" *ngIf="prodPrice.touched">Enter the price</span>  -->
             </td>
             <td class="col-sm-2"><a class="deleteRow"></a></td>
@@ -176,9 +176,18 @@
 </div>
 <div class="submit-order form-content text-right">
     <button type="button" class="btn btn-secondary mx-5" id="cancelOrder">Cancel</button>
-    <button type="button" type="submit" class="btn btn-primary mx-5" id="addrow" [disabled]="shipmentForm.invalid">Save Order</button> <!-- routerLink="/shipment-details" -->
+    <button type="submit" class="btn btn-primary mx-5" [disabled]="shipmentForm.invalid">Get Rates</button> <!-- routerLink="/shipment-details" -->
   </div>
 </form>
 <!-- <p>Value : {{shipment | json}}</p> -->
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div [hidden]="!loading" class="loader text-center">
+            <span></span>
+            <h2>Loading...</h2>
+        </div>
+        <app-delivery-shipment-details *ngIf="showQuotes"></app-delivery-shipment-details>
+    </div>
 </div>
 

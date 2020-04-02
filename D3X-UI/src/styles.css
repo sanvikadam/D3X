@@ -30,6 +30,9 @@ h5 {font-weight: 700;}
 .user-info .user-data p {margin: 0; font-size: 13px;}
 .user-info .user-data p.field-label {font-weight: bold;}
 .user-info .user-data p.field-value {font-weight: normal;}
+.red-astrik {color: red;}
+.loader span{background: url('./assets/images/loading.gif') no-repeat center; height: 48px; width: 48px; display: inline-block;}
+.loader h2 {margin-top: 0;}
 /* New Shipment Page */
 .wrapper {margin: 40px 0;}
 .form-content {padding: 15px 30px;}

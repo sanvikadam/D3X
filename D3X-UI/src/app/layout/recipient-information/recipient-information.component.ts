@@ -13,15 +13,14 @@ export class RecipientInformationComponent implements OnInit{
   public loading: boolean;
   public passData: string;
 
-
   constructor(
       private _shipmentquote: DataserviceService,
       private router: Router,
       private httpClient: HttpClient
     ) {
 
-      
-  }
+     }
+
   pickupAddr: string;
   dropofAddr: null;
   packWidth: null;
@@ -32,9 +31,6 @@ export class RecipientInformationComponent implements OnInit{
   name: null;
   quantity: null;
   price: null;
-
-
-
 
   ngOnInit(){
     this.passData =  JSON.stringify({
@@ -73,15 +69,11 @@ export class RecipientInformationComponent implements OnInit{
     this.pickupAddr = finalData.address_from_line1+", "+finalData.address_from_city+ ", " +finalData.address_from_state+ ", " +finalData.address_from_country+ ", " +finalData.address_from_postalcode;
   }
   
-
-
-
   public saveShipment(): void {
     this.loading=true;
     this.showQuotes=false;
     // Code that actually needs to be run
     let data = this.passData;
-    // console.log(this.passData);
     let reqUrl = 'https://s0020806703trial-trial.apim1.hanatrial.ondemand.com:443/s0020806703trial/http/get_delv_quote_multi_bck/json';//'assets/local/ship-details.json';
 
  this.httpClient.post(reqUrl, data).subscribe(res=> {

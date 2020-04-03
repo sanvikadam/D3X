@@ -4,7 +4,7 @@ import { LoginComponent } from './views/login/login.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { ProfileDetailsComponent } from './layout/profile-details/profile-details.component';
 import { RecipientInformationComponent } from './layout/recipient-information/recipient-information.component';
-import { RecipientDetailsComponent } from './layout/recipient-details/recipient-details.component';
+import { ManageShipmentsComponent } from './layout/manage-shipments/manage-shipments.component';
 
 
 const appRoutes: Routes = [
@@ -12,7 +12,7 @@ const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent,
     children: [
-      { path: '', redirectTo: 'profile', pathMatch: 'full' },
+      { path: '', redirectTo: 'create-shipment', pathMatch: 'full' },
       {
         path: 'profile',
         component : ProfileDetailsComponent
@@ -22,8 +22,8 @@ const appRoutes: Routes = [
         component : RecipientInformationComponent
       },
       {
-        path: 'shipment-details',
-        component: RecipientDetailsComponent
+        path: 'manage-shipment',
+        component: ManageShipmentsComponent
       },
       {
         path: 'cancel-shipment',

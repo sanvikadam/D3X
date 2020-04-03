@@ -11,7 +11,8 @@
                     placeholder="pickup address" 
                     [(ngModel)] = "pickupAddr" 
                     name="pickupAddr" 
-                    #pickAddr="ngModel" 
+                    #pickAddr="ngModel"
+                    disabled
                     required/>
                 <span class="error-field" *ngIf="pickAddr.invalid && pickAddr.touched">Please enter valid pickup address</span>
             </div>

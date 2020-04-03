@@ -15,6 +15,7 @@ import { ProfileDetailsComponent } from './layout/profile-details/profile-detail
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { ManageShipmentsComponent } from './layout/manage-shipments/manage-shipments.component';
 import { TableModule } from 'primeng/table';
+import { ConfirmShipmentComponent } from './layout/confirm-shipment/confirm-shipment.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { TableModule } from 'primeng/table';
     SidebarNavigationComponent,
     ProfileDetailsComponent,
     DashboardComponent,
-    ManageShipmentsComponent
+    ManageShipmentsComponent,
+    ConfirmShipmentComponent
   ],
   imports: [
     HttpClientModule,

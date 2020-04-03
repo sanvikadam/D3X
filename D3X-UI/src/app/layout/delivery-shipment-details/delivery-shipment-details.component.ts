@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterContentChecked } from '@angular/core';
 import { DataserviceService } from '../../service/dataservice.service';
+import { Router } from '@angular/router';
 // import { ShipmentQuote } from '../../models/shipment-quote';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
@@ -22,14 +23,15 @@ export class DeliveryShipmentDetailsComponent implements AfterContentChecked {
 
   constructor(
     public dataService: DataserviceService,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private router: Router
     ) { 
     
   }
 
   ngAfterContentChecked() {
     this.quotes = this.dataService.quote;
-    console.log("Quotes : " +this.quotes);
+    // console.log("Quotes : " +this.quotes);
 
     this.cols = [
       {fields: 'name', header:'Name'},
@@ -107,7 +109,7 @@ export class DeliveryShipmentDetailsComponent implements AfterContentChecked {
 
     this.httpClient.post(reqURL, passData).subscribe(resp=> {
       this.dataService.confirmQuote(resp);
-      //console.log("Response : " +resp.shipments[0].created_at);
+      this.router.navigate(['dashboard/manage-shipment']);
     })
   }
 }

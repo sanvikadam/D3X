@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { DeliveryShipmentDetailsComponent } from '../delivery-shipment-details/delivery-shipment-details.component';
 
 @Component({
   selector: 'app-manage-shipments',
   templateUrl: './manage-shipments.component.html',
   styleUrls: ['./manage-shipments.component.css']
 })
-export class ManageShipmentsComponent implements OnInit {
+export class ManageShipmentsComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
+  public confirmData: any;
+  constructor(private cdr: ChangeDetectorRef) { }
 
-  ngOnInit() {
+ngOnInit() {
+  this.confirmData = window.history.state;
+  //this.cdr.detectChanges();
   }
+
+public ngAfterViewInit(): void {
+
+}
 
 }

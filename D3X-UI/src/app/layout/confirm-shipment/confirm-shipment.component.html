@@ -1,1 +1,101 @@
-<p>confirm-shipment works!</p>
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="page-title">Order Receipt</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <span class="separstor"></span>
+            </div>
+        </div>
+        <div class="confirm-wrapper">
+        <div class="row ">
+            <!-- <div class="col-md-12">
+                Order Confirmation
+            </div> -->
+            <div class="col-md-12 confirm-content">
+                Thank you for your order
+            </div>
+            <div class="col-md-12 confirm-content">
+                We've received your order and will contact you as soon as your package is shipped. You can find your purchase information below.
+            </div>
+        </div>
+        </div>
+
+
+        <!-- <div class="row">
+            <div class="col-md-12">
+                <span class="separator"></span>
+            </div>
+        </div> -->
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-12 summary-title">
+                        Order Summary
+                    </div>
+                    <div class="col-md-12">
+                        <span class="separator"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-sm-6 space-content">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <span class="label-field">Ship ID</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <span class="value-field">{{shipmentID}}</span>
+                                    </div>    
+                                </div>
+                            </div>
+                            <div class="col-sm-6 space-content">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <span class="label-field">Ship Date</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <span class="value-field">{{shipDate | date}}</span>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 space-content">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <span class="label-field">Service Code</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <span class="value-field">{{quotesData.service_type}}</span>
+                                    </div>    
+                                </div>
+                            </div>
+                            <div class="col-sm-6 space-content">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <span class="label-field">Price</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <span class="value-field">{{quotesData.shipping_currency | uppercase}} {{quotesData.shipping_amount}}</span>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="button-wrapper">
+                    <button class="btn btn-primary">Continue Payment</button>
+                    <button class="btn btn-success">Go Back</button>
+                    <button class="btn btn-danger">Delete</button>
+             </div>
+            </div>
+        </div>
+    </div>
+</div>

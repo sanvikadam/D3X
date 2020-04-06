@@ -8,9 +8,9 @@
                     type="text" 
                     class="form-control" 
                     id="pickupAddr" 
+                    name="pickupAddr"
                     placeholder="pickup address" 
                     [(ngModel)] = "pickupAddr" 
-                    name="pickupAddr" 
                     #pickAddr="ngModel"
                     disabled
                     required/>
@@ -23,9 +23,9 @@
                     type="text" 
                     class="form-control" 
                     id="dropofAddr" 
+                    name="dropofAddr"
                     placeholder="Delivery address" 
                     [(ngModel)]="dropofAddr"
-                    name="dropofAddr" 
                     #dropAddr="ngModel"
                     required />
                 <span class="error-field" *ngIf="dropAddr.invalid && dropAddr.touched">Please enter valid drop address</span>
@@ -43,9 +43,8 @@
             type="number" 
             class="form-control" 
             id="packWidth" 
-            value="1" 
+            value="1"
             [(ngModel)] ="packWidth"
-            
             #palateWidth="ngModel"
             required />
         <span class="error-field" *ngIf="palateWidth.invalid && palateWidth.touched">Please enter valid palate width</span>
@@ -70,7 +69,7 @@
             class="form-control" 
             id="packLength" 
             value="1"
-            [(ngModel)]="packLength" 
+            [(ngModel)]="packLength"
             #palateLength="ngModel"
             required />
         <span class="error-field" *ngIf="palateLength.invalid && palateLength.touched">Please enter valid palate length</span>
@@ -86,7 +85,7 @@
                 class="form-control" 
                 id="packWeight" 
                 value="1"
-                [(ngModel)]="packWeight" 
+                [(ngModel)]="packWeight"
                 #palateWeight="ngModel"
                 required />
             <span class="error-field" *ngIf="palateWeight.invalid && palateWeight.touched">Please enter valid palate weight</span>
@@ -113,7 +112,7 @@
                     type="text" 
                     class="form-control"
                     id="sku"
-                    name="sku" 
+                    name="sku"
                     [(ngModel)]="sku"
                     #skuNo="ngModel"
                      />
@@ -129,7 +128,7 @@
                     type="text" 
                     class="form-control" 
                     id="name"
-                    name="name" 
+                    name="name"
                     [(ngModel)]="name"
                     #packageName="ngModel"
                      />
@@ -141,7 +140,7 @@
                     type="number" 
                     class="form-control"
                     id="quantity"
-                    name="quantity" 
+                    name="quantity"
                     [(ngModel)]="quantity" 
                     #packQuantity="ngModel"
                      />
@@ -153,7 +152,7 @@
                     type="number" 
                     class="form-control"
                     id="price"
-                    name="price" 
+                    name="price"
                     value="0" 
                     [(ngModel)]="price"
                     #prodPrice="ngModel"

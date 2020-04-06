@@ -10,6 +10,8 @@ import { ShipmentQuote } from '../models/shipment-quotes/shipment-quote';
 export class DataserviceService {
   postData: any = {};
   quote: ShipmentQuote[];
+  shipmentId: String;
+  shipDate: String;
   
 
   constructor(
@@ -49,7 +51,9 @@ export class DataserviceService {
    }
 
    public confirmQuote(response){
-     console.log("Response: " +response);
+    this.shipmentId = response.shipments[0].shipment_id;
+    this.shipDate = response.shipments[0].ship_date;
+     console.log("Response: " +response.shipments[0].shipment_id);
 
    }
 }

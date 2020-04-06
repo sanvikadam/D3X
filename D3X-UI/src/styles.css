@@ -93,3 +93,15 @@ body .ui-table-customers .ui-paginator .ui-paginator-current {float: right;}
 .table.table-dark td span.logis-name {position: relative; left: 10px;}
 .table.table-dark td span.logis-img {width: 40px; height: 40px;}
 .table.table-dark td span.logis-img img {width: 100%;}
+
+/* Confirmation page css*/
+.page-title {font-size: 2.6em; color: #999;font-weight: 100; padding: 0; letter-spacing: .4px; text-align: center; margin: 0; padding: 3px 0 0 0;}
+.separator {border-top: 1px solid rgba(0,0,0,0.075); width: 100%; display: block; margin: 10px 0;}
+.confirm-wrapper {margin: 15px 0;background: #6394ce; background-image: linear-gradient(#6394ce,#395fa2); text-align: center;color: #fff;padding: 15px 0;}
+.confirm-content {margin: 10px 0;}
+.summary-title {font-size: 22px; font-weight: 700;margin: 15px 0;}
+.space-content{margin: 15px 0;}
+.label-field {font-weight: 700;}
+.button-wrapper{margin: 80px 0 0;}
+.button-wrapper .btn {margin: 10px 0;  width: 80%;}
+/* .button-wrapper .btn-success {color: #fff; background-color: #28a745; border-color: #28a745} */

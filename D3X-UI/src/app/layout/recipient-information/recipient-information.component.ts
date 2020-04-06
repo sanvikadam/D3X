@@ -23,16 +23,21 @@ export class RecipientInformationComponent implements OnInit{
 
   pickupAddr: string;
   dropofAddr: null;
-  packWidth: null;
-  packHeight: null;
-  packWeight: null;
-  packLength: null;
+  packWidth: number;
+  packHeight: number;
+  packWeight: number;
+  packLength: number;
   sku: null;
   name: null;
   quantity: null;
   price: null;
 
   ngOnInit(){
+    // this.packWidth = 1;
+    // this.packHeight = 1;
+    // this.packLength = 1;
+    // this.packWeight = 1;
+    
     this.passData =  JSON.stringify({
       "delivery_list": [{
         "delivery_id": "0080017667",

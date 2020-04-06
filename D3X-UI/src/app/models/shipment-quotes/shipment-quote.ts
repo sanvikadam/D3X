@@ -29,6 +29,3 @@ export interface ShipmentQuote {
     zone: string;
 }
 
-export interface ConfirmQuote {
-    
-}

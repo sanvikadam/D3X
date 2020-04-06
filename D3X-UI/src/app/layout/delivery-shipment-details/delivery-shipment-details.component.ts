@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentChecked } from '@angular/core';
+import { Component, OnInit, AfterContentChecked, Input } from '@angular/core';
 import { DataserviceService } from '../../service/dataservice.service';
 import { Router } from '@angular/router';
 // import { ShipmentQuote } from '../../models/shipment-quote';
@@ -20,6 +20,10 @@ export class DeliveryShipmentDetailsComponent implements AfterContentChecked {
   last: number = 0;
 
   rows: number = 10;
+
+  confirmQuotes: any;
+
+  serviceCode:string
 
   constructor(
     public dataService: DataserviceService,
@@ -65,14 +69,16 @@ export class DeliveryShipmentDetailsComponent implements AfterContentChecked {
     return this.first === 0;
   }
 
-  confirmQuote(serviceCode): void {
-    console.log("Service code : " +serviceCode);
+  confirmQuote(confirmQuotes, serviceCode): void {
+
+    console.log("Ship Date : " +confirmQuotes.ship_date+ " and service code " +serviceCode);
+
     let reqURL = "https://s0020806703trial-trial.apim1.hanatrial.ondemand.com/s0020806703trial/http/get_Order_Shipment/json";
     let passData = JSON.stringify({
       "shipments": [
         {
           "validate_address": "no_validation",
-          "service_code": "ups_ground",
+          "service_code": serviceCode,
           "ship_to": {
             "name": "Amanda Miller",
             "phone": "555-555-5555",
@@ -109,7 +115,7 @@ export class DeliveryShipmentDetailsComponent implements AfterContentChecked {
 
     this.httpClient.post(reqURL, passData).subscribe(resp=> {
       this.dataService.confirmQuote(resp);
-      this.router.navigate(['dashboard/manage-shipment']);
+      this.router.navigate(['/dashboard/manage-shipment'], {state: {confirmQuotesData: confirmQuotes}});
     })
   }
 }

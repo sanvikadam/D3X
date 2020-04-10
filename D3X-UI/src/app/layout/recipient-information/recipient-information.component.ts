@@ -12,6 +12,7 @@ export class RecipientInformationComponent implements OnInit{
   public showQuotes: boolean;
   public loading: boolean;
   public passData: string;
+  public finalData: any;
 
   constructor(
       private _shipmentquote: DataserviceService,
@@ -22,7 +23,7 @@ export class RecipientInformationComponent implements OnInit{
      }
 
   pickupAddr: string;
-  dropofAddr: null;
+  dropofAddr: string;
   packWidth: number;
   packHeight: number;
   packWeight: number;
@@ -37,6 +38,8 @@ export class RecipientInformationComponent implements OnInit{
     // this.packHeight = 1;
     // this.packLength = 1;
     // this.packWeight = 1;
+
+    
     
     this.passData =  JSON.stringify({
       "delivery_list": [{
@@ -69,16 +72,30 @@ export class RecipientInformationComponent implements OnInit{
 
     let convertData = JSON.parse(this.passData);
 
-    let finalData = convertData.delivery_list[0];
+    this.finalData = convertData.delivery_list[0];
 
-    this.pickupAddr = finalData.address_from_line1+", "+finalData.address_from_city+ ", " +finalData.address_from_state+ ", " +finalData.address_from_country+ ", " +finalData.address_from_postalcode;
+    this.pickupAddr = this.finalData.address_from_line1+", "+this.finalData.address_from_city+ ", " +this.finalData.address_from_state+ ", " +this.finalData.address_from_country+ ", " +this.finalData.address_from_postalcode;
   }
   
   public saveShipment(): void {
     this.loading=true;
     this.showQuotes=false;
+
+    let toAddress = this.dropofAddr.split(',');
+    let pinCode = toAddress[2].split(' ');
+    // console.log(toAddress, "and" ,pinCode);
+    
     // Code that actually needs to be run
-    let data = this.passData;
+
+    this.finalData.address_to_line1 = toAddress[0];
+    this.finalData.address_to_city = toAddress[1];
+    this.finalData.address_to_state = pinCode[1];
+    this.finalData.address_to_postalcode = pinCode[2];
+
+    // console.log("Hello " +JSON.stringify({"delivery_list": [this.finalData]}));
+
+    let data = JSON.stringify({"delivery_list": [this.finalData]});
+
     let reqUrl = 'https://s0020806703trial-trial.apim1.hanatrial.ondemand.com:443/s0020806703trial/http/get_delv_quote_multi_bck/json';//'assets/local/ship-details.json';
 
  this.httpClient.post(reqUrl, data).subscribe(res=> {

@@ -1,185 +1,300 @@
-<div class="form-wrapper">
-<h4>Recipient Information</h4>
-<form #shipmentForm="ngForm" (ngSubmit)="saveShipment()">
-<div class="form-group row">
-            <div class="col-sm-6">
-                <label for="pickupAddr" class=" col-form-label text-right">From Address<span class="red-astrik">*</span></label>
-                <input 
-                    type="text" 
-                    class="form-control" 
-                    id="pickupAddr" 
-                    name="pickupAddr"
-                    placeholder="pickup address" 
-                    [(ngModel)] = "pickupAddr" 
-                    #pickAddr="ngModel"
-                    disabled
-                    required/>
-                <span class="error-field" *ngIf="pickAddr.invalid && pickAddr.touched">Please enter valid pickup address</span>
-            </div>
+ <!-- Topbar -->
+ <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-            <div class="col-sm-6">
-                <label for="dropofAddr" class=" col-form-label text-right">To Address<span class="red-astrik">*</span></label>
-                <input 
-                    type="text" 
-                    class="form-control" 
-                    id="dropofAddr" 
-                    name="dropofAddr"
-                    placeholder="Delivery address" 
-                    [(ngModel)]="dropofAddr"
-                    #dropAddr="ngModel"
-                    required />
-                <span class="error-field" *ngIf="dropAddr.invalid && dropAddr.touched">Please enter valid drop address</span>
-            </div>
-</div>
-<div class="form-group row">
-    <div class="col-sm-12">
-        <h4>Package Dimension</h4>
-    </div>
-    <div class="col-sm-12">
-    <div class="row">
-    <div class="col-sm-4">
-        <label for="packWidth" class=" col-form-label text-right">Width (in)<span class="red-astrik">*</span></label>
-        <input 
-            type="number" 
-            class="form-control" 
-            id="packWidth" 
-            value="1"
-            [(ngModel)] ="packWidth"
-            #palateWidth="ngModel"
-            required />
-        <span class="error-field" *ngIf="palateWidth.invalid && palateWidth.touched">Please enter valid palate width</span>
-    </div>
+    <!-- Sidebar Toggle (Topbar) -->
+    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+      <i class="fa fa-bars"></i>
+    </button>
 
-    <div class="col-sm-4">
-        <label for="packHeight" class=" col-form-label text-right">Height (in)<span class="red-astrik">*</span></label>
-        <input 
-            type="number" 
-            class="form-control" 
-            id="packHeight" 
-            value="1"
-            [(ngModel)]="packHeight"
-            #palateHeight="ngModel"
-            required />
-        <span class="error-field" *ngIf="palateHeight.invalid && palateHeight.touched">Please enter valid palate height</span>
-    </div>
-    <div class="col-sm-4">
-        <label for="packLength" class=" col-form-label text-right">Length (in)<span class="red-astrik">*</span></label>
-        <input 
-            type="number" 
-            class="form-control" 
-            id="packLength" 
-            value="1"
-            [(ngModel)]="packLength"
-            #palateLength="ngModel"
-            required />
-        <span class="error-field" *ngIf="palateLength.invalid && palateLength.touched">Please enter valid palate length</span>
-    </div>
-    </div>
-    </div>
-    <div class="col-md-12">
-      <div class="row mt-15">
-        <div class="col-sm-4">
-            <label for="packWeight" class=" col-form-label text-right">Weight (lb)<span class="red-astrik">*</span></label>
-            <input 
-                type="number" 
-                class="form-control" 
-                id="packWeight" 
-                value="1"
-                [(ngModel)]="packWeight"
-                #palateWeight="ngModel"
-                required />
-            <span class="error-field" *ngIf="palateWeight.invalid && palateWeight.touched">Please enter valid palate weight</span>
+    <!-- Topbar Navbar -->
+    <ul class="navbar-nav ml-auto">
+
+      <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
+
+      <!-- Nav Item - User Information -->
+      <li class="nav-item dropdown no-arrow">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="mr-2 d-none d-lg-inline text-gray-600 small">Test</span>
+          <img class="img-profile rounded-circle" src="./assets/images/profile-image.png">
+        </a>
+        <!-- Dropdown - User Information -->
+        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+          <a class="dropdown-item" href="#">
+            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+            Profile
+          </a>
+          <a class="dropdown-item" href="#">
+            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+            Settings
+          </a>
+          <a class="dropdown-item" href="#">
+            <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+            Activity Log
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+            Logout
+          </a>
         </div>
-      </div>
+      </li>
+
+    </ul>
+
+  </nav>
+  <!-- End of Topbar -->
+
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Book Shipment</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Recipient Information</h6>
+                </div>
+                <div class="card-body">
+                    <form class="user" #shipmentForm="ngForm" (ngSubmit)="saveShipment()">
+                        <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label for="pickupAddr" class=" col-form-label text-right">From Address<span class="red-astrik">*</span></label>
+                                        <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            id="pickupAddr" 
+                                            name="pickupAddr"
+                                            placeholder="pickup address" 
+                                            [(ngModel)] = "pickupAddr" 
+                                            #pickAddr="ngModel"
+                                            disabled
+                                            required/>
+                                        <span class="error-field" *ngIf="pickAddr.invalid && pickAddr.touched">Please enter valid pickup address</span>
+                                    </div>
+                        
+                                    <div class="col-sm-6">
+                                        <label for="dropofAddr" class=" col-form-label text-right">To Address<span class="red-astrik">*</span></label>
+                                        <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            id="dropofAddr" 
+                                            name="dropofAddr"
+                                            placeholder="Delivery address" 
+                                            [(ngModel)]="dropofAddr"
+                                            #dropAddr="ngModel"
+                                            required />
+                                        <span class="error-field" *ngIf="dropAddr.invalid && dropAddr.touched">Please enter valid drop address</span>
+                                    </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <h6 class="font-weight-bold">Package Dimension</h6>
+                            </div>
+                            <div class="col-sm-12">
+                            <div class="row">
+                            <div class="col-sm-4">
+                                <label for="packWidth" class=" col-form-label text-right">Width (in)<span class="red-astrik">*</span></label>
+                                <input 
+                                    type="number" 
+                                    class="form-control" 
+                                    id="packWidth" 
+                                    value="1"
+                                    [(ngModel)] ="packWidth"
+                                    #palateWidth="ngModel"
+                                    required />
+                                <span class="error-field" *ngIf="palateWidth.invalid && palateWidth.touched">Please enter valid palate width</span>
+                            </div>
+                        
+                            <div class="col-sm-4">
+                                <label for="packHeight" class=" col-form-label text-right">Height (in)<span class="red-astrik">*</span></label>
+                                <input 
+                                    type="number" 
+                                    class="form-control" 
+                                    id="packHeight" 
+                                    value="1"
+                                    [(ngModel)]="packHeight"
+                                    #palateHeight="ngModel"
+                                    required />
+                                <span class="error-field" *ngIf="palateHeight.invalid && palateHeight.touched">Please enter valid palate height</span>
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="packLength" class=" col-form-label text-right">Length (in)<span class="red-astrik">*</span></label>
+                                <input 
+                                    type="number" 
+                                    class="form-control" 
+                                    id="packLength" 
+                                    value="1"
+                                    [(ngModel)]="packLength"
+                                    #palateLength="ngModel"
+                                    required />
+                                <span class="error-field" *ngIf="palateLength.invalid && palateLength.touched">Please enter valid palate length</span>
+                            </div>
+                            </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="row mt-15">
+                                <div class="col-sm-4">
+                                    <label for="packWeight" class=" col-form-label text-right">Weight (lb)<span class="red-astrik">*</span></label>
+                                    <input 
+                                        type="number" 
+                                        class="form-control" 
+                                        id="packWeight" 
+                                        value="1"
+                                        [(ngModel)]="packWeight"
+                                        #palateWeight="ngModel"
+                                        required />
+                                    <span class="error-field" *ngIf="palateWeight.invalid && palateWeight.touched">Please enter valid palate weight</span>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        
+                        <div class="order-items form-content">
+                            <h6 class="font-weight-bold">Order Line Items</h6>
+                            <table class="table line-items shadow">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">SKU</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Delete</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>
+                                        <input 
+                                            type="text" 
+                                            class="form-control"
+                                            id="sku"
+                                            name="sku"
+                                            [(ngModel)]="sku"
+                                            #skuNo="ngModel"
+                                             />
+                                        <!-- <div class="error-field" 
+                                                *ngIf="skuNo.invalid && (skuNo.dirty || skuNo.touched)">
+                                                <span *ngIf="skuNo.errors.required">Required</span>
+                                                <span *ngIf="skuNo.errors.invalid">Required</span>
+                                        </div> -->
+                                        <!-- <span class="error-field" *ngIf="skuNo.touched && skuNo.invalid">Enter Valid SKU</span> -->
+                                    </td>
+                                    <td>
+                                        <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            id="name"
+                                            name="name"
+                                            [(ngModel)]="name"
+                                            #packageName="ngModel"
+                                             />
+                                        <!-- <span class="error-field" *ngIf="packageName.invalid && packageName.touched">Enter valid Name</span> -->
+                                        <!-- <span class="error-field" *ngIf="packageName.touched">Enter Name</span> -->
+                                    </td>
+                                    <td>
+                                        <input 
+                                            type="number" 
+                                            class="form-control"
+                                            id="quantity"
+                                            name="quantity"
+                                            [(ngModel)]="quantity" 
+                                            #packQuantity="ngModel"
+                                             />
+                                        <!-- <span class="error-field" *ngIf="packQuantity.invalid && packQuantity.touched">Enter valid quantity</span> -->
+                                        <!-- <span class="error-field" *ngIf="packQuantity.touched">Enter quantity</span> -->
+                                    </td>
+                                    <td class="input-group">
+                                        <input 
+                                            type="number" 
+                                            class="form-control"
+                                            id="price"
+                                            name="price"
+                                            value="0" 
+                                            [(ngModel)]="price"
+                                            #prodPrice="ngModel"
+                                             />
+                                        <!-- <span class="error-field" *ngIf="prodPrice.invalid && prodPrice.touched">Enter valid price</span> -->
+                                        <!-- <span class="error-field" *ngIf="prodPrice.touched">Enter the price</span>  -->
+                                    </td>
+                                    <td><a class="deleteRow"></a></td>
+                                  </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="5" style="text-align: left;">
+                                            <button type="button" class="btn btn-primary btn-icon-split" id="addrow">
+                                                <span class="icon text-white-50">
+                                                    <i class="fas fa-plus"></i>
+                                                  </span>
+                                                  <span class="text">Add a Line item</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                    </tr>
+                                </tfoot>
+                              </table>
+                        </div>
+                        <div class="submit-order form-content text-right">
+                            <button type="button" class="btn btn-secondary btn-icon-split" id="cancelOrder">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-trash"></i>
+                                  </span>
+                                  <span class="text">Cancel</span>
+                                </button>
+                            <button type="submit" class="btn btn-primary btn-icon-split" [disabled]="shipmentForm.invalid">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-arrow-right"></i>
+                                  </span>
+                                  <span class="text">Get Rates</span>
+                            </button>
+                          </div>
+                        </form>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div [hidden]="!loading" class="loader text-center">
+                                    <span></span>
+                                    <h4>Loading...</h4>
+                                </div>
+                                <app-delivery-shipment-details *ngIf="showQuotes"></app-delivery-shipment-details>
+                            </div>
+                        </div>
+                    
+                  </div>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="order-items form-content">
-    <h4>Order Line Items</h4>
-    <table class="table table-bordered order-list">
-        <thead>
-          <tr>
-            <th scope="col">SKU</th>
-            <th scope="col">Name</th>
-            <th scope="col">Quantity</th>
-            <th scope="col" colspan="2">Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-                <input 
-                    type="text" 
-                    class="form-control"
-                    id="sku"
-                    name="sku"
-                    [(ngModel)]="sku"
-                    #skuNo="ngModel"
-                     />
-                <!-- <div class="error-field" 
-                        *ngIf="skuNo.invalid && (skuNo.dirty || skuNo.touched)">
-                        <span *ngIf="skuNo.errors.required">Required</span>
-                        <span *ngIf="skuNo.errors.invalid">Required</span>
-                </div> -->
-                <!-- <span class="error-field" *ngIf="skuNo.touched && skuNo.invalid">Enter Valid SKU</span> -->
-            </td>
-            <td>
-                <input 
-                    type="text" 
-                    class="form-control" 
-                    id="name"
-                    name="name"
-                    [(ngModel)]="name"
-                    #packageName="ngModel"
-                     />
-                <!-- <span class="error-field" *ngIf="packageName.invalid && packageName.touched">Enter valid Name</span> -->
-                <!-- <span class="error-field" *ngIf="packageName.touched">Enter Name</span> -->
-            </td>
-            <td>
-                <input 
-                    type="number" 
-                    class="form-control"
-                    id="quantity"
-                    name="quantity"
-                    [(ngModel)]="quantity" 
-                    #packQuantity="ngModel"
-                     />
-                <!-- <span class="error-field" *ngIf="packQuantity.invalid && packQuantity.touched">Enter valid quantity</span> -->
-                <!-- <span class="error-field" *ngIf="packQuantity.touched">Enter quantity</span> -->
-            </td>
-            <td class="input-group">
-                <input 
-                    type="number" 
-                    class="form-control"
-                    id="price"
-                    name="price"
-                    value="0" 
-                    [(ngModel)]="price"
-                    #prodPrice="ngModel"
-                     />
-                <!-- <span class="error-field" *ngIf="prodPrice.invalid && prodPrice.touched">Enter valid price</span> -->
-                <!-- <span class="error-field" *ngIf="prodPrice.touched">Enter the price</span>  -->
-            </td>
-            <td class="col-sm-2"><a class="deleteRow"></a></td>
-          </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="5" style="text-align: left;">
-                    <button type="button" class="btn btn-primary" id="addrow">+ Add a Line item</button>
-                </td>
-            </tr>
-            <tr>
-            </tr>
-        </tfoot>
-      </table>
-</div>
-<div class="submit-order form-content text-right">
-    <button type="button" class="btn btn-secondary mx-5" id="cancelOrder">Cancel</button>
-    <button type="submit" class="btn btn-primary mx-5" [disabled]="shipmentForm.invalid">Get Rates</button> <!-- routerLink="/shipment-details" -->
-  </div>
-</form>
-<!-- <p>Value : {{shipment | json}}</p> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="form-wrapper">
+<h4>Recipient Information</h4>
+
 </div>
 <div class="row">
     <div class="col-md-12">
@@ -189,5 +304,5 @@
         </div>
         <app-delivery-shipment-details *ngIf="showQuotes"></app-delivery-shipment-details>
     </div>
-</div>
+</div> -->
 

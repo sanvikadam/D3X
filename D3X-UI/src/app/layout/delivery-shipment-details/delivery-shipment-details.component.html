@@ -1,3 +1,4 @@
+<div class="card shadow mt-4">
 <div class="order-lists">
     <p-table 
         #dt
@@ -11,8 +12,8 @@
         [showCurrentPageReport]="true"
         [globalFilterFields]="['carrier_friendly_name']"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
-        <ng-template pTemplate="caption">
-            <h4 class="text-left table-title">List of Quotations</h4>
+        <ng-template pTemplate="caption" class="card-header py-3">
+            <h6 class="text-left table-title text-primary">List of Quotations</h6>
             <div class="ui-table-globalfilter-container text-right search-filter">
                 <i class="pi pi-search" style="margin:0 7px 0 0; display: inline-block; vertical-align: text-bottom;"></i>
                 <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search" />
@@ -59,44 +60,5 @@
             
         </ng-template>
     </p-table>
-    <!-- <table class="table table-dark">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col" colspan="3">Name</th>
-                <th scope="col" colspan="2">Ship Date</th>
-                <th scope="col" colspan="2">Estimated Date</th>
-                <th scope="col">Estimated Day</th>
-                <th scope="col" colspan="2">Service Type</th>
-                <th scope="col">Trackable</th>
-                <th scope="col">Price</th>
-                <th scope="col">Order</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor = "let tags of quotes">
-                <td colspan="3" class="text-left logis-name">
-
-                    <span class="logis-img" *ngIf="tags.carrier_friendly_name == 'UPS'">
-                        <img src="../../../assets/images/ups-logo.png" />
-                    </span>
-                    <span class="logis-img" *ngIf="tags.carrier_friendly_name == 'FedEx'">
-                        <img src="../../../assets/images/fedex-logo.png" />
-                    </span>
-                    <span class="logis-img" *ngIf="tags.carrier_friendly_name == 'Stamps.com'">
-                        <img src="../../../assets/images/stamps_logo.jpg" />
-                    </span>
-                    <span class="logis-name">
-                        {{tags.carrier_friendly_name}}
-                    </span>
-                </td>
-                <td colspan="2">{{tags.ship_date | date}}</td>
-                <td colspan="2">{{tags.estimated_delivery_date | date}}</td>
-                <td>{{tags.carrier_delivery_days}}</td>
-                <td colspan="2">{{tags.service_type}}</td>
-                <td><span [ngClass]= "(tags.trackable=='true') ? 'trackcheck' : 'trackuncheck'"></span></td>
-                <td>{{tags.shipping_currency | uppercase}} {{tags.shipping_amount}}</td>
-                <td><button class="btn btn-primary">Place Order</button></td>
-            </tr>
-        </tbody>
-    </table> -->
+</div>
 </div>

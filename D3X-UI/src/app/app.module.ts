@@ -16,6 +16,8 @@ import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { ManageShipmentsComponent } from './layout/manage-shipments/manage-shipments.component';
 import { TableModule } from 'primeng/table';
 import { ConfirmShipmentComponent } from './layout/confirm-shipment/confirm-shipment.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { ConfirmShipmentComponent } from './layout/confirm-shipment/confirm-ship
     ProfileDetailsComponent,
     DashboardComponent,
     ManageShipmentsComponent,
-    ConfirmShipmentComponent
+    ConfirmShipmentComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     HttpClientModule,

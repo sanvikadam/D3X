@@ -55,7 +55,10 @@
                 <td colspan="2">{{quotes.service_type}}</td>
                 <td colspan="2"><span [ngClass]= "(quotes.trackable=='true') ? 'trackcheck' : 'trackuncheck'"></span></td>
                 <td>{{quotes.shipping_currency | uppercase}} {{quotes.shipping_amount}}</td>
-                <td><button class="btn btn-primary" (click)="confirmQuote(quotes,quotes.service_code)">Place Order</button></td>
+                <td>
+                    <button class="btn btn-primary btn-icon-split" (click)="confirmQuote(quotes,quotes.service_code)">
+                        <span class="text">Place Order</span>
+                    </button></td>
             </tr>
             
         </ng-template>

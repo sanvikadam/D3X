@@ -22,7 +22,6 @@
                                             placeholder="pickup address" 
                                             [(ngModel)] = "pickupAddr" 
                                             #pickAddr="ngModel"
-                                            disabled
                                             required/>
                                         <span class="error-field" *ngIf="pickAddr.invalid && pickAddr.touched">Please enter valid pickup address</span>
                                     </div>
@@ -158,7 +157,7 @@
                                         <!-- <span class="error-field" *ngIf="packQuantity.invalid && packQuantity.touched">Enter valid quantity</span> -->
                                         <!-- <span class="error-field" *ngIf="packQuantity.touched">Enter quantity</span> -->
                                     </td>
-                                    <td class="input-group">
+                                    <td>
                                         <input 
                                             type="number" 
                                             class="form-control"
@@ -191,7 +190,7 @@
                               </table>
                         </div>
                         <div class="submit-order form-content text-right">
-                            <button type="button" class="btn btn-secondary btn-icon-split" id="cancelOrder">
+                            <button type="button" class="btn btn-secondary btn-icon-split" (click)="clear()" id="cancelOrder">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-trash"></i>
                                   </span>
@@ -207,6 +206,14 @@
                         </form>
 
                         <div class="row">
+                            <div class="col-md-12">
+                                <div [hidden]="!error" class="errormsg text-center">
+                                    <h6>Record Not Found. Please try again</h6>
+                                </div>
+                                <div [hidden]="!adderror" class="errormsg text-center">
+                                    <h6><span class="red-astrik">*</span> Invalid Address format. Please enter Address in format <i>(address line 1, city, state, postal code, country)</i></h6>
+                                </div>
+                            </div>
                             <div class="col-md-12">
                                 <div [hidden]="!loading" class="loader text-center">
                                     <span></span>

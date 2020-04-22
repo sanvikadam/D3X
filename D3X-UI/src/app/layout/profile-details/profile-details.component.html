@@ -10,40 +10,21 @@
                     <h6 class="m-0 font-weight-bold text-primary">User Details</h6>
                 </div>
                 <div class="card-body">
-                    <div class="user-info">
+                        <div class="user-info">
                         <div class="row">
                             <div class="col-md-3 text-center">
                                 <img src="./assets/images/profile-image.png" />
                             </div>
                             <div class="col-md-9">
                                 <div class="row">
-                                    <div class="col-md-4 user-data">
-                                        <p class="field-label">Customer Type</p>
-                                        <p class="field-value">Individual</p>
+                                    <div class="col-md-4 user-data" *ngFor="let items of detailItems">
+                                        <p class="field-label">{{items.title}}</p>
+                                        <button class="btn" (click)="editProfile(items)">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <p class="field-value" *ngIf="!items.changeCode">{{items.name}}</p>
+                                        <input *ngIf="items.canEditCode" (blur)="focusOut(items)"[(ngModel)]= "items.name" type="text" class="form-control" />
                                     </div>
-                                    <div class="col-md-4 user-data">
-                                        <p class="field-label">Status</p>
-                                        <p class="field-value">Social</p>
-                                    </div>
-                                    <div class="col-md-4 user-data">
-                                        <p class="field-label">Username</p>
-                                        <p class="field-value">amorrise</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4 user-data">
-                                        <p class="field-label">Primary Phone</p>
-                                        <p class="field-value">(800) 559-4776</p>
-                                    </div>
-                                    <div class="col-md-4 user-data">
-                                        <p class="field-label">Email</p>
-                                        <p class="field-value">support@simnang.com</p>
-                                    </div>
-                                    <div class="col-md-4 user-data">
-                                        <p class="field-label">Primary Address</p>
-                                        <p class="field-value">3718 Eccles AVE<br/> Ogden UT 84403-2018 USA</p>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

@@ -12,6 +12,7 @@ export class DataserviceService {
   quote: ShipmentQuote[];
   shipmentId: String;
   shipDate: String;
+  userName: string;
   
 
   constructor(
@@ -25,7 +26,9 @@ export class DataserviceService {
      return this.httpClient.get("assets/local/login.json");
   }
 
-
+  getUserName(userProfile) {
+    return this.userName = userProfile; 
+  }
 
   public getQuote(getResponse){
     this.quote = getResponse.xml_root.rate_response.rates;

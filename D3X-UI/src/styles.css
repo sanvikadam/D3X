@@ -45,11 +45,15 @@ h5 {font-weight: 700;}
 .user-info {margin-top: 40px;}
 .user-info .user-data {margin-bottom: 15px;}
 .user-info .user-data p {margin: 0; font-size: 13px;}
-.user-info .user-data p.field-label {font-weight: bold;}
+.user-info .user-data p.field-label {font-weight: bold;float: left;}
 .user-info .user-data p.field-value {font-weight: normal;}
+.user-info .user-data button {font-size: 13px; line-height: 0; padding: 0 5px;}
+.user-info .user-data .btn.focus, .user-info .user-data .btn:focus {box-shadow: none;}
 .loader {margin: 40px 0;}
 .loader span{background: url('./assets/images/loading.gif') no-repeat center; height: 48px; width: 48px; display: inline-block;}
 .loader h4 {margin-top: 0;}
+.edit-profile button {margin: 0 5px;font-size: 12px; padding: 5px 10px; line-height: 14px; width: 4rem;}
+
 /* New Shipment Page */
 .wrapper {margin: 40px 0;}
 /* .form-content {padding: 15px 30px;} */

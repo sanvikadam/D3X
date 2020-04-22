@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataserviceService } from '../../service/dataservice.service';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Router } from '@angular/router';
 
 @Component({
@@ -115,14 +115,16 @@ export class RecipientInformationComponent implements OnInit{
     let reqUrl = 'https://s0020806703trial-trial.apim1.hanatrial.ondemand.com:443/s0020806703trial/http/get_delv_quote_multi_bck/json';//'assets/local/ship-details.json';
 
  this.httpClient.post(reqUrl, data).subscribe(res=> {
+   let responseStr = JSON.stringify(res);
+   let responseObj = JSON.parse(responseStr);
+   let responseRate = responseObj.xml_root.rate_response.rates
 
-      if(this.addressFlag == false) {
-        console.log('hello there');
+      if((responseRate == '') || (this.addressFlag == false)) {
         this.loading = false;
         this.error = false;
         this.showQuotes = false;
         this.adderror = true;
-      } else{
+      } else {
         this.error = false;
         this.adderror = false;
         this._shipmentquote.getQuote(res);

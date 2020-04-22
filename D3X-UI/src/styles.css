@@ -21,7 +21,7 @@ h5 {font-weight: 700;}
 /* Header */
 .logo {background: url('./assets/images/SG-Logo-half.png'); display: inline-block; margin: 15px 0 0; text-decoration: none; font-size: 26px; font-weight: bold;}
 .logo:hover {text-decoration: none;}
-.logo img {width: 60px; height: 80px;margin-right: 15px; margin-top: -15px;}
+.logo img {width: 3rem; height: 4rem;margin-right: 15px; margin-top: -15px;}
 .img-profile {width: 60px; height: 60px;}
 
 /* Sidebar navigation */
@@ -134,3 +134,23 @@ body .ui-table-customers .ui-paginator .ui-paginator-current {float: right;}
 /* .button-wrapper{margin: 80px 0 0;} */
 .button-wrapper .btn {margin: 10px 10px 0 0;}
 /* .button-wrapper .btn-success {color: #fff; background-color: #28a745; border-color: #28a745} */
+
+
+/* Media Queries CSS Starts */
+@media (max-width: 767px) {
+    .sidebar-dark .nav-item .nav-link::after {display: none;}
+    .img-profile {width: 2rem; height: 2rem;}
+    .logo {font-size: 16px;}
+    .logo img {width: 2rem; height: 3rem;margin-top: -10px; margin-right: 5px;}
+    .sidebar .sidebar-brand .sidebar-brand-text {display: block !important; font-size: 0.85rem;}
+    #sidebarToggleTop {padding: 0;}
+}
+
+@media (max-width: 479px) {
+    .logo {font-size: 14px;}
+    .logo img {width: 1.8rem; height: 2.8rem;}
+}
+
+
+
+/* Media Queries CSS Ends */

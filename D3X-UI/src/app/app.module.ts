@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { PathLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -44,7 +45,10 @@ import { FooterComponent } from './layout/footer/footer.component';
     ReactiveFormsModule,
     TableModule
   ],
-  providers: [],
+  providers: [{
+    provide: LocationStrategy, 
+    useClass: PathLocationStrategy
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -147,6 +147,7 @@ body .ui-table-customers .ui-paginator .ui-paginator-current {float: right;}
 }
 
 @media (max-width: 479px) {
+    .login-form {width: 100%;}
     .logo {font-size: 14px;}
     .logo img {width: 1.8rem; height: 2.8rem;}
 }

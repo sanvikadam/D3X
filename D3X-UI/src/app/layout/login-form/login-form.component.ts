@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataserviceService } from '../../service/dataservice.service';
-import { NgForm } from '@angular/forms';
+import { HttpClient } from "@angular/common/http";
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UsernameValidator } from './login-validator';
 
 @Component({
   selector: 'app-login-form',
@@ -9,29 +11,33 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent implements OnInit {
-  @ViewChild('loginForm', {static: false}) public createLoginForm: NgForm;
 
-  credentials: any = [];
-  name: string="";
-  password: string="";
+  form = new FormGroup({
+    username: new FormControl('',[Validators.required, UsernameValidator.nameValidate('test')]),
+    password: new FormControl('', [Validators.required, UsernameValidator.passwordValidate('12345')])
+  });
+
+  get username() {
+    return this.form.get('username');
+  }
+
+  get password(){
+    return this.form.get('password');
+  }
+
+  name : string;
+  pswd : string;
 
   constructor(
     private Auth: DataserviceService,
     private router: Router,
+    private httpClient: HttpClient
 
     ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  loginUser(data){
-      this.Auth.getUserDetails().subscribe((resp:any)=> {
-      if(resp.username==data.name && resp.password==data.password) {
-        return this.router.navigate(['dashboard/create-shipment']);
-      } else {
-        window.alert('Usernam or Password maybe incorrect');
-        this.createLoginForm.reset();
-      }
-    })
+  loginUser(){
+    return this.router.navigate(['dashboard/create-shipment']);
   }
 }

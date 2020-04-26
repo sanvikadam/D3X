@@ -1,35 +1,37 @@
 <div class="login-form">
-    <form #loginForm="ngForm" (submit)="loginUser(loginForm.value);"><!-- action="/." method="post" -->
+    <form [formGroup]="form" #loginForm="ngForm" (submit)="loginUser()"><!-- action="/." method="post" -->
         <h2 class="text-center">SHIPGENIE</h2>
         <div class="form-group">
             <input 
                 type="text" 
                 class="form-control" 
                 placeholder="Username" 
-                required="required" 
                 id="name" 
                 name="name" 
-                [(ngModel)]="name"
-                #username="ngModel" 
+                formControlName="username"
                 />
-                <span class="error-field" *ngIf="username.invalid && username.touched">Username required</span>
+                <span class="error-field" *ngIf="username.invalid && (username.dirty || username.touched)">
+                    <span *ngIf="username.errors.required">Username Required</span>
+                    <span *ngIf="username.errors.nameValidate">Invalid Username</span>
+                </span>
+                
         </div>
-        <div class="form-group">
+         <div class="form-group">
             <input 
-                type="password" 
+                type="password"
                 class="form-control" 
                 placeholder="Password" 
-                required="required" 
                 id="password" 
-                name="password"
-                [(ngModel)]="password"
-                #pswd="ngModel"
+                name="pswd"
+                formControlName="password"
                 />
-                <span class="error-field" *ngIf="pswd.invalid && pswd.touched">Password required</span>
+                <span class="error-field" *ngIf="password.invalid && (password.dirty || password.touched)">
+                    <span *ngIf="password.errors.required">password Required</span>
+                    <span *ngIf="password.errors.passwordValidate">Invalid Password</span>
+                </span>
         </div>
         <div class="form-group clearfix">
-            <button class="btn btn-primary btn-block" [disabled]="loginForm.invalid">Sign in</button>
-            
+            <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid">Sign in</button>    
         </div>
         <div class="clearfix">
             <label class="checkbox-inline pull-left remember-me">
@@ -43,5 +45,6 @@
     </form>
     <p class="text-center">
         <a href="#.">Create an Account</a>
+        
     </p>
 </div>

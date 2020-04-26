@@ -13,6 +13,9 @@ export class DataserviceService {
   shipmentId: String;
   shipDate: String;
   userName: string;
+  checkUser: string;
+  checkPassword: string;
+  
   
 
   constructor(
@@ -21,9 +24,15 @@ export class DataserviceService {
 
   ) { }
 
-  getUserDetails(){
+  getUserDetails(resp){
     // post the details to API server return user info if correct..
-     return this.httpClient.get("assets/local/login.json");
+    // console.log("response : " +resp.username);
+    this.checkUser = resp.username;
+    this.checkPassword = resp.password;
+
+    // console.log(this.checkUser + 'and' +this.checkPassword);
+
+
   }
 
   getUserName(userProfile) {

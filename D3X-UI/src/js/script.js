@@ -28,4 +28,10 @@ $(document).ready(function(){
              $("#addrow").removeClass('disabled').attr('disabled', false);
          }
     });
+
+    $('.btn-link').on("click", function(){
+        // alert('hello there');
+        $('.sidebar').css('left',0);
+        // if($('.sidebar').
+    })
 })

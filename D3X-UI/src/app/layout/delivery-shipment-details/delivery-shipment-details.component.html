@@ -54,7 +54,7 @@
                 <td colspan="2">{{quotes.carrier_delivery_days}}</td>
                 <td colspan="2">{{quotes.service_type}}</td>
                 <td colspan="2"><span [ngClass]= "(quotes.trackable=='true') ? 'trackcheck' : 'trackuncheck'"></span></td>
-                <td>{{quotes.shipping_currency | uppercase}} {{quotes.shipping_amount}}</td>
+                <td>{{quotes.shipping_currency | uppercase}} {{quotes.shipping_amount | number: '1.2-2'}}</td>
                 <td>
                     <button class="btn btn-primary btn-icon-split" (click)="confirmQuote(quotes,quotes.service_code)">
                         <span class="text">Place Order</span>

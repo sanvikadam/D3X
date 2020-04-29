@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataserviceService } from '../../service/dataservice.service';
 import { HttpClient } from "@angular/common/http";
 import { Router } from '@angular/router';
+import { PincodeValidator } from './pincode-validate';
 
 @Component({
   selector: 'app-recipient-information',
@@ -72,6 +73,14 @@ export class RecipientInformationComponent implements OnInit{
     this.finalData = convertData.delivery_list[0];
 
     this.pickupAddr = this.finalData.address_from_line1+", "+this.finalData.address_from_city+ ", " +this.finalData.address_from_state+ ", " +this.finalData.address_from_postalcode+ ", " +this.finalData.address_from_country;
+  
+    this.httpClient.get('assets/local/check-pincode.json').subscribe(resp=> {
+      console.log(resp);
+      let response = JSON.parse(JSON.stringify(resp));
+      
+      console.log(response.length);
+      console.log(response[0].zip);
+    })
   }
   
   public saveShipment(): void {

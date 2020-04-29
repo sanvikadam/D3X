@@ -12,12 +12,14 @@
                 <div class="card-body">
                         <div class="user-info">
                         <div class="row">
-                            <div class="col-md-3 text-center">
-                                <img src="./assets/images/profile-image.png" />
+                            <div class="col-md-3 text-center mt-3">
+                                <div class="profile-image-content">
+                                    <img src="./assets/images/profile-image.png" />
+                                </div>
                             </div>
-                            <div class="col-md-9 my-3">
+                            <div class="col-md-9 mt-3">
                                 <div class="row">
-                                    <div class="col-md-4 user-data" *ngFor="let items of detailItems">
+                                    <div class="col-lg-4 col-md-6 col-xs-12 user-data" *ngFor="let items of detailItems">
                                         <p class="field-label">{{items.title}}</p>
                                         <button class="btn" (click)="editProfile(items)">
                                             <i class="fas fa-edit"></i>

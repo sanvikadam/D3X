@@ -26,13 +26,8 @@ export class DataserviceService {
 
   getUserDetails(resp){
     // post the details to API server return user info if correct..
-    // console.log("response : " +resp.username);
     this.checkUser = resp.username;
     this.checkPassword = resp.password;
-
-    // console.log(this.checkUser + 'and' +this.checkPassword);
-
-
   }
 
   getUserName(userProfile) {

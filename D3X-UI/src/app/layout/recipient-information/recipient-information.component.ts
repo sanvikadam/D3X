@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentChecked } from '@angular/core';
 import { DataserviceService } from '../../service/dataservice.service';
 import { HttpClient } from "@angular/common/http";
 import { Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { PincodeValidator } from './pincode-validate';
   templateUrl: './recipient-information.component.html',
   styleUrls: ['./recipient-information.component.css']
 })
-export class RecipientInformationComponent implements OnInit{
+export class RecipientInformationComponent implements AfterContentChecked{
   public showQuotes: boolean;
   public loading: boolean;
   public error: boolean;
@@ -27,7 +27,17 @@ export class RecipientInformationComponent implements OnInit{
      }
 
   pickupAddr: string;
+  pickupCity: string;
+  pickupCountry: any;
+  pickupState: any;
+  pickupZip: number;
   dropofAddr: string;
+  dropofCity: string;
+  dropofCountry: any;
+  dropofState: any;
+  dropofZip: number;
+  // selectCountry: any = [];
+
   packWidth: number;
   packHeight: number;
   packWeight: number;
@@ -36,8 +46,21 @@ export class RecipientInformationComponent implements OnInit{
   name: null;
   quantity: null;
   price: null;
+  selectCountry: any = [];
+  selectState: any = [];
 
-  ngOnInit(){
+  ngAfterContentChecked(){
+
+    /* Select Values for country Dropdown*/
+    this.dropofCountry = "US";
+    this.dropofState = "AL";
+    this.selectCountry = ["Choose Country", "US", "International"];
+    /* Select Values for State Dropdown*/
+    this.selectState = ["Choose State","AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA",
+                        "ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR",
+                        "PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY","AS","GU","MH","FM","MP","PW",
+                        "PR","VI"];
+
 
     this.passData =  JSON.stringify({
       "delivery_list": [{
@@ -72,52 +95,47 @@ export class RecipientInformationComponent implements OnInit{
 
     this.finalData = convertData.delivery_list[0];
 
-    this.pickupAddr = this.finalData.address_from_line1+", "+this.finalData.address_from_city+ ", " +this.finalData.address_from_state+ ", " +this.finalData.address_from_postalcode+ ", " +this.finalData.address_from_country;
-  
-    this.httpClient.get('assets/local/check-pincode.json').subscribe(resp=> {
-      console.log(resp);
-      let response = JSON.parse(JSON.stringify(resp));
-      
-      console.log(response.length);
-      console.log(response[0].zip);
-    })
+    this.pickupAddr = this.finalData.address_from_line1;
+    this.pickupCity = this.finalData.address_from_city;
+    this.pickupState = this.finalData.address_from_state;
+    this.pickupCountry = this.finalData.address_from_country;
+    this.pickupZip = this.finalData.address_from_postalcode;
   }
   
   public saveShipment(): void {
-    // this.loading=true;
     this.showQuotes=false;
     this.error=false;
 
-    let fromAddress = this.pickupAddr.split(',');
-    let toAddress = this.dropofAddr.split(',');
+    // let fromAddress = this.pickupAddr.split(',');
+    // let toAddress = this.dropofAddr.split(',');
     
     // Code that split and send data
-    console.log(toAddress.length);
-    console.log(toAddress);
+    // console.log(toAddress.length);
+    // console.log(toAddress);
 
-    if(fromAddress.length < 5 || toAddress.length < 5) {
+    // if(fromAddress.length < 5 || toAddress.length < 5) {
 
-      this.addressFlag = false;
-        console.log("You have an error")
+    //   this.addressFlag = false;
+    //     console.log("You have an error")
 
-    } else {
+    // } else {
       this.adderror = false;
       this.loading = true;
       this.addressFlag = true;
-      this.finalData.address_to_line1 = toAddress[0].trim();
-      this.finalData.address_to_city = toAddress[1].trim();
-      this.finalData.address_to_state = toAddress[2].trim();
-      this.finalData.address_to_postalcode = toAddress[3].trim();
-      this.finalData.address_to_country = toAddress[4].trim();
+      this.finalData.address_to_line1 = this.pickupAddr;
+      this.finalData.address_to_city = this.pickupCity;
+      this.finalData.address_to_state = this.pickupState;
+      this.finalData.address_to_postalcode = this.pickupZip;
+      this.finalData.address_to_country = this.pickupCountry;
 
-      this.finalData.address_from_line1 = fromAddress[0].trim();
-      this.finalData.address_from_city = fromAddress[1].trim();
-      this.finalData.address_from_state = fromAddress[2].trim();
-      this.finalData.address_from_postalcode = fromAddress[3].trim();
-      this.finalData.address_from_country = fromAddress[4].trim();
-    }
+      this.finalData.address_from_line1 = this.dropofAddr;
+      this.finalData.address_from_city = this.dropofCity;
+      this.finalData.address_from_state = this.dropofState;
+      this.finalData.address_from_postalcode = this.dropofZip;
+      this.finalData.address_from_country = this.dropofCountry;
+    // }
 
-    console.log(this.finalData);
+    console.log("Final: " +this.finalData);
 
     let data = JSON.stringify({"delivery_list": [this.finalData]});
 
@@ -141,7 +159,6 @@ export class RecipientInformationComponent implements OnInit{
         this.loading = false;
       }
     })
-    //this.router.navigate(["/dashboard/shipment-details"]);
   }
 
   clear() {

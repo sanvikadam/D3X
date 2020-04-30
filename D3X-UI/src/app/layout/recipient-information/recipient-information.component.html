@@ -13,31 +13,154 @@
                     <form class="user" #shipmentForm="ngForm" (ngSubmit)="saveShipment()">
                         <div class="form-group row">
                                     <div class="col-sm-6">
-                                        <label for="pickupAddr" class=" col-form-label text-right">From Address<span class="red-astrik">*</span></label>
-                                        <input 
-                                            type="text" 
-                                            class="form-control" 
-                                            id="pickupAddr" 
-                                            name="pickupAddr"
-                                            placeholder="pickup address" 
-                                            [(ngModel)] = "pickupAddr" 
-                                            #pickAddr="ngModel"
-                                            required/>
-                                        <span class="error-field" *ngIf="pickAddr.invalid && pickAddr.touched">Please enter valid pickup address</span>
+                                        <h6 class="m-0 font-weight-bold text-primary">From Address</h6>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12">
+                                                <label for="pickupAddr" class=" col-form-label text-right">Address<span class="red-astrik">*</span></label>
+                                                <input 
+                                                    type="text" 
+                                                    class="form-control" 
+                                                    id="pickupAddr" 
+                                                    name="pickupAddr"
+                                                    placeholder="pickup address" 
+                                                    [(ngModel)] = "pickupAddr" 
+                                                    #pickAddr="ngModel"
+                                                    required/>
+                                                <span class="error-field" *ngIf="pickAddr.invalid && pickAddr.touched">Please enter valid address</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 ">
+                                                <label for="pickupCity" class=" col-form-label text-right">City<span class="red-astrik">*</span></label>
+                                                <input 
+                                                    type="text" 
+                                                    class="form-control" 
+                                                    id="pickupCity" 
+                                                    name="pickupCity"
+                                                    placeholder="city" 
+                                                    [(ngModel)] = "pickupCity" 
+                                                    #pickCity="ngModel"
+                                                    required/>
+                                                <span class="error-field" *ngIf="pickCity.invalid && pickCity.touched">Please enter valid City</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-4">
+                                                <label for="pickupCountry" class=" col-form-label text-right">Country<span class="red-astrik">*</span></label>
+                                                <select 
+                                                    class="custom-select" 
+                                                    id="pickupCountry"
+                                                    name="pickupCountry"
+                                                    [(ngModel)]="pickupCountry"
+                                                    #pickCountry="ngModel"
+                                                    >
+                                                    <option [value]="country" *ngFor="let country of selectCountry">{{country}}</option>
+                                                  </select>
+                                                <span class="error-field" *ngIf="pickCountry.invalid && pickCountry.touched">Please select Country</span>
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-4">
+                                                <label for="pickupState" class=" col-form-label text-right">State<span class="red-astrik">*</span></label>
+                                                <select 
+                                                    class="custom-select" 
+                                                    id="pickupState"
+                                                    name="pickupState"
+                                                    [(ngModel)]="pickupState"
+                                                    #pickState="ngModel"
+                                                    >
+                                                    <option [value]="state" *ngFor="let state of selectState">{{state}}</option>
+                                                  </select>
+                                                <span class="error-field" *ngIf="pickState.invalid && pickState.touched">Please select State</span>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-4">
+                                                <label for="pickupZip" class=" col-form-label text-right">Zip code<span class="red-astrik">*</span></label>
+                                                <input 
+                                                    type="text" 
+                                                    class="form-control" 
+                                                    id="pickupZip" 
+                                                    name="pickupZip"
+                                                    placeholder="zipcode" 
+                                                    [(ngModel)] = "pickupZip" 
+                                                    #pickZip="ngModel"
+                                                    required/>
+                                                <span class="error-field" *ngIf="pickZip.invalid && pickZip.touched">Please enter valid Zipcode</span>
+                                            </div>
+                                        </div>
                                     </div>
-                        
+
                                     <div class="col-sm-6">
-                                        <label for="dropofAddr" class=" col-form-label text-right">To Address<span class="red-astrik">*</span></label>
-                                        <input 
-                                            type="text" 
-                                            class="form-control" 
-                                            id="dropofAddr" 
-                                            name="dropofAddr"
-                                            placeholder="Delivery address" 
-                                            [(ngModel)]="dropofAddr"
-                                            #dropAddr="ngModel"
-                                            required />
-                                        <span class="error-field" *ngIf="dropAddr.invalid && dropAddr.touched">Please enter valid drop address</span>
+                                        <h6 class="m-0 font-weight-bold text-primary">To Address</h6>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12">
+                                                <label for="dropofAddr" class=" col-form-label text-right">Address<span class="red-astrik">*</span></label>
+                                                <input 
+                                                    type="text" 
+                                                    class="form-control" 
+                                                    id="dropofAddr" 
+                                                    name="dropofAddr"
+                                                    placeholder="drop address" 
+                                                    [(ngModel)] = "dropofAddr" 
+                                                    #dropAddr="ngModel"
+                                                    required/>
+                                                <span class="error-field" *ngIf="dropAddr.invalid && dropAddr.touched">Please enter valid address</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 ">
+                                                <label for="dropofCity" class=" col-form-label text-right">City<span class="red-astrik">*</span></label>
+                                                <input 
+                                                    type="text" 
+                                                    class="form-control" 
+                                                    id="dropofCity" 
+                                                    name="dropofCity"
+                                                    placeholder="city" 
+                                                    [(ngModel)] = "dropofCity" 
+                                                    #dropCity="ngModel"
+                                                    required/>
+                                                <span class="error-field" *ngIf="dropCity.invalid && dropCity.touched">Please enter valid city</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-4">
+                                                <label for="dropofCountry" class=" col-form-label text-right">Country<span class="red-astrik">*</span></label>
+                                                <select 
+                                                    class="custom-select" 
+                                                    id="dropofCountry"
+                                                    name="dropofCountry"
+                                                    [(ngModel)]="dropofCountry"
+                                                    #dropCountry="ngModel"
+                                                    >
+                                                    <option [value]="country" *ngFor="let country of selectCountry">{{country}}</option>
+                                                  </select>
+                                                <span class="error-field" *ngIf="dropCountry.invalid && dropCountry.touched">Please select Country</span>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-4">
+                                                <label for="dropofState" class=" col-form-label text-right">State<span class="red-astrik">*</span></label>
+                                                <select 
+                                                    class="custom-select" 
+                                                    id="dropofState"
+                                                    name="dropofState"
+                                                    [(ngModel)]="dropofState"
+                                                    #dropState="ngModel"
+                                                    >
+                                                    <option [value]="state" *ngFor="let state of selectState">{{state}}</option>
+                                                  </select>
+                                                <span class="error-field" *ngIf="dropState.invalid && dropState.touched">Please select State</span>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-4">
+                                                <label for="dropofZip" class=" col-form-label text-right">Zip code<span class="red-astrik">*</span></label>
+                                                <input 
+                                                    type="text" 
+                                                    class="form-control" 
+                                                    id="dropofZip" 
+                                                    name="dropofZip"
+                                                    placeholder="zipcode" 
+                                                    [(ngModel)] = "dropofZip" 
+                                                    #dropZip="ngModel"
+                                                    required/>
+                                                <span class="error-field" *ngIf="dropZip.invalid && dropZip.touched">Please enter valid Zipcode</span>
+                                            </div>
+                                        </div>
                                     </div>
                         </div>
                         <div class="form-group row">

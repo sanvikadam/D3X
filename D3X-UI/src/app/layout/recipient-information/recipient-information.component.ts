@@ -17,15 +17,6 @@ export class RecipientInformationComponent implements AfterContentChecked{
   public finalData: any;
   public addressFlag: boolean; 
   public adderror: boolean;
-
-  constructor(
-      private _shipmentquote: DataserviceService,
-      private router: Router,
-      private httpClient: HttpClient
-    ) {
-
-     }
-
   pickupAddr: string;
   pickupCity: string;
   pickupCountry: any;
@@ -49,14 +40,25 @@ export class RecipientInformationComponent implements AfterContentChecked{
   selectCountry: any = [];
   selectState: any = [];
 
+
+  constructor(
+      private _shipmentquote: DataserviceService,
+      private router: Router,
+      private httpClient: HttpClient
+    ) {
+
+     }
+
+ 
+
   ngAfterContentChecked(){
 
     /* Select Values for country Dropdown*/
     this.dropofCountry = "US";
     this.dropofState = "AL";
-    this.selectCountry = ["Choose Country", "US", "International"];
+    this.selectCountry = ["US", "International"];
     /* Select Values for State Dropdown*/
-    this.selectState = ["Choose State","AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA",
+    this.selectState = ["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA",
                         "ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR",
                         "PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY","AS","GU","MH","FM","MP","PW",
                         "PR","VI"];
@@ -135,13 +137,16 @@ export class RecipientInformationComponent implements AfterContentChecked{
       this.finalData.address_from_country = this.dropofCountry;
     // }
 
-    console.log("Final: " +this.finalData);
+    // console.log("Final: " +this.finalData.address_to_line1);
 
     let data = JSON.stringify({"delivery_list": [this.finalData]});
+
+    // console.log(data);
 
     let reqUrl = 'https://s0020806703trial-trial.apim1.hanatrial.ondemand.com:443/s0020806703trial/http/get_delv_quote_multi_bck/json';//'assets/local/ship-details.json';
 
  this.httpClient.post(reqUrl, data).subscribe(res=> {
+   console.log("response: "+res);
    let responseStr = JSON.stringify(res);
    let responseObj = JSON.parse(responseStr);
    let responseRate = responseObj.xml_root.rate_response.rates
@@ -158,6 +163,12 @@ export class RecipientInformationComponent implements AfterContentChecked{
         this.showQuotes = true;
         this.loading = false;
       }
+    }, (error)=> {
+      // console.log("Error" +error);
+        this.loading = false;
+        this.error = false;
+        this.showQuotes = false;
+        this.adderror = true;
     })
   }
 

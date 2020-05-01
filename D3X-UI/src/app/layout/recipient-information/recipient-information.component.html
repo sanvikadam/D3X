@@ -25,8 +25,12 @@
                                                     placeholder="pickup address" 
                                                     [(ngModel)] = "pickupAddr" 
                                                     #pickAddr="ngModel"
+                                                    pattern="^[a-zA-Z0-9\s,'-.]*$"
                                                     required/>
-                                                <span class="error-field" *ngIf="pickAddr.invalid && pickAddr.touched">Please enter valid address</span>
+                                                <span class="error-field" *ngIf="pickAddr.invalid && pickAddr.touched">
+                                                    <span class="error-field" *ngIf="pickAddr.errors.required">Please enter address</span>
+                                                    <span class="error-field" *ngIf="pickAddr.errors.pattern">Please enter valid address</span>
+                                                </span>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -40,8 +44,12 @@
                                                     placeholder="city" 
                                                     [(ngModel)] = "pickupCity" 
                                                     #pickCity="ngModel"
+                                                    pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$"
                                                     required/>
-                                                <span class="error-field" *ngIf="pickCity.invalid && pickCity.touched">Please enter valid City</span>
+                                                <span class="error-field" *ngIf="pickCity.invalid && pickCity.touched">
+                                                    <span class="error-field" *ngIf="pickCity.errors.required">Please enter City</span>
+                                                    <span class="error-field" *ngIf="pickCity.errors.pattern">Please enter valid City</span>
+                                                </span>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -82,8 +90,12 @@
                                                     placeholder="zipcode" 
                                                     [(ngModel)] = "pickupZip" 
                                                     #pickZip="ngModel"
+                                                    pattern="(^\d{5}$)|(^\d{5}-\d{4}$)"
                                                     required/>
-                                                <span class="error-field" *ngIf="pickZip.invalid && pickZip.touched">Please enter valid Zipcode</span>
+                                                <span class="error-field" *ngIf="pickZip.invalid && pickZip.touched">
+                                                    <span class="error-field" *ngIf="pickZip.errors.required">Please enter Zipcode</span>
+                                                    <span class="error-field" *ngIf="pickZip.errors.pattern">Please enter valid Zipcode</span>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -101,8 +113,12 @@
                                                     placeholder="drop address" 
                                                     [(ngModel)] = "dropofAddr" 
                                                     #dropAddr="ngModel"
+                                                    pattern="^[a-zA-Z0-9\s,'-]*$"
                                                     required/>
-                                                <span class="error-field" *ngIf="dropAddr.invalid && dropAddr.touched">Please enter valid address</span>
+                                                <span class="error-field" *ngIf="dropAddr.invalid && dropAddr.touched">
+                                                    <span class="error-field" *ngIf="dropAddr.errors.required">Please enter address</span>
+                                                    <span class="error-field" *ngIf="dropAddr.errors.pattern">Please enter valid address</span>
+                                                </span>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -116,8 +132,12 @@
                                                     placeholder="city" 
                                                     [(ngModel)] = "dropofCity" 
                                                     #dropCity="ngModel"
+                                                    pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$"
                                                     required/>
-                                                <span class="error-field" *ngIf="dropCity.invalid && dropCity.touched">Please enter valid city</span>
+                                                <span class="error-field" *ngIf="dropCity.invalid && dropCity.touched">
+                                                    <span class="error-field" *ngIf="dropCity.errors.required">Please enter city</span>
+                                                    <span class="error-field" *ngIf="dropCity.errors.pattern">Please enter valid city</span>
+                                                </span>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -157,8 +177,12 @@
                                                     placeholder="zipcode" 
                                                     [(ngModel)] = "dropofZip" 
                                                     #dropZip="ngModel"
+                                                    pattern="(^\d{5}$)|(^\d{5}-\d{4}$)"
                                                     required/>
-                                                <span class="error-field" *ngIf="dropZip.invalid && dropZip.touched">Please enter valid Zipcode</span>
+                                                <span class="error-field" *ngIf="dropZip.invalid && dropZip.touched">
+                                                    <span class="error-field" *ngIf="dropZip.errors.required">Please enter zipcode</span>
+                                                    <span class="error-field" *ngIf="dropZip.errors.pattern">Please enter valid zipcode</span>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -334,7 +358,7 @@
                                     <h6>Record Not Found. Please try again</h6>
                                 </div>
                                 <div [hidden]="!adderror" class="errormsg text-center">
-                                    <h6><span class="red-astrik">*</span> Invalid Address format. Please enter Address in format <i>(address line 1, city, state, postal code, country)</i></h6>
+                                    <h6><span class="red-astrik">*</span> Incorrect Address. Please enter the correct and valid Address</h6>
                                 </div>
                             </div>
                             <div class="col-md-12">

@@ -1,5 +1,6 @@
-import { Component, OnInit, AfterContentChecked } from '@angular/core';
+import { Component, OnInit, AfterContentChecked, ViewChild } from '@angular/core';
 import { DataserviceService } from '../../service/dataservice.service';
+import { NgForm } from '@angular/forms';
 import { HttpClient } from "@angular/common/http";
 import { Router } from '@angular/router';
 import { PincodeValidator } from './pincode-validate';
@@ -9,7 +10,9 @@ import { PincodeValidator } from './pincode-validate';
   templateUrl: './recipient-information.component.html',
   styleUrls: ['./recipient-information.component.css']
 })
-export class RecipientInformationComponent implements AfterContentChecked{
+export class RecipientInformationComponent implements OnInit{
+  @ViewChild('shipmentForm', {static: false}) public formValues: NgForm;
+
   public showQuotes: boolean;
   public loading: boolean;
   public error: boolean;
@@ -17,6 +20,10 @@ export class RecipientInformationComponent implements AfterContentChecked{
   public finalData: any;
   public addressFlag: boolean; 
   public adderror: boolean;
+  public showPickInputCity: boolean;
+  public showPickSelectCity: boolean;
+  public showDropInputCity: boolean;
+  public showDropSelectCity: boolean;
   pickupAddr: string;
   pickupCity: string;
   pickupCountry: any;
@@ -27,7 +34,6 @@ export class RecipientInformationComponent implements AfterContentChecked{
   dropofCountry: any;
   dropofState: any;
   dropofZip: number;
-  // selectCountry: any = [];
 
   packWidth: number;
   packHeight: number;
@@ -49,9 +55,29 @@ export class RecipientInformationComponent implements AfterContentChecked{
 
      }
 
- 
+     /* Pickup country selectbox */
+     changePickCountry(deviceValue: string){
+       if(deviceValue=="International") {
+         this.showPickSelectCity = true;
+         this.showPickInputCity = true;
+       } else {
+         this.showPickSelectCity = false;
+         this.showPickInputCity = false;
+       }
+    }
 
-  ngAfterContentChecked(){
+    /* Drop country selectbox */
+    changeDropCountry(deviceValue: string){
+       if(deviceValue=="International") {
+         this.showDropSelectCity = true;
+         this.showDropInputCity = true;
+       } else {
+         this.showDropSelectCity = false;
+         this.showDropInputCity = false;
+       }
+    }
+
+  ngOnInit(){
 
     /* Select Values for country Dropdown*/
     this.dropofCountry = "US";
@@ -93,60 +119,55 @@ export class RecipientInformationComponent implements AfterContentChecked{
       }]
     });
 
+    /* Add the data in the form field in From address by default */
     let convertData = JSON.parse(this.passData);
-
     this.finalData = convertData.delivery_list[0];
-
     this.pickupAddr = this.finalData.address_from_line1;
     this.pickupCity = this.finalData.address_from_city;
     this.pickupState = this.finalData.address_from_state;
     this.pickupCountry = this.finalData.address_from_country;
     this.pickupZip = this.finalData.address_from_postalcode;
+
   }
+
+  /* Pickup state selectbox */
+  changePickState(stateValue: string) {
+    this.pickupState = stateValue;
+  }  
+
+  /* Drop state selectbox */
+  changeDropState(stateValue: string) {
+    this.dropofState = stateValue;
+  } 
   
   public saveShipment(): void {
     this.showQuotes=false;
     this.error=false;
-
-    // let fromAddress = this.pickupAddr.split(',');
-    // let toAddress = this.dropofAddr.split(',');
+    this.adderror = false;
+    this.loading = true;
+    this.addressFlag = true;
     
-    // Code that split and send data
-    // console.log(toAddress.length);
-    // console.log(toAddress);
+    /* Pass Pickup address data to API*/
+    this.finalData.address_from_line1 = this.pickupAddr;   
+    this.finalData.address_from_city =  this.pickupCity;  
+    this.finalData.address_from_state = this.pickupState;   
+    this.finalData.address_from_postalcode =  this.pickupZip;  
+    this.finalData.address_from_country = this.pickupCountry;  
 
-    // if(fromAddress.length < 5 || toAddress.length < 5) {
-
-    //   this.addressFlag = false;
-    //     console.log("You have an error")
-
-    // } else {
-      this.adderror = false;
-      this.loading = true;
-      this.addressFlag = true;
-      this.finalData.address_to_line1 = this.pickupAddr;
-      this.finalData.address_to_city = this.pickupCity;
-      this.finalData.address_to_state = this.pickupState;
-      this.finalData.address_to_postalcode = this.pickupZip;
-      this.finalData.address_to_country = this.pickupCountry;
-
-      this.finalData.address_from_line1 = this.dropofAddr;
-      this.finalData.address_from_city = this.dropofCity;
-      this.finalData.address_from_state = this.dropofState;
-      this.finalData.address_from_postalcode = this.dropofZip;
-      this.finalData.address_from_country = this.dropofCountry;
-    // }
-
-    // console.log("Final: " +this.finalData.address_to_line1);
+    /* Pass Drop address data to API*/
+    this.finalData.address_to_line1 = this.dropofAddr;
+    this.finalData.address_to_city = this.dropofCity;
+    this.finalData.address_to_state = this.dropofState;
+    this.finalData.address_to_postalcode = this.dropofZip;
+    this.finalData.address_to_country = this.dropofCountry;
 
     let data = JSON.stringify({"delivery_list": [this.finalData]});
 
-    // console.log(data);
-
     let reqUrl = 'https://s0020806703trial-trial.apim1.hanatrial.ondemand.com:443/s0020806703trial/http/get_delv_quote_multi_bck/json';//'assets/local/ship-details.json';
 
- this.httpClient.post(reqUrl, data).subscribe(res=> {
-   console.log("response: "+res);
+  
+  /* Call API service to get rates */
+  this.httpClient.post(reqUrl, data).subscribe(res=> {
    let responseStr = JSON.stringify(res);
    let responseObj = JSON.parse(responseStr);
    let responseRate = responseObj.xml_root.rate_response.rates
@@ -164,7 +185,6 @@ export class RecipientInformationComponent implements AfterContentChecked{
         this.loading = false;
       }
     }, (error)=> {
-      // console.log("Error" +error);
         this.loading = false;
         this.error = false;
         this.showQuotes = false;
@@ -177,8 +197,7 @@ export class RecipientInformationComponent implements AfterContentChecked{
     this.adderror = false;
     this.showQuotes = false;
     this.loading = false;
-    this.pickupAddr = null;
-    this.dropofAddr = null;
+    this.formValues.resetForm();
   }
 
 }

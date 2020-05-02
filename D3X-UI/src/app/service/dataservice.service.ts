@@ -60,7 +60,5 @@ export class DataserviceService {
    public confirmQuote(response){
     this.shipmentId = response.shipments[0].shipment_id;
     this.shipDate = response.shipments[0].ship_date;
-     console.log("Response: " +response.shipments[0].shipment_id);
-
    }
 }

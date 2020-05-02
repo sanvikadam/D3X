@@ -19,24 +19,17 @@ export class ProfileDetailsComponent implements OnInit {
     ) { }
 
   public reqURL = 'assets/local/profile-details.json'; 
-  // public reqURL = "https://s0020806703trial-trial.apim1.hanatrial.ondemand.com/s0020806703trial/v1/sg-users";
 
 
   ngOnInit() {
 
-      // this.httpClient.get(this.reqURL).subscribe(resp=> {
-      //   console.log((resp));
-
-      // })
     this.httpClient.get(this.reqURL).subscribe(resp=> {
       this.profileData = resp;
-      // console.log("Profile data : " +JSON.stringify(this.profileData.userdetails));
       this.detailItems = this.profileData.userdetails;
     })
   }
 
   public editProfile(items:any) {
-    // console.log("hrrtrt", items);
     items.canEditCode =true;
     items.changeCode = true;
   }
@@ -44,17 +37,12 @@ export class ProfileDetailsComponent implements OnInit {
   public focusOut(items:any){
     items.canEditCode =false;
     items.changeCode = false;
-    // console.log(items);
     let userID = items.id;
-    // console.log(userID);
-    // console.log(this.detailItems);
-
     this._UserName.getUserName(items.name);
 
     
     this.httpClient.post(this.reqURL, this.detailItems);
     this.httpClient.get(this.reqURL).subscribe(respo=> {
-      // console.log("Response: ",respo);
     })
   }
 

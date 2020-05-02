@@ -14,7 +14,6 @@ export class ConfirmShipmentComponent implements OnInit {
   public shipmentID;
 
   @Input()  public set confirmquotes(data:any) {
-      console.log('Im nside setter method', data.confirmQuotesData);
       this.quotesData = data.confirmQuotesData;
   }
 

@@ -15,7 +15,7 @@
                                     <div class="col-sm-6">
                                         <h6 class="m-0 font-weight-bold text-primary">From Address</h6>
                                         <div class="row">
-                                            <div class="col-xs-12 col-sm-12">
+                                            <div class="col-xs-12 col-sm-12 form-label-group">
                                                 <label for="pickupAddr" class=" col-form-label text-right">Address<span class="red-astrik">*</span></label>
                                                 <input 
                                                     type="text" 
@@ -34,7 +34,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xs-12 col-sm-12 ">
+                                            <div class="col-xs-12 col-sm-12 form-label-group">
                                                 <label for="pickupCity" class=" col-form-label text-right">City<span class="red-astrik">*</span></label>
                                                 <input 
                                                     type="text" 
@@ -47,13 +47,13 @@
                                                     pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$"
                                                     required/>
                                                 <span class="error-field" *ngIf="pickCity.invalid && pickCity.touched">
-                                                    <span class="error-field" *ngIf="pickCity.errors.required">Please enter City</span>
-                                                    <span class="error-field" *ngIf="pickCity.errors.pattern">Please enter valid City</span>
+                                                    <span class="error-field" *ngIf="pickCity.errors.required">Please enter city</span>
+                                                    <span class="error-field" *ngIf="pickCity.errors.pattern">Please enter valid city</span>
                                                 </span>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xs-12 col-sm-4">
+                                            <div class="col-xs-12 col-sm-4 form-label-group">
                                                 <label for="pickupCountry" class=" col-form-label text-right">Country<span class="red-astrik">*</span></label>
                                                 <select 
                                                     class="custom-select" 
@@ -61,13 +61,14 @@
                                                     name="pickupCountry"
                                                     [(ngModel)]="pickupCountry"
                                                     #pickCountry="ngModel"
+                                                    (change)="changePickCountry($event.target.value)"
                                                     >
-                                                    <option [value]="country" *ngFor="let country of selectCountry">{{country}}</option>
+                                                    <option [value]="country" *ngFor="let country of selectCountry; let i=index">{{country}}</option>
                                                   </select>
                                                 <span class="error-field" *ngIf="pickCountry.invalid && pickCountry.touched">Please select Country</span>
                                             </div>
 
-                                            <div class="col-xs-12 col-sm-4">
+                                            <div class="col-xs-12 col-sm-4 form-label-group">
                                                 <label for="pickupState" class=" col-form-label text-right">State<span class="red-astrik">*</span></label>
                                                 <select 
                                                     class="custom-select" 
@@ -75,12 +76,30 @@
                                                     name="pickupState"
                                                     [(ngModel)]="pickupState"
                                                     #pickState="ngModel"
+                                                    [hidden]="showPickSelectCity"
+                                                    (change)="changePickState($event.target.value)"
                                                     >
                                                     <option [value]="state" *ngFor="let state of selectState">{{state}}</option>
                                                   </select>
-                                                <span class="error-field" *ngIf="pickState.invalid && pickState.touched">Please select State</span>
+                                                  <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="pickupState"
+                                                    name="pickupState"
+                                                    [(ngModel)]="pickupState"
+                                                    #pickState="ngModel"
+                                                    [hidden]="!showPickInputCity"
+                                                    (ngModelChange)="pickupState = $event.toUpperCase()"
+                                                    minlength="2"
+                                                    maxlength="2"
+                                                    required
+                                                  />
+                                                <span class="error-field" *ngIf="pickState.invalid && pickState.touched">
+                                                    <span class="error-field" *ngIf="pickState.errors.required">Please enter state</span>
+                                                    <span class="error-field" *ngIf="pickState.errors.minlength">Please enter valid state</span>
+                                                </span>
                                             </div>
-                                            <div class="col-xs-12 col-sm-4">
+                                            <div class="col-xs-12 col-sm-4 form-label-group">
                                                 <label for="pickupZip" class=" col-form-label text-right">Zip code<span class="red-astrik">*</span></label>
                                                 <input 
                                                     type="text" 
@@ -93,8 +112,8 @@
                                                     pattern="(^\d{5}$)|(^\d{5}-\d{4}$)"
                                                     required/>
                                                 <span class="error-field" *ngIf="pickZip.invalid && pickZip.touched">
-                                                    <span class="error-field" *ngIf="pickZip.errors.required">Please enter Zipcode</span>
-                                                    <span class="error-field" *ngIf="pickZip.errors.pattern">Please enter valid Zipcode</span>
+                                                    <span class="error-field" *ngIf="pickZip.errors.required">Please enter zipcode</span>
+                                                    <span class="error-field" *ngIf="pickZip.errors.pattern">Please enter valid zipcode</span>
                                                 </span>
                                             </div>
                                         </div>
@@ -103,7 +122,7 @@
                                     <div class="col-sm-6">
                                         <h6 class="m-0 font-weight-bold text-primary">To Address</h6>
                                         <div class="row">
-                                            <div class="col-xs-12 col-sm-12">
+                                            <div class="col-xs-12 col-sm-12 form-label-group">
                                                 <label for="dropofAddr" class=" col-form-label text-right">Address<span class="red-astrik">*</span></label>
                                                 <input 
                                                     type="text" 
@@ -122,7 +141,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xs-12 col-sm-12 ">
+                                            <div class="col-xs-12 col-sm-12 form-label-group">
                                                 <label for="dropofCity" class=" col-form-label text-right">City<span class="red-astrik">*</span></label>
                                                 <input 
                                                     type="text" 
@@ -141,7 +160,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xs-12 col-sm-4">
+                                            <div class="col-xs-12 col-sm-4 form-label-group">
                                                 <label for="dropofCountry" class=" col-form-label text-right">Country<span class="red-astrik">*</span></label>
                                                 <select 
                                                     class="custom-select" 
@@ -149,12 +168,13 @@
                                                     name="dropofCountry"
                                                     [(ngModel)]="dropofCountry"
                                                     #dropCountry="ngModel"
+                                                    (change)="changeDropCountry($event.target.value)"
                                                     >
                                                     <option [value]="country" *ngFor="let country of selectCountry">{{country}}</option>
                                                   </select>
                                                 <span class="error-field" *ngIf="dropCountry.invalid && dropCountry.touched">Please select Country</span>
                                             </div>
-                                            <div class="col-xs-12 col-sm-4">
+                                            <div class="col-xs-12 col-sm-4 form-label-group">
                                                 <label for="dropofState" class=" col-form-label text-right">State<span class="red-astrik">*</span></label>
                                                 <select 
                                                     class="custom-select" 
@@ -162,12 +182,31 @@
                                                     name="dropofState"
                                                     [(ngModel)]="dropofState"
                                                     #dropState="ngModel"
+                                                    [hidden]="showDropSelectCity"
+                                                    (change)="changeDropState($event.target.value)"
                                                     >
                                                     <option [value]="state" *ngFor="let state of selectState">{{state}}</option>
                                                   </select>
-                                                <span class="error-field" *ngIf="dropState.invalid && dropState.touched">Please select State</span>
+                                                  <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="dropofState"
+                                                    name="dropofState"
+                                                    [(ngModel)]="dropofState"
+                                                    #dropState="ngModel"
+                                                    [hidden]="!showDropInputCity"
+                                                    (ngModelChange)="dropofState = $event.toUpperCase()"
+                                                    minlength="2"
+                                                    maxlength="2"
+                                                    required
+                                                  />
+
+                                                <span class="error-field" *ngIf="dropState.invalid && dropState.touched">
+                                                    <span class="error-field" *ngIf="dropState.errors.required">Please select state</span>
+                                                    <span class="error-field" *ngIf="dropState.errors.minlength">Please enter valid state</span>
+                                                </span>
                                             </div>
-                                            <div class="col-xs-12 col-sm-4">
+                                            <div class="col-xs-12 col-sm-4 form-label-group">
                                                 <label for="dropofZip" class=" col-form-label text-right">Zip code<span class="red-astrik">*</span></label>
                                                 <input 
                                                     type="text" 

@@ -35,7 +35,6 @@ export class DeliveryShipmentDetailsComponent implements AfterContentChecked {
 
   ngAfterContentChecked() {
     this.quotes = this.dataService.quote;
-     console.log("Quotes : " +this.quotes);
 
     this.cols = [
       {fields: 'name', header:'Name'},
@@ -70,8 +69,6 @@ export class DeliveryShipmentDetailsComponent implements AfterContentChecked {
   }
 
   confirmQuote(confirmQuotes, serviceCode): void {
-
-    console.log("Ship Date : " +confirmQuotes.ship_date+ " and service code " +serviceCode);
 
     let reqURL = "https://s0020806703trial-trial.apim1.hanatrial.ondemand.com/s0020806703trial/http/get_Order_Shipment/json";
     let passData = JSON.stringify({

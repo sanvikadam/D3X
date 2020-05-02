@@ -7,6 +7,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background:
 h5 {font-weight: 700;}
 .error-field {color: #FF0000; font-size: 12px;}
 .mt-15 {margin-top: 15px;}
+.btn-icon-split {border-radius: 0 !important;}
+.container-fluid h1 {font-weight: bold; font-size: 22px;}
 
 
 /* Errror message */
@@ -16,6 +18,8 @@ h5 {font-weight: 700;}
 /* Login Page */
 .login-form {width: 340px; margin: 150px auto;}
 .login-form form {background: #f7f7f7; box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3); padding: 30px;margin-bottom: 15px;}
+.remember-block, .create-acc-block {font-size: 14px;}
+.remember-block label {margin-right: 5px;}
 /* .remember-me {margin: 8px 0 0 12px;} */
 
 /* Header */
@@ -47,7 +51,7 @@ h5 {font-weight: 700;}
 .user-info .user-data p {margin: 0; font-size: 13px;}
 .user-info .user-data p.field-label {font-weight: bold;float: left;}
 .user-info .user-data p.field-value {font-weight: normal;}
-.user-info .user-data button {font-size: 13px; line-height: 0; padding: 0 5px;}
+.user-info .user-data button {font-size: 13px; line-height: 0; padding: 3px 5px;vertical-align: top;}
 .user-info .user-data .btn.focus, .user-info .user-data .btn:focus {box-shadow: none;}
 .loader {margin: 40px 0;}
 .loader span{background: url('./assets/images/loading.gif') no-repeat center; height: 48px; width: 48px; display: inline-block;}
@@ -70,8 +74,9 @@ h5 {font-weight: 700;}
 .line-items tr {border-bottom: 1px solid #e3e6f0;}
 .line-items tbody tr td {border: none; border-left: 1px solid #e3e6f0;}
 
-
-.col-form-label, .form-control {font-size: 14px !important;}
+.col-form-label {font-weight: 600;}
+.col-form-label, .form-control,.custom-select {font-size: 12px !important; border-radius: 0 !important;}
+.form-label-group {margin-top: 10px;}
 .btn-icon-split .text {padding: 5px 10px !important; font-size: 12px; color: #fff;}
 .btn-icon-split .icon {font-size: 12px; padding: 5px 10px !important; line-height: 18px;}
 
@@ -135,7 +140,7 @@ body .ui-table .ui-table-tbody > tr:nth-child(even) {background-color: #F2F2F2 !
 .label-field {font-weight: 600; font-size: 14px;}
 .value-field {font-size: 14px;}
 /* .button-wrapper{margin: 80px 0 0;} */
-.button-wrapper .btn {margin: 10px 10px 0 0; line-height: 24px;}
+.button-wrapper .btn {margin: 10px 10px 0 0;}
 .close-btn {display: none;}
 /* .button-wrapper .btn-success {color: #fff; background-color: #28a745; border-color: #28a745} */
 

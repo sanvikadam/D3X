@@ -9,9 +9,9 @@ import { DataserviceService } from '../../service/dataservice.service';
 })
 export class ConfirmShipmentComponent implements OnInit {
 
-  public quotesData;
-  public shipDate;
-  public shipmentID;
+  public quotesData: any;
+  public shipDate: String;
+  public shipmentID: String;
 
   @Input()  public set confirmquotes(data:any) {
       this.quotesData = data.confirmQuotesData;

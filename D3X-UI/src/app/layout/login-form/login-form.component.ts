@@ -13,8 +13,8 @@ import { UsernameValidator } from './login-validator';
 export class LoginFormComponent implements OnInit {
 
   form = new FormGroup({
-    username: new FormControl('',[Validators.required, UsernameValidator.nameValidate('test')]),
-    password: new FormControl('', [Validators.required, UsernameValidator.passwordValidate('12345')])
+    username: new FormControl('',[Validators.required, UsernameValidator.nameValidate('deltagamm@')]),
+    password: new FormControl('', [Validators.required, UsernameValidator.passwordValidate('deltagamm@')])
   });
 
   get username() {

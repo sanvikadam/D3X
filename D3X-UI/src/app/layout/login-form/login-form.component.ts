@@ -12,6 +12,7 @@ import { UsernameValidator } from './login-validator';
 })
 export class LoginFormComponent implements OnInit {
 
+  public hide;
   form = new FormGroup({
     username: new FormControl('',[Validators.required, UsernameValidator.nameValidate('deltagamm@')]),
     password: new FormControl('', [Validators.required, UsernameValidator.passwordValidate('deltagamm@')])
@@ -35,7 +36,9 @@ export class LoginFormComponent implements OnInit {
 
     ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.hide=true;
+  }
 
   loginUser(){
     return this.router.navigate(['dashboard/create-shipment']);

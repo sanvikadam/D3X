@@ -19,6 +19,7 @@ import { TableModule } from 'primeng/table';
 import { ConfirmShipmentComponent } from './layout/confirm-shipment/confirm-shipment.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule, MatCheckboxModule } from '@angular/material';
 
 
 @NgModule({
@@ -43,7 +44,12 @@ import { FooterComponent } from './layout/footer/footer.component';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    TableModule
+    TableModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatCheckboxModule  
   ],
   providers: [{
     provide: LocationStrategy, 

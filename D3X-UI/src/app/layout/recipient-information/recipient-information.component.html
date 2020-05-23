@@ -10,9 +10,9 @@
                     <h6 class="m-0 font-weight-bold text-primary">Recipient Information</h6>
                 </div>
                 <div class="card-body">
-                    <form class="user" #shipmentForm="ngForm" (ngSubmit)="saveShipment()">
+                    <form class="user" [formGroup]="bookShipForm" #shipmentForm="ngForm" (ngSubmit)="saveShipment()">
                         <div class="form-group row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6" formGroupName="fromAddDetails">
                                         <h6 class="m-0 font-weight-bold text-primary">From Address</h6>
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 form-label-group">
@@ -23,13 +23,12 @@
                                                     id="pickupAddr" 
                                                     name="pickupAddr"
                                                     placeholder="pickup address" 
-                                                    [(ngModel)] = "pickupAddr" 
-                                                    #pickAddr="ngModel"
+                                                    formControlName = "pickupAddr"
                                                     pattern="^[a-zA-Z0-9\s,'-.]*$"
                                                     required/>
-                                                <span class="error-field" *ngIf="pickAddr.invalid && pickAddr.touched">
-                                                    <span class="error-field" *ngIf="pickAddr.errors.required">Please enter address</span>
-                                                    <span class="error-field" *ngIf="pickAddr.errors.pattern">Please enter valid address</span>
+                                                <span class="error-field" *ngIf="pickupAddr.invalid">
+                                                    <span class="error-field" *ngIf="pickupAddr.errors.required">Please enter address</span>
+                                                    <span class="error-field" *ngIf="pickupAddr.errors.pattern">Please enter valid address</span>
                                                 </span>
                                             </div>
                                         </div>
@@ -42,13 +41,12 @@
                                                     id="pickupCity" 
                                                     name="pickupCity"
                                                     placeholder="city" 
-                                                    [(ngModel)] = "pickupCity" 
-                                                    #pickCity="ngModel"
+                                                    formControlName = "pickupCity"
                                                     pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$"
                                                     required/>
-                                                <span class="error-field" *ngIf="pickCity.invalid && pickCity.touched">
-                                                    <span class="error-field" *ngIf="pickCity.errors.required">Please enter city</span>
-                                                    <span class="error-field" *ngIf="pickCity.errors.pattern">Please enter valid city</span>
+                                                <span class="error-field" *ngIf="pickupCity.invalid">
+                                                    <span class="error-field" *ngIf="pickupCity.errors.required">Please enter city</span>
+                                                    <span class="error-field" *ngIf="pickupCity.errors.pattern">Please enter valid city</span>
                                                 </span>
                                             </div>
                                         </div>
@@ -59,13 +57,12 @@
                                                     class="custom-select" 
                                                     id="pickupCountry"
                                                     name="pickupCountry"
-                                                    [(ngModel)]="pickupCountry"
-                                                    #pickCountry="ngModel"
+                                                    formControlName="pickupCountry"
                                                     (change)="changePickCountry($event.target.value)"
                                                     >
                                                     <option [value]="country" *ngFor="let country of selectCountry; let i=index">{{country}}</option>
                                                   </select>
-                                                <span class="error-field" *ngIf="pickCountry.invalid && pickCountry.touched">Please select Country</span>
+                                                <span class="error-field" *ngIf="pickupCountry.invalid && pickupCountry.touched">Please select Country</span>
                                             </div>
 
                                             <div class="col-xs-12 col-sm-4 form-label-group">
@@ -74,8 +71,7 @@
                                                     class="custom-select" 
                                                     id="pickupState"
                                                     name="pickupState"
-                                                    [(ngModel)]="pickupState"
-                                                    #pickState="ngModel"
+                                                    formControlName="pickupState"
                                                     [hidden]="showPickSelectCity"
                                                     (change)="changePickState($event.target.value)"
                                                     >
@@ -86,17 +82,16 @@
                                                     class="form-control"
                                                     id="pickupState"
                                                     name="pickupState"
-                                                    [(ngModel)]="pickupState"
-                                                    #pickState="ngModel"
+                                                    formControlName="pickupState"
                                                     [hidden]="!showPickInputCity"
                                                     (ngModelChange)="pickupState = $event.toUpperCase()"
                                                     minlength="2"
                                                     maxlength="2"
                                                     required
                                                   />
-                                                <span class="error-field" *ngIf="pickState.invalid && pickState.touched">
-                                                    <span class="error-field" *ngIf="pickState.errors.required">Please enter state</span>
-                                                    <span class="error-field" *ngIf="pickState.errors.minlength">Please enter valid state</span>
+                                                <span class="error-field" *ngIf="pickupState.invalid && pickupState.touched">
+                                                    <span class="error-field" *ngIf="pickupState.errors.required">Please enter state</span>
+                                                    <span class="error-field" *ngIf="pickupState.errors.minlength">Please enter valid state</span>
                                                 </span>
                                             </div>
                                             <div class="col-xs-12 col-sm-4 form-label-group">
@@ -107,19 +102,18 @@
                                                     id="pickupZip" 
                                                     name="pickupZip"
                                                     placeholder="zipcode" 
-                                                    [(ngModel)] = "pickupZip" 
-                                                    #pickZip="ngModel"
+                                                    formControlName = "pickupZip" 
                                                     pattern="(^\d{5}$)|(^\d{5}-\d{4}$)"
                                                     required/>
-                                                <span class="error-field" *ngIf="pickZip.invalid && pickZip.touched">
-                                                    <span class="error-field" *ngIf="pickZip.errors.required">Please enter zipcode</span>
-                                                    <span class="error-field" *ngIf="pickZip.errors.pattern">Please enter valid zipcode</span>
+                                                <span class="error-field" *ngIf="pickupZip.invalid && pickupZip.touched">
+                                                    <span class="error-field" *ngIf="pickupZip.errors.required">Please enter zipcode</span>
+                                                    <span class="error-field" *ngIf="pickupZip.errors.pattern">Please enter valid zipcode</span>
                                                 </span>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6" formGroupName="toAddDetails">
                                         <h6 class="m-0 font-weight-bold text-primary">To Address</h6>
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 form-label-group">
@@ -130,13 +124,12 @@
                                                     id="dropofAddr" 
                                                     name="dropofAddr"
                                                     placeholder="drop address" 
-                                                    [(ngModel)] = "dropofAddr" 
-                                                    #dropAddr="ngModel"
-                                                    pattern="^[a-zA-Z0-9\s,'-]*$"
+                                                    formControlName = "dropofAddr"
+                                                    pattern="^[a-zA-Z0-9\s,'-.]*$"
                                                     required/>
-                                                <span class="error-field" *ngIf="dropAddr.invalid && dropAddr.touched">
-                                                    <span class="error-field" *ngIf="dropAddr.errors.required">Please enter address</span>
-                                                    <span class="error-field" *ngIf="dropAddr.errors.pattern">Please enter valid address</span>
+                                                <span class="error-field" *ngIf="dropofAddr.invalid && dropofAddr.touched">
+                                                    <span class="error-field" *ngIf="dropofAddr.errors.required">Please enter address</span>
+                                                    <span class="error-field" *ngIf="dropofAddr.errors.pattern">Please enter valid address</span>
                                                 </span>
                                             </div>
                                         </div>
@@ -149,13 +142,12 @@
                                                     id="dropofCity" 
                                                     name="dropofCity"
                                                     placeholder="city" 
-                                                    [(ngModel)] = "dropofCity" 
-                                                    #dropCity="ngModel"
+                                                    formControlName = "dropofCity"
                                                     pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$"
                                                     required/>
-                                                <span class="error-field" *ngIf="dropCity.invalid && dropCity.touched">
-                                                    <span class="error-field" *ngIf="dropCity.errors.required">Please enter city</span>
-                                                    <span class="error-field" *ngIf="dropCity.errors.pattern">Please enter valid city</span>
+                                                <span class="error-field" *ngIf="dropofCity.invalid && dropofCity.touched">
+                                                    <span class="error-field" *ngIf="dropofCity.errors.required">Please enter city</span>
+                                                    <span class="error-field" *ngIf="dropofCity.errors.pattern">Please enter valid city</span>
                                                 </span>
                                             </div>
                                         </div>
@@ -166,13 +158,12 @@
                                                     class="custom-select" 
                                                     id="dropofCountry"
                                                     name="dropofCountry"
-                                                    [(ngModel)]="dropofCountry"
-                                                    #dropCountry="ngModel"
+                                                    formControlName="dropofCountry"
                                                     (change)="changeDropCountry($event.target.value)"
                                                     >
                                                     <option [value]="country" *ngFor="let country of selectCountry">{{country}}</option>
                                                   </select>
-                                                <span class="error-field" *ngIf="dropCountry.invalid && dropCountry.touched">Please select Country</span>
+                                                <span class="error-field" *ngIf="dropofCountry.invalid && dropofCountry.touched">Please select Country</span>
                                             </div>
                                             <div class="col-xs-12 col-sm-4 form-label-group">
                                                 <label for="dropofState" class=" col-form-label text-right">State<span class="red-astrik">*</span></label>
@@ -180,8 +171,7 @@
                                                     class="custom-select" 
                                                     id="dropofState"
                                                     name="dropofState"
-                                                    [(ngModel)]="dropofState"
-                                                    #dropState="ngModel"
+                                                    formControlName="dropofState"
                                                     [hidden]="showDropSelectCity"
                                                     (change)="changeDropState($event.target.value)"
                                                     >
@@ -192,8 +182,7 @@
                                                     class="form-control"
                                                     id="dropofState"
                                                     name="dropofState"
-                                                    [(ngModel)]="dropofState"
-                                                    #dropState="ngModel"
+                                                    formControlName="dropofState"
                                                     [hidden]="!showDropInputCity"
                                                     (ngModelChange)="dropofState = $event.toUpperCase()"
                                                     minlength="2"
@@ -201,9 +190,9 @@
                                                     required
                                                   />
 
-                                                <span class="error-field" *ngIf="dropState.invalid && dropState.touched">
-                                                    <span class="error-field" *ngIf="dropState.errors.required">Please select state</span>
-                                                    <span class="error-field" *ngIf="dropState.errors.minlength">Please enter valid state</span>
+                                                <span class="error-field" *ngIf="dropofState.invalid && dropofState.touched">
+                                                    <span class="error-field" *ngIf="dropofState.errors.required">Please select state</span>
+                                                    <span class="error-field" *ngIf="dropofState.errors.minlength">Please enter valid state</span>
                                                 </span>
                                             </div>
                                             <div class="col-xs-12 col-sm-4 form-label-group">
@@ -214,19 +203,18 @@
                                                     id="dropofZip" 
                                                     name="dropofZip"
                                                     placeholder="zipcode" 
-                                                    [(ngModel)] = "dropofZip" 
-                                                    #dropZip="ngModel"
+                                                    formControlName = "dropofZip" 
                                                     pattern="(^\d{5}$)|(^\d{5}-\d{4}$)"
                                                     required/>
-                                                <span class="error-field" *ngIf="dropZip.invalid && dropZip.touched">
-                                                    <span class="error-field" *ngIf="dropZip.errors.required">Please enter zipcode</span>
-                                                    <span class="error-field" *ngIf="dropZip.errors.pattern">Please enter valid zipcode</span>
+                                                <span class="error-field" *ngIf="dropofZip.invalid && dropofZip.touched">
+                                                    <span class="error-field" *ngIf="dropofZip.errors.required">Please enter zipcode</span>
+                                                    <span class="error-field" *ngIf="dropofZip.errors.pattern">Please enter valid zipcode</span>
                                                 </span>
                                             </div>
                                         </div>
                                     </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row" formGroupName="packDimensionDetails">
                             <div class="col-sm-12">
                                 <h6 class="font-weight-bold">Package Dimension</h6>
                             </div>
@@ -239,10 +227,9 @@
                                     class="form-control" 
                                     id="packWidth" 
                                     value="1"
-                                    [(ngModel)] ="packWidth"
-                                    #palateWidth="ngModel"
+                                    formControlName ="packWidth"
                                     required />
-                                <span class="error-field" *ngIf="palateWidth.invalid && palateWidth.touched">Please enter valid palate width</span>
+                                <!-- <span class="error-field" *ngIf="packWidth.invalid && packWidth.touched">Please enter valid palate width</span> -->
                             </div>
                         
                             <div class="col-sm-4">
@@ -252,10 +239,9 @@
                                     class="form-control" 
                                     id="packHeight" 
                                     value="1"
-                                    [(ngModel)]="packHeight"
-                                    #palateHeight="ngModel"
+                                    formControlName="packHeight"
                                     required />
-                                <span class="error-field" *ngIf="palateHeight.invalid && palateHeight.touched">Please enter valid palate height</span>
+                                <!-- <span class="error-field" *ngIf="packHeight.invalid && packHeight.touched">Please enter valid palate height</span> -->
                             </div>
                             <div class="col-sm-4">
                                 <label for="packLength" class=" col-form-label text-right">Length (in)<span class="red-astrik">*</span></label>
@@ -264,10 +250,9 @@
                                     class="form-control" 
                                     id="packLength" 
                                     value="1"
-                                    [(ngModel)]="packLength"
-                                    #palateLength="ngModel"
+                                    formControlName="packLength"
                                     required />
-                                <span class="error-field" *ngIf="palateLength.invalid && palateLength.touched">Please enter valid palate length</span>
+                                <!-- <span class="error-field" *ngIf="packLength.invalid && packLength.touched">Please enter valid palate length</span> -->
                             </div>
                             </div>
                             </div>
@@ -280,16 +265,15 @@
                                         class="form-control" 
                                         id="packWeight" 
                                         value="1"
-                                        [(ngModel)]="packWeight"
-                                        #palateWeight="ngModel"
+                                        formControlName="packWeight"
                                         required />
-                                    <span class="error-field" *ngIf="palateWeight.invalid && palateWeight.touched">Please enter valid palate weight</span>
+                                    <!-- <span class="error-field" *ngIf="packWeight.invalid && packWeight.touched">Please enter valid palate weight</span> -->
                                 </div>
                               </div>
                             </div>
                         </div>
                         
-                        <div class="order-items form-content">
+                        <div class="order-items form-content" formGroupName="orderListDetails">
                             <h6 class="font-weight-bold">Order Line Items</h6>
                             <table class="table line-items shadow">
                                 <thead>
@@ -309,15 +293,9 @@
                                             class="form-control"
                                             id="sku"
                                             name="sku"
-                                            [(ngModel)]="sku"
-                                            #skuNo="ngModel"
+                                            formControlName="sku"
                                              />
-                                        <!-- <div class="error-field" 
-                                                *ngIf="skuNo.invalid && (skuNo.dirty || skuNo.touched)">
-                                                <span *ngIf="skuNo.errors.required">Required</span>
-                                                <span *ngIf="skuNo.errors.invalid">Required</span>
-                                        </div> -->
-                                        <!-- <span class="error-field" *ngIf="skuNo.touched && skuNo.invalid">Enter Valid SKU</span> -->
+                                        
                                     </td>
                                     <td>
                                         <input 
@@ -325,11 +303,9 @@
                                             class="form-control" 
                                             id="name"
                                             name="name"
-                                            [(ngModel)]="name"
-                                            #packageName="ngModel"
+                                            formControlName="name"
                                              />
-                                        <!-- <span class="error-field" *ngIf="packageName.invalid && packageName.touched">Enter valid Name</span> -->
-                                        <!-- <span class="error-field" *ngIf="packageName.touched">Enter Name</span> -->
+                                        
                                     </td>
                                     <td>
                                         <input 
@@ -337,11 +313,9 @@
                                             class="form-control"
                                             id="quantity"
                                             name="quantity"
-                                            [(ngModel)]="quantity" 
-                                            #packQuantity="ngModel"
+                                            formControlName="quantity" 
                                              />
-                                        <!-- <span class="error-field" *ngIf="packQuantity.invalid && packQuantity.touched">Enter valid quantity</span> -->
-                                        <!-- <span class="error-field" *ngIf="packQuantity.touched">Enter quantity</span> -->
+                                        
                                     </td>
                                     <td>
                                         <input 
@@ -350,11 +324,9 @@
                                             id="price"
                                             name="price"
                                             value="0" 
-                                            [(ngModel)]="price"
-                                            #prodPrice="ngModel"
+                                            formControlName="price"
                                              />
-                                        <!-- <span class="error-field" *ngIf="prodPrice.invalid && prodPrice.touched">Enter valid price</span> -->
-                                        <!-- <span class="error-field" *ngIf="prodPrice.touched">Enter the price</span>  -->
+                                        
                                     </td>
                                     <td><a class="deleteRow"></a></td>
                                   </tr>

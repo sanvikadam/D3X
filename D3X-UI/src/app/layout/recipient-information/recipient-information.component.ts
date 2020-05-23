@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterContentChecked, ViewChild } from '@angular/core';
 import { DataserviceService } from '../../service/dataservice.service';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from "@angular/common/http";
 import { Router } from '@angular/router';
 import { PincodeValidator } from './pincode-validate';
@@ -11,7 +11,9 @@ import { PincodeValidator } from './pincode-validate';
   styleUrls: ['./recipient-information.component.css']
 })
 export class RecipientInformationComponent implements OnInit{
-  @ViewChild('shipmentForm', {static: false}) public formValues: NgForm;
+
+  // bookShipForm : FormGroup;
+  // fromAddDetails: FormGroup;
 
   public showQuotes: boolean;
   public loading: boolean;
@@ -24,25 +26,6 @@ export class RecipientInformationComponent implements OnInit{
   public showPickSelectCity: boolean;
   public showDropInputCity: boolean;
   public showDropSelectCity: boolean;
-  pickupAddr: string;
-  pickupCity: string;
-  pickupCountry: any;
-  pickupState: any;
-  pickupZip: number;
-  dropofAddr: string;
-  dropofCity: string;
-  dropofCountry: any;
-  dropofState: any;
-  dropofZip: number;
-
-  packWidth: number;
-  packHeight: number;
-  packWeight: number;
-  packLength: number;
-  sku: null;
-  name: null;
-  quantity: null;
-  price: null;
   selectCountry: any = [];
   selectState: any = [];
 
@@ -50,10 +33,82 @@ export class RecipientInformationComponent implements OnInit{
   constructor(
       private _shipmentquote: DataserviceService,
       private router: Router,
-      private httpClient: HttpClient
+      private httpClient: HttpClient,
+      private _formBuilder: FormBuilder
     ) {
 
      }
+
+     bookShipForm = new FormGroup({
+      fromAddDetails : new FormGroup({
+        // pickupAddr: ['', Validators.required],
+      pickupAddr: new FormControl('', [Validators.required]), //, Validators.pattern(/^[a-zA-Z0-9\s,'-.]*$/)
+      pickupCity: new FormControl('', [Validators.required]),
+      pickupCountry: new FormControl(''),
+      pickupState: new FormControl('', Validators.required),
+      pickupZip: new FormControl('', Validators.required)
+    }),
+    toAddDetails: new FormGroup({
+      dropofAddr: new FormControl('', Validators.required),
+      dropofCity: new FormControl('', Validators.required),
+      dropofCountry: new FormControl(''),
+      dropofState: new FormControl('', Validators.required),
+      dropofZip: new FormControl('', Validators.required)
+    }),
+    packDimensionDetails: new FormGroup({
+      packWidth: new FormControl(null),
+      packHeight: new FormControl(null),
+      packLength: new FormControl(null),
+      packWeight: new FormControl(null)
+    }),
+    orderListDetails: new FormGroup({
+      sku: new FormControl(null),
+      name: new FormControl(null),
+      quantity: new FormControl(null),
+      price: new FormControl(null)
+    })
+  })
+
+  get pickupAddr(): any{
+    return this.bookShipForm.get('fromAddDetails.pickupAddr');
+  }
+
+  get pickupCity(): any{
+    return this.bookShipForm.get('fromAddDetails.pickupCity');
+  }
+
+  get pickupState(): any{
+    return this.bookShipForm.get('fromAddDetails.pickupState');
+  }
+
+  get pickupCountry(){
+    return this.bookShipForm.get('fromAddDetails.pickupCountry');
+  }
+
+  get pickupZip(): any{
+    return this.bookShipForm.get('fromAddDetails.pickupZip');
+  }
+      
+
+  get dropofAddr(): any{
+    return this.bookShipForm.get('toAddDetails.dropofAddr');
+  }
+
+  get dropofCity(): any{
+    return this.bookShipForm.get('toAddDetails.dropofCity');
+  }
+
+  get dropofCountry(): any{
+    return this.bookShipForm.get('toAddDetails.dropofCountry');
+  }
+
+  get dropofState(): any{
+    return this.bookShipForm.get('toAddDetails.dropofState');
+  }
+
+  get dropofZip(): any{
+    return this.bookShipForm.get('toAddDetails.dropofZip');
+  }
 
      /* Pickup country selectbox */
      changePickCountry(deviceValue: string){
@@ -77,11 +132,21 @@ export class RecipientInformationComponent implements OnInit{
        }
     }
 
+      /* Pickup state selectbox */
+    changePickState(stateValue: string) {
+      this.bookShipForm.patchValue({pickupState:stateValue});
+    }  
+
+  // /* Drop state selectbox */
+    changeDropState(stateValue: string) {
+      this.bookShipForm.patchValue({dropofState: stateValue});
+    } 
+
   ngOnInit(){
+    
 
     /* Select Values for country Dropdown*/
-    this.dropofCountry = "US";
-    this.dropofState = "AL";
+
     this.selectCountry = ["US", "International"];
     /* Select Values for State Dropdown*/
     this.selectState = ["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA",
@@ -122,23 +187,22 @@ export class RecipientInformationComponent implements OnInit{
     /* Add the data in the form field in From address by default */
     let convertData = JSON.parse(this.passData);
     this.finalData = convertData.delivery_list[0];
-    this.pickupAddr = this.finalData.address_from_line1;
-    this.pickupCity = this.finalData.address_from_city;
-    this.pickupState = this.finalData.address_from_state;
-    this.pickupCountry = this.finalData.address_from_country;
-    this.pickupZip = this.finalData.address_from_postalcode;
+    this.bookShipForm.patchValue({
+      fromAddDetails: {
+        pickupAddr: this.finalData.address_from_line1,
+        pickupCity: this.finalData.address_from_city,
+        pickupCountry: this.finalData.address_from_country,
+        pickupState: this.finalData.address_from_state,
+        pickupZip: this.finalData.address_from_postalcode,
+        
+      },
+      toAddDetails: {
+        dropofCountry: 'US',
+        dropofState: 'AL',
+       }
+    })
 
   }
-
-  /* Pickup state selectbox */
-  changePickState(stateValue: string) {
-    this.pickupState = stateValue;
-  }  
-
-  /* Drop state selectbox */
-  changeDropState(stateValue: string) {
-    this.dropofState = stateValue;
-  } 
   
   public saveShipment(): void {
     this.showQuotes=false;
@@ -148,18 +212,22 @@ export class RecipientInformationComponent implements OnInit{
     this.addressFlag = true;
     
     /* Pass Pickup address data to API*/
-    this.finalData.address_from_line1 = this.pickupAddr;   
-    this.finalData.address_from_city =  this.pickupCity;  
-    this.finalData.address_from_state = this.pickupState;   
-    this.finalData.address_from_postalcode =  this.pickupZip;  
-    this.finalData.address_from_country = this.pickupCountry;  
+    let fromadd = this.bookShipForm.get('fromAddDetails');
+    let toAdd = this.bookShipForm.get('toAddDetails');
+    this.finalData.address_from_line1 = fromadd.get('pickupAddr').value;   
+    this.finalData.address_from_city =  fromadd.get('pickupCity').value;  
+    this.finalData.address_from_state = fromadd.get('pickupState').value;   
+    this.finalData.address_from_postalcode =  fromadd.get('pickupZip').value;  
+    this.finalData.address_from_country = fromadd.get('pickupCountry').value;  
 
-    /* Pass Drop address data to API*/
-    this.finalData.address_to_line1 = this.dropofAddr;
-    this.finalData.address_to_city = this.dropofCity;
-    this.finalData.address_to_state = this.dropofState;
-    this.finalData.address_to_postalcode = this.dropofZip;
-    this.finalData.address_to_country = this.dropofCountry;
+
+    this.finalData.address_to_line1 = toAdd.get('dropofAddr').value;
+    this.finalData.address_to_city = toAdd.get('dropofCity').value;
+    this.finalData.address_to_state = toAdd.get('dropofState').value;
+    this.finalData.address_to_postalcode = toAdd.get('dropofZip').value;
+    this.finalData.address_to_country = toAdd.get('dropofCountry').value;
+
+    // console.log(this.finalData);
 
     let data = JSON.stringify({"delivery_list": [this.finalData]});
 
@@ -197,7 +265,7 @@ export class RecipientInformationComponent implements OnInit{
     this.adderror = false;
     this.showQuotes = false;
     this.loading = false;
-    this.formValues.resetForm();
+    // this.formValues.resetForm();
   }
 
 }

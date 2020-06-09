@@ -21,11 +21,14 @@
                                 <div class="row">
                                     <div class="col-lg-4 col-md-6 col-xs-12 user-data" *ngFor="let items of detailItems">
                                         <p class="field-label">{{items.title}}</p>
-                                        <button class="btn" (click)="editProfile(items)">
+                                        <button *ngIf="edit" class="btn" (click)="editProfile(items)">
                                             <i class="fas fa-edit"></i>
                                         </button>
-                                        <p class="field-value" *ngIf="!items.changeCode">{{items.name}}</p>
-                                        <input *ngIf="items.canEditCode" (blur)="focusOut(items)"[(ngModel)]= "items.name" type="text" class="form-control" />
+                                        <button *ngIf="save" class="btn" (click)="saveProfile(items)">
+                                            <i class="fas fa-check"></i>
+                                        </button>
+                                        <p class="field-value" *ngIf="!items.changeCode" [attr.key]="items.key" [attr.id]="items.id">{{items.name}}</p>
+                                        <input *ngIf="items.canEditCode" [(ngModel)]= "items.name" type="text" class="form-control" /> <!-- (blur)="focusOut(items)" -->
                                     </div>
                             </div>
                         </div>

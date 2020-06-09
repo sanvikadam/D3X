@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <form class="user" [formGroup]="bookShipForm" #shipmentForm="ngForm" (ngSubmit)="saveShipment()">
                         <div class="form-group row">
-                                    <div class="col-sm-6" formGroupName="fromAddDetails">
+                                    <div class="col-sm-6 formDetails" formGroupName="fromAddDetails">
                                         <h6 class="m-0 font-weight-bold text-primary">From Address</h6>
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 form-label-group">
@@ -113,7 +113,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-6" formGroupName="toAddDetails">
+                                    <div class="col-sm-6 formDetails" formGroupName="toAddDetails">
                                         <h6 class="m-0 font-weight-bold text-primary">To Address</h6>
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 form-label-group">
@@ -214,44 +214,45 @@
                                         </div>
                                     </div>
                         </div>
-                        <div class="form-group row" formGroupName="packDimensionDetails">
+                        <div class="form-group formDetails" formGroupName="packDimensionDetails">
+                            <div class="row">
                             <div class="col-sm-12">
-                                <h6 class="font-weight-bold">Package Dimension</h6>
+                                <h6 class="font-weight-bold text-primary">Package Dimension</h6>
                             </div>
                             <div class="col-sm-12">
                             <div class="row">
                             <div class="col-sm-4">
-                                <label for="packWidth" class=" col-form-label text-right">Width (in)<span class="red-astrik">*</span></label>
+                                <label for="packWidth" class=" col-form-label text-right">Width (in)</label>
                                 <input 
                                     type="number" 
                                     class="form-control" 
                                     id="packWidth" 
                                     value="1"
                                     formControlName ="packWidth"
-                                    required />
+                                    />
                                 <!-- <span class="error-field" *ngIf="packWidth.invalid && packWidth.touched">Please enter valid palate width</span> -->
                             </div>
                         
                             <div class="col-sm-4">
-                                <label for="packHeight" class=" col-form-label text-right">Height (in)<span class="red-astrik">*</span></label>
+                                <label for="packHeight" class=" col-form-label text-right">Height (in)</label>
                                 <input 
                                     type="number" 
                                     class="form-control" 
                                     id="packHeight" 
                                     value="1"
                                     formControlName="packHeight"
-                                    required />
+                                    />
                                 <!-- <span class="error-field" *ngIf="packHeight.invalid && packHeight.touched">Please enter valid palate height</span> -->
                             </div>
                             <div class="col-sm-4">
-                                <label for="packLength" class=" col-form-label text-right">Length (in)<span class="red-astrik">*</span></label>
+                                <label for="packLength" class=" col-form-label text-right">Length (in)</label>
                                 <input 
                                     type="number" 
                                     class="form-control" 
                                     id="packLength" 
                                     value="1"
                                     formControlName="packLength"
-                                    required />
+                                    />
                                 <!-- <span class="error-field" *ngIf="packLength.invalid && packLength.touched">Please enter valid palate length</span> -->
                             </div>
                             </div>
@@ -259,22 +260,23 @@
                             <div class="col-md-12">
                               <div class="row mt-15">
                                 <div class="col-sm-4">
-                                    <label for="packWeight" class=" col-form-label text-right">Weight (lb)<span class="red-astrik">*</span></label>
+                                    <label for="packWeight" class=" col-form-label text-right">Weight (lb)</label><!--<span class="red-astrik">*</span>-->
                                     <input 
                                         type="number" 
                                         class="form-control" 
                                         id="packWeight" 
                                         value="1"
                                         formControlName="packWeight"
-                                        required />
+                                         />
                                     <!-- <span class="error-field" *ngIf="packWeight.invalid && packWeight.touched">Please enter valid palate weight</span> -->
                                 </div>
                               </div>
                             </div>
+                            </div>
                         </div>
                         
-                        <div class="order-items form-content" formGroupName="orderListDetails">
-                            <h6 class="font-weight-bold">Order Line Items</h6>
+                        <div class="order-items form-content formDetails" formGroupName="orderListDetails">
+                            <h6 class="font-weight-bold text-primary">Order Line Items</h6>
                             <table class="table line-items shadow">
                                 <thead>
                                   <tr>

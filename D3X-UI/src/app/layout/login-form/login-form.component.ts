@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataserviceService } from '../../service/dataservice.service';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UsernameValidator } from './login-validator';
 
@@ -12,10 +12,11 @@ import { UsernameValidator } from './login-validator';
 })
 export class LoginFormComponent implements OnInit {
 
-  public hide;
+  error : boolean;
+
   form = new FormGroup({
-    username: new FormControl('',[Validators.required, UsernameValidator.nameValidate('deltagamm@')]),
-    password: new FormControl('', [Validators.required, UsernameValidator.passwordValidate('deltagamm@')])
+    username: new FormControl('',[Validators.required]),
+    password: new FormControl('', [Validators.required])
   });
 
   get username() {
@@ -26,21 +27,50 @@ export class LoginFormComponent implements OnInit {
     return this.form.get('password');
   }
 
-  name : string;
-  pswd : string;
-
   constructor(
-    private Auth: DataserviceService,
+    private dataService: DataserviceService,
     private router: Router,
     private httpClient: HttpClient
 
     ) { }
 
   ngOnInit() {
-    this.hide=true;
+    this.error=false;
   }
 
-  loginUser(){
-    return this.router.navigate(['dashboard/create-shipment']);
+  closePopup() {
+    console.log('are u in');
+    this.error=false
   }
+
+  loginUser(values){
+    let userName = values.username;
+    let pswd = values.password;
+    let reqURL = 'https://v2-api.sheety.co/abad2b72fac02e07a97e26f8ff7d83bd/shipGenieEcoservity/users?loginId='+userName;
+    console.log(reqURL);
+    this.httpClient.get<any>(reqURL, {
+                 headers: new HttpHeaders().set('Authorization','Basic c2ctZGV2OnNnZGV2MTIz')})
+                .subscribe(resp=> {
+                  console.log(resp.users);
+                  let response = resp.users;
+                  if(response.length==0) {
+                    this.error = true;
+                    this.form.reset();
+
+                  } else if (response.length>0) {
+                    let respUser = response[0].loginId;
+                    let resPswd = response[0].password;
+
+                    if(resPswd!=pswd) {
+                      this.error = true;
+                      //this.form.patchValue({password:''});
+                      this.password.reset();
+                    } else {
+                      this.error = false;
+                      this.dataService.getUserDetails(response);
+                      return this.router.navigate(['dashboard/create-shipment']);
+                    }
+                  }
+                })
+                }
 }

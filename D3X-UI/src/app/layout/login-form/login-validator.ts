@@ -4,7 +4,9 @@ export class UsernameValidator {
 
     static nameValidate(userName: any){
         return (control: AbstractControl) : ValidationErrors | null => {
+            console.log("userName",userName);
             if(control.value) {
+                console.log(control.value)
                 if(control.value!=userName) {
                     return {nameValidate: true};
                 } else {

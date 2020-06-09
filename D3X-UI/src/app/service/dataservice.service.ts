@@ -13,8 +13,9 @@ export class DataserviceService {
   shipmentId: String;
   shipDate: String;
   userName: string;
-  checkUser: string;
-  checkPassword: string;
+  public userDetails: any;
+  // checkUser: string;
+  // checkPassword: string;
   
   
 
@@ -24,13 +25,28 @@ export class DataserviceService {
 
   ) { }
 
+  // getUserDetails(resp){
+  //   // post the details to API server return user info if correct..
+  //   this.checkUser = resp.username;
+  //   this.checkPassword = resp.password;
+  // }
+
   getUserDetails(resp){
-    // post the details to API server return user info if correct..
-    this.checkUser = resp.username;
-    this.checkPassword = resp.password;
+    console.log("response", resp);
+    this.userDetails = [
+      {"id": resp[0].id, "key": "firstName", "title": "Customer First Name", "name": resp[0].firstName},
+      {"id": resp[0].id, "key": "lastName", "title": "Customer Last Name", "name": resp[0].lastName},
+      {"id": resp[0].id, "key": "loginId", "title": "Username", "name": resp[0].loginId},
+      {"id": resp[0].id, "key": "phoneWork", "title": "Primary Phone", "name": resp[0].phoneWork},
+      {"id": resp[0].id, "key": "addressEmail", "title": "Email", "name": resp[0].addressEmail},
+      {"id": resp[0].id, "key": "addressLine1", "title": "Primary Address", "name": resp[0].address}
+    ]
   }
 
+  
+
   getUserName(userProfile) {
+    console.log(this.userDetails);
     return this.userName = userProfile; 
   }
 

@@ -13,11 +13,12 @@ export class HeaderComponent implements OnChanges {
   ) { }
 
   ngOnInit() {
-    this.userName = "Valerie Luna";
+    this.userName = this.dataService.userDetails[0].name+" "+this.dataService.userDetails[1].name;
   }
 
   ngOnChanges() {
-     this.userName = this.dataService.userName;
+     this.userName = this.dataService.userDetails[0].name+" "+this.dataService.userDetails[1].name
+    
   }
 
 }

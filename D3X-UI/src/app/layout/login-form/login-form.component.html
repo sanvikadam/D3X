@@ -1,39 +1,6 @@
 <div class="login-form">
-    <form [formGroup]="form" #loginForm="ngForm" (submit)="loginUser()"><!-- action="/." method="post" -->
+    <form [formGroup]="form" #loginForm="ngForm" (submit)="loginUser(form.value)"><!-- action="/." method="post" -->
         <h2 class="text-center"><span class="logo"><img src="./assets/images/SG-Logo-half.png" /></span>SHIPGENIE</h2>
-        <!-- <p class="form-field">
-            <mat-form-field appearance="outline">
-                <mat-label>Username</mat-label>
-                <input matInput 
-                placeholder="Username"
-                type="text" 
-                id="name" 
-                name="name" 
-                formControlName="username"
-                >
-              </mat-form-field>
-              <span class="error-field" *ngIf="username.invalid && (username.dirty || username.touched)">
-                <span *ngIf="username.errors.required">Username Required</span>
-                <span *ngIf="username.errors.nameValidate">Invalid Username</span>
-            </span>
-          </p> -->
-
-          <!-- <p class="form-field">
-            <mat-form-field appearance="outline">
-                <mat-label>Password</mat-label>
-                <input matInput 
-                placeholder="Password"
-                type="password" 
-                id="password" 
-                name="pswd"
-                formControlName="password"
-                >
-              </mat-form-field>
-              <span class="error-field" *ngIf="password.invalid && (password.dirty || password.touched)">
-                <span *ngIf="password.errors.required">password Required</span>
-                <span *ngIf="password.errors.passwordValidate">Invalid Password</span>
-            </span>
-          </p> -->
         <div class="form-group">
             <input 
                 type="text" 
@@ -44,8 +11,7 @@
                 formControlName="username"
                 />
                 <span class="error-field" *ngIf="username.invalid && (username.dirty || username.touched)">
-                    <span *ngIf="username.errors.required">Username Required</span>
-                    <span *ngIf="username.errors.nameValidate">Invalid Username</span>
+                    <span *ngIf="username.errors.required">username required</span>
                 </span>
                 
         </div>
@@ -59,33 +25,42 @@
                 formControlName="password"
                 />
                 <span class="error-field" *ngIf="password.invalid && (password.dirty || password.touched)">
-                    <span *ngIf="password.errors.required">password Required</span>
-                    <span *ngIf="password.errors.passwordValidate">Invalid Password</span>
+                    <span *ngIf="password.errors.required">password required</span>
                 </span>
         </div>
         <div class="form-group clearfix">
-            <!-- <button mat-raised-button class="submit-btn" type="submit" color="primary" [disabled]="form.invalid">Sign in</button> -->
             <button type="submit" class="btn btn-primary btn-block btn-icon-split" [disabled]="form.invalid">
-                <!-- <span class="icon text-white-50">
-                    <i class="fas fa-arrow-right"></i>
-                  </span> -->
                   <span class="text">Sign in</span>
-                
-                </button>    
+                </button>  
         </div>
-        <div class="clearfix remember-block">
+        <!-- <div class="clearfix remember-block">
             <label class="remember-me">
                 <input type="checkbox">
                 Remember me
             </label>
-            <!-- <mat-checkbox color="primary">Remember me</mat-checkbox> -->
             <a href="#." class="pull-right">Forgot Password?</a>
-        </div>
-        <div class="form-group">
-        </div>
+        </div> -->
     </form>
-    <p class="text-center create-acc-block">
+    <!-- <p class="text-center create-acc-block">
         <a href="#.">Create an Account</a>
-    </p>
-    
+    </p> -->
 </div>
+
+<!-- Error message popup Modal -->
+<div *ngIf="error" class="error-popup modal" id="myModal" role="dialog">
+    <div class="overlay"></div>
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" (click)="closePopup()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Please enter correct username/password</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

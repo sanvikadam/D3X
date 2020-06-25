@@ -35,6 +35,7 @@ export class DeliveryShipmentDetailsComponent implements AfterContentChecked {
 
   ngAfterContentChecked() {
     this.quotes = this.dataService.quote;
+    console.log(typeof(this.quotes[0].shipping_amount))
 
     this.cols = [
       {fields: 'name', header:'Name'},
@@ -68,49 +69,87 @@ export class DeliveryShipmentDetailsComponent implements AfterContentChecked {
     return this.first === 0;
   }
 
-  confirmQuote(confirmQuotes, serviceCode): void {
+  confirmQuote(confirmQuotes): void {
+    console.log("confirmQuotes : " +confirmQuotes.service_code);
+    let bookingData = this.dataService.getBookingData;
+    
+    console.log('test booking : ', bookingData);
 
-    let reqURL = "https://s0020806703trial-trial.apim1.hanatrial.ondemand.com/s0020806703trial/http/get_Order_Shipment/json";
-    let passData = JSON.stringify({
-      "shipments": [
-        {
-          "validate_address": "no_validation",
-          "service_code": serviceCode,
-          "ship_to": {
-            "name": "Amanda Miller",
-            "phone": "555-555-5555",
-            "address_line1": "525 S Winchester Blvd",
-            "city_locality": "San Jose",
-            "state_province": "CA",
-            "postal_code": "95128",
-            "country_code": "US",
-            "address_residential_indicator": "yes"
-          },
-          "ship_from": {
-            "company_name": "Example Corp.",
-            "name": "John Doe",
-            "phone": "111-111-1111",
-            "address_line1": "4009 Marathon Blvd",
-            "address_line2": "Suite 300",
-            "city_locality": "Austin",
-            "state_province": "TX",
-            "postal_code": "78756",
-            "country_code": "US",
-            "address_residential_indicator": "no"
-          },
-          "packages": [
-            {
-              "weight": {
-                "value": 1.0,
-                "unit": "ounce"
-              }
-            }
-          ]
-        }
-      ]
+    let headers = new HttpHeaders({
+      'Authorization':'Basic c2ctZGV2OnNnZGV2MTIz',
+      'Content-Type':'application/json'
     });
+    // headers.set('Authorization','Basic c2ctZGV2OnNnZGV2MTIz');
+    // headers.append('Content-Type','application/json');
 
-    this.httpClient.post(reqURL, passData).subscribe(resp=> {
+    let reqURL = "https://v2-api.sheety.co/abad2b72fac02e07a97e26f8ff7d83bd/shipGenieEcoservity/shipment" 
+    // "https://s0020806703trial-trial.apim1.hanatrial.ondemand.com/s0020806703trial/http/get_Order_Shipment/json";
+  
+
+    let passData = JSON.stringify({
+      "shipment": 
+          {
+              "hasErrors": false,
+              "shipmentsAddressValidation": "null",
+              "shipmentsShipmentId": "se-18515430",
+              "userId": "null",
+              "shipmentsCarrierId": "se-116096",
+              "shipmentsServiceCode": confirmQuotes.service_code,
+              "shipmentsExternalShipmentId": "null",
+              "shipmentsShipDate": confirmQuotes.ship_date,
+              "shipmentsCreatedAt": confirmQuotes.ship_date,
+              "shipmentsModifiedAt": confirmQuotes.ship_date,
+              "shipmentsShipmentStatus": "pending",
+              "shipmentsShipToName": "ytshiy Miller",
+              "shipmentsShipToPhone": "null",
+              "shipmentsShipToCompanyName": "null",
+              "shipmentsShipToAddressLine1": bookingData.address_to_line1,
+              "shipmentsShipToAddressLine2": "null",
+              "shipmentsShipToAddressLine3": "null",
+              "shipmentsShipToCityLocality": bookingData.address_to_city,
+              "shipmentsShipToStateProvince": bookingData.address_to_state,
+              "shipmentsShipToPostalCode": bookingData.address_to_postalcode,
+              "shipmentsShipToCountryCode": bookingData.address_to_country,
+              "shipmentsShipToAddressResidentialIndicator": "yes",
+              "shipmentsShipFromName": "John Doe",
+              "shipmentsShipFromPhone": "null",
+              "shipmentsShipFromCompanyName": "null",
+              "shipmentsShipFromAddressLine1": bookingData.address_from_line1,
+              "shipmentsShipFromAddressLine2": "null",
+              "shipmentsShipFromAddressLine3": "null",
+              "shipmentsShipFromCityLocality": bookingData.address_from_city,
+              "shipmentsShipFromStateProvince": bookingData.address_from_state,
+              "shipmentsShipFromPostalCode": bookingData.address_from_postalcode,
+              "shipmentsShipFromCountryCode": bookingData.address_from_country,
+              "shipmentsShipFromAddressResidentialIndicator": "unknown",
+              "shipmentsWarehouseId": "null",
+              "shipmentsReturnToName": "null",
+              "shipmentsReturnToPhone": "null",
+              "shipmentsReturnToCompanyName": "null",
+              "shipmentsReturnToAddressLine1": "null",
+              "shipmentsReturnToAddressLine2": "null",
+              "shipmentsReturnToAddressLine3": "null",
+              "shipmentsReturnToCityLocality": "null",
+              "shipmentsReturnToStateProvince": "null",
+              "shipmentsReturnToPostalCode": "null",
+              "shipmentsReturnToCountryCode": "null",
+              "shipmentsReturnToAddressResidentialIndicator": "unknown",
+              "shipmentsConfirmation": "none",
+              "shipmentsCustoms": "null",
+              "shipmentsExternalOrderId": "null",
+              "shipmentsOrderSourceCode": "null",
+              "shipmentsAdvancedOptionsBillToAccount": "null",
+              "shipmentsAdvancedOptionsBillToCountryCode": "null",
+              "shipmentsAdvancedOptionsBillToParty": "null"
+          }
+  }  );
+
+  console.log(passData);
+  console.log(headers);
+
+    this.httpClient.post(reqURL, passData,{
+      headers: headers}).subscribe(resp=> {
+        console.log("response "+resp);
       this.dataService.confirmQuote(resp);
       this.router.navigate(['/dashboard/manage-shipment'], {state: {confirmQuotesData: confirmQuotes}});
     })

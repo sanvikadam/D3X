@@ -21,13 +21,13 @@
         </ng-template>
         <ng-template pTemplate="header" class="thead-dark" let-columns>
             <tr>
-                <th scope="col" pSortableColumn="carrier_friendly_name">Name <p-sortIcon field="carrier_friendly_name"></p-sortIcon></th>
+                <th scope="col" [pSortableColumn]="'carrier_friendly_name'">Name <p-sortIcon [field]="'carrier_friendly_name'"></p-sortIcon></th>
                 <th scope="col" pSortableColumn="ship_date">Ship Date <p-sortIcon field="ship_date"></p-sortIcon></th>
                 <th scope="col" pSortableColumn="estimated_delivery_date">Estimated Date <p-sortIcon field="estimated_delivery_date"></p-sortIcon></th>
                 <th scope="col" pSortableColumn="carrier_delivery_days">Estimated Day <p-sortIcon field="carrier_delivery_days"></p-sortIcon></th>
                 <th scope="col" pSortableColumn="service_type">Service Type <p-sortIcon field="service_type"></p-sortIcon></th>
                 <th scope="col" pSortableColumn="trackable">Trackable <p-sortIcon field="trackable"></p-sortIcon></th>
-                <th scope="col" pSortableColumn="shipping_amount">Price <p-sortIcon field="shipping_amount"></p-sortIcon></th>
+                <th scope="col" [pSortableColumn]="'shipping_amount'">Price <p-sortIcon [field]="'shipping_amount'"></p-sortIcon></th>
                 <th scope="col">Order</th>
                 
             </tr>
@@ -54,9 +54,9 @@
                 <td>{{quotes.carrier_delivery_days}}</td>
                 <td>{{quotes.service_type}}</td>
                 <td><span [ngClass]= "(quotes.trackable=='true') ? 'trackcheck' : 'trackuncheck'"></span></td>
-                <td>{{quotes.shipping_currency | uppercase}} {{quotes.shipping_amount | number: '1.2-2'}}</td>
+                <td>{{quotes.shipping_currency | uppercase}} {{quotes.shipping_amount | currency}}</td>
                 <td>
-                    <button class="btn btn-primary btn-icon-split" (click)="confirmQuote(quotes,quotes.service_code)">
+                    <button class="btn btn-primary btn-icon-split" (click)="confirmQuote(quotes)">
                         <span class="text">Place Order</span>
                     </button></td>
             </tr>

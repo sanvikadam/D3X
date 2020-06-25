@@ -14,6 +14,8 @@ export class DataserviceService {
   shipDate: String;
   userName: string;
   public userDetails: any;
+  public getBookingData: any;
+  public bookedData: any = {};
   // checkUser: string;
   // checkPassword: string;
   
@@ -44,12 +46,6 @@ export class DataserviceService {
   }
 
   
-
-  getUserName(userProfile) {
-    console.log(this.userDetails);
-    return this.userName = userProfile; 
-  }
-
   public getQuote(getResponse){
     this.quote = getResponse.xml_root.rate_response.rates;
     
@@ -74,7 +70,15 @@ export class DataserviceService {
    }
 
    public confirmQuote(response){
-    this.shipmentId = response.shipments[0].shipment_id;
-    this.shipDate = response.shipments[0].ship_date;
+     console.log(response.shipment);
+     this.bookedData=response.shipment;
+
+    // this.shipmentId = response.shipment.shipmentsShipmentId;
+    // this.shipDate = response.shipment.shipmentsShipDate;
+   }
+
+   public getBookData(getResponse){
+     this.getBookingData = getResponse;
+     console.log(this.getBookingData);
    }
 }

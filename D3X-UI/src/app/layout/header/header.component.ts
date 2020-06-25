@@ -17,6 +17,7 @@ export class HeaderComponent implements OnChanges {
   }
 
   ngOnChanges() {
+    console.log("hello there");
      this.userName = this.dataService.userDetails[0].name+" "+this.dataService.userDetails[1].name
     
   }

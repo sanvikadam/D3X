@@ -76,12 +76,12 @@
                                         <span class="label-field">Price :</span>
                                     </div>
                                     <div class="col-sm-8">
-                                        <span class="value-field">{{quotesData.shipping_currency | uppercase}} {{quotesData.shipping_amount}}</span>
+                                        <span class="value-field">{{quotesData.shipping_currency | uppercase}} {{quotesData.shipping_amount | currency}}</span>
                                     </div>    
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-sm-6 space-content">
                                 <div class="row">
                                     <h6 class="m-2 font-weight-bold text-primary">Sender Address</h6>
@@ -95,6 +95,79 @@
                                             {{bookConfirmData.shipmentsShipFromCountryCode}}<br/>
                                             {{bookConfirmData.shipmentsShipFromPostalCode}}<br/>
                                         </p>
+                                        <div class="edit-sender-addr" [hidden]="editAddress">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <input 
+                                                    type="text" 
+                                                    class="form-control" 
+                                                    id="modifypickupAddr" 
+                                                    name="modifypickupAddr"
+                                                    placeholder="pickup address" 
+                                                    formControlName = "modifypickupAddr"
+                                                    pattern="^[a-zA-Z0-9\s,'-.]*$"
+                                                    required/>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <input 
+                                                    type="text" 
+                                                    class="form-control" 
+                                                    id="modifypickupCity" 
+                                                    name="modifypickupCity"
+                                                    placeholder="city" 
+                                                    formControlName = "modifypickupCity"
+                                                    pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$"
+                                                    required/>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="modifypickupState"
+                                                    name="modifypickupState"
+                                                    placeholder="state" 
+                                                    formControlName="modifypickupState"
+                                                    minlength="2"
+                                                    maxlength="2"
+                                                    required />
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <input 
+                                                    type="text" 
+                                                    class="form-control" 
+                                                    id="modifypickupCountry" 
+                                                    name="modifypickupCountry"
+                                                    placeholder="Country" 
+                                                    formControlName = "modifypickupCountry"
+                                                    pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$"
+                                                    required/>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <input 
+                                                    type="text" 
+                                                    class="form-control" 
+                                                    id="modifypickupZip" 
+                                                    name="modifypickupZip"
+                                                    placeholder="zipcode" 
+                                                    formControlName = "modifypickupZip" 
+                                                    pattern="(^\d{5}$)|(^\d{5}-\d{4}$)"
+                                                    required/>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -111,10 +184,82 @@
                                             {{bookConfirmData.shipmentsShipToCountryCode}}<br/>
                                             {{bookConfirmData.shipmentsShipToPostalCode}}<br/>
                                         </p>
+                                        <div class="edit-deliver-addr" [hidden]="editAddress">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <input 
+                                                    type="text" 
+                                                    class="form-control" 
+                                                    id="modifydropAddr" 
+                                                    name="modifydropAddr"
+                                                    placeholder="Drop address" 
+                                                    formControlName = "modifydropAddr"
+                                                    pattern="^[a-zA-Z0-9\s,'-.]*$"
+                                                    required/>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <input 
+                                                    type="text" 
+                                                    class="form-control" 
+                                                    id="modifydropCity" 
+                                                    name="modifydropCity"
+                                                    placeholder="city" 
+                                                    formControlName = "modifydropCity"
+                                                    pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$"
+                                                    required/>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="modifydropState"
+                                                    name="modifydropState"
+                                                    placeholder="state" 
+                                                    formControlName="modifypickupState"
+                                                    minlength="2"
+                                                    maxlength="2"
+                                                    required />
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <input 
+                                                    type="text" 
+                                                    class="form-control" 
+                                                    id="modifydropCountry" 
+                                                    name="modifydropCountry"
+                                                    placeholder="Country" 
+                                                    formControlName = "modifydropCountry"
+                                                    pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$"
+                                                    required/>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <input 
+                                                    type="text" 
+                                                    class="form-control" 
+                                                    id="modifydropZip" 
+                                                    name="modifydropZip"
+                                                    placeholder="zipcode" 
+                                                    formControlName = "modifydropZip" 
+                                                    pattern="(^\d{5}$)|(^\d{5}-\d{4}$)"
+                                                    required/>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <hr>
@@ -131,7 +276,7 @@
                                     <span class="icon text-white-50">
                                         <i class="fas fa-arrow-right"></i>
                                       </span>
-                                    <a (click)="goCreateShipment()">  
+                                    <a (click)="modifyShipment(bookConfirmData)">  
                                         <span class="text">Modify Shipment</span>
                                     </a>
                                 </button>

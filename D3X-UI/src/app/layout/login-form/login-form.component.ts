@@ -63,11 +63,13 @@ export class LoginFormComponent implements OnInit {
 
                     if(resPswd!=pswd) {
                       this.error = true;
-                      //this.form.patchValue({password:''});
                       this.password.reset();
                     } else {
                       this.error = false;
-                      this.dataService.getUserDetails(response);
+                      console.log(response);
+                      
+                      localStorage.setItem('user', JSON.stringify(response));
+                      
                       return this.router.navigate(['dashboard/create-shipment']);
                     }
                   }

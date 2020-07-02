@@ -15,6 +15,7 @@ export class ConfirmShipmentComponent implements OnInit {
   public shipDate: String;
   public shipmentID: String;
   public bookConfirmData : any = {};
+  public editAddress: boolean;
 
   @Input()  public set confirmquotes(data:any) {
       this.quotesData = data.confirmQuotesData;
@@ -23,10 +24,17 @@ export class ConfirmShipmentComponent implements OnInit {
   constructor(public dataService: DataserviceService,public router: Router,) { }
 
   ngOnInit() {
+    this.editAddress = false;
     this.bookConfirmData = this.dataService.bookedData;
   }
 
   goCreateShipment(){
     return this.router.navigate(['dashboard/create-shipment']);
+  }
+
+  modifyShipment(userQuotes):void{
+    let userId = userQuotes.id;
+
+
   }
 }

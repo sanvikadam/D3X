@@ -35,7 +35,6 @@ export class DeliveryShipmentDetailsComponent implements AfterContentChecked {
 
   ngAfterContentChecked() {
     this.quotes = this.dataService.quote;
-    console.log(typeof(this.quotes[0].shipping_amount))
 
     this.cols = [
       {fields: 'name', header:'Name'},
@@ -70,17 +69,12 @@ export class DeliveryShipmentDetailsComponent implements AfterContentChecked {
   }
 
   confirmQuote(confirmQuotes): void {
-    console.log("confirmQuotes : " +confirmQuotes.service_code);
     let bookingData = this.dataService.getBookingData;
-    
-    console.log('test booking : ', bookingData);
 
     let headers = new HttpHeaders({
       'Authorization':'Basic c2ctZGV2OnNnZGV2MTIz',
       'Content-Type':'application/json'
     });
-    // headers.set('Authorization','Basic c2ctZGV2OnNnZGV2MTIz');
-    // headers.append('Content-Type','application/json');
 
     let reqURL = "https://v2-api.sheety.co/abad2b72fac02e07a97e26f8ff7d83bd/shipGenieEcoservity/shipment" 
     // "https://s0020806703trial-trial.apim1.hanatrial.ondemand.com/s0020806703trial/http/get_Order_Shipment/json";
@@ -144,12 +138,9 @@ export class DeliveryShipmentDetailsComponent implements AfterContentChecked {
           }
   }  );
 
-  console.log(passData);
-  console.log(headers);
 
     this.httpClient.post(reqURL, passData,{
       headers: headers}).subscribe(resp=> {
-        console.log("response "+resp);
       this.dataService.confirmQuote(resp);
       this.router.navigate(['/dashboard/manage-shipment'], {state: {confirmQuotesData: confirmQuotes}});
     })

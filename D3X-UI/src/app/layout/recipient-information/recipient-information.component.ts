@@ -227,11 +227,9 @@ export class RecipientInformationComponent implements OnInit{
     this.finalData.address_to_postalcode = toAdd.get('dropofZip').value;
     this.finalData.address_to_country = toAdd.get('dropofCountry').value;
 
-    console.log(this.finalData);
     this._shipmentquote.getBookData(this.finalData);
 
     let data = JSON.stringify({"delivery_list": [this.finalData]});
-    // console.log(data)
 
     let reqUrl = 'https://s0020806703trial-trial.apim1.hanatrial.ondemand.com:443/s0020806703trial/http/get_delv_quote_multi_bck/json';//'assets/local/ship-details.json';
 

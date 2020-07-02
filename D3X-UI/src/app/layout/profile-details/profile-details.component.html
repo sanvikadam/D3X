@@ -19,16 +19,17 @@
                             </div>
                             <div class="col-md-9 mt-3">
                                 <div class="row">
-                                    <div class="col-lg-4 col-md-6 col-xs-12 user-data" *ngFor="let items of detailItems">
+                                    <div class="col-lg-4 col-md-6 col-xs-12 user-data" *ngFor="let items of detailItems; let i=index">
                                         <p class="field-label">{{items.title}}</p>
-                                        <button *ngIf="edit" class="btn" (click)="editProfile(items)">
+                                        <button [hidden]=editButton[i] class="btn" (click)="editProfile(i)">
                                             <i class="fas fa-edit"></i>
+
                                         </button>
-                                        <button *ngIf="save" class="btn" (click)="saveProfile(items)">
+                                        <button [hidden]=!saveButton[i] class="btn" (click)="saveProfile(i, items.key, items.name, items)">
                                             <i class="fas fa-check"></i>
                                         </button>
-                                        <p class="field-value" *ngIf="!items.changeCode" [attr.key]="items.key" [attr.id]="items.id">{{items.name}}</p>
-                                        <input *ngIf="items.canEditCode" [(ngModel)]= "items.name" type="text" class="form-control" /> <!-- (blur)="focusOut(items)" -->
+                                        <p class="field-value" [hidden]="showField[i]" [attr.key]="items.key" [attr.id]="items.id">{{items.name}}</p>
+                                        <input [hidden]=!editField[i] [(ngModel)]= "items.name" type="text" class="form-control" /> <!-- (blur)="focusOut(items)" -->
                                     </div>
                             </div>
                         </div>

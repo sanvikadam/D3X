@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, AfterContentChecked } from '@angular/core';
 import { DataserviceService } from '../../service/dataservice.service';
 
 @Component({
@@ -6,20 +6,25 @@ import { DataserviceService } from '../../service/dataservice.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnChanges {
-  userName: string;
+export class HeaderComponent implements AfterContentChecked {
+  userName: any;
+  getUser: any = {};
   constructor(
     public dataService: DataserviceService
   ) { }
 
   ngOnInit() {
-    this.userName = this.dataService.userDetails[0].name+" "+this.dataService.userDetails[1].name;
+    this.getData();
   }
 
-  ngOnChanges() {
-    console.log("hello there");
-     this.userName = this.dataService.userDetails[0].name+" "+this.dataService.userDetails[1].name
-    
+  ngAfterContentChecked(){
+    this.getData();
+  }
+
+
+  getData(){
+    let updateData = JSON.parse(localStorage.getItem('user'));
+    this.userName = updateData[0].firstName+" "+updateData[0].lastName;
   }
 
 }

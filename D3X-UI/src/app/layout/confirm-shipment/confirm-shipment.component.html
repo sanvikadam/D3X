@@ -81,21 +81,46 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="row">
+                        <div class="row" [hidden]="displayAddress">
+                            <div class="col-sm-6 space-content">
+                                <div class="row">
+                                    <h6 class="m-2 font-weight-bold text-primary">Sender Address</h6>
+                                </div>
+                                <div class="row">
+                                    <p class="value-field">
+                                        {{bookConfirmData.shipmentsShipFromAddressLine1}}<br/>
+                                        {{bookConfirmData.shipmentsShipFromCityLocality}}<br/>
+                                        {{bookConfirmData.shipmentsShipFromStateProvince}}<br/>
+                                        {{bookConfirmData.shipmentsShipFromCountryCode}}<br/>
+                                        {{bookConfirmData.shipmentsShipFromPostalCode}}<br/>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 space-content">
+                                <div class="row">
+                                    <h6 class="m-2 font-weight-bold text-primary">Delivery Address</h6>
+                                </div>
+                                <div class="row">
+                                    <p class="value-field">
+                                        {{bookConfirmData.shipmentsShipToAddressLine1}}<br/>
+                                        {{bookConfirmData.shipmentsShipToCityLocality}}<br/>
+                                        {{bookConfirmData.shipmentsShipToStateProvince}}<br/>
+                                        {{bookConfirmData.shipmentsShipToCountryCode}}<br/>
+                                        {{bookConfirmData.shipmentsShipToPostalCode}}<br/>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <form [formGroup]="modifyShipForm" #updateShipForm="ngForm" [hidden]="editAddress" (ngSubmit)="modifyOrderShipment()">
+                        <div class="row">
                             <div class="col-sm-6 space-content">
                                 <div class="row">
                                     <h6 class="m-2 font-weight-bold text-primary">Sender Address</h6>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <p class="value-field">
-                                            {{bookConfirmData.shipmentsShipFromAddressLine1}}<br/>
-                                            {{bookConfirmData.shipmentsShipFromCityLocality}}<br/>
-                                            {{bookConfirmData.shipmentsShipFromStateProvince}}<br/>
-                                            {{bookConfirmData.shipmentsShipFromCountryCode}}<br/>
-                                            {{bookConfirmData.shipmentsShipFromPostalCode}}<br/>
-                                        </p>
-                                        <div class="edit-sender-addr" [hidden]="editAddress">
+                                        <div class="edit-sender-addr" formGroupName="editfromAddDetails">
                                             <div class="row">
                                                 <div class="col-md-8">
                                                     <input 
@@ -177,14 +202,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <p class="value-field">
-                                            {{bookConfirmData.shipmentsShipToAddressLine1}}<br/>
-                                            {{bookConfirmData.shipmentsShipToCityLocality}}<br/>
-                                            {{bookConfirmData.shipmentsShipToStateProvince}}<br/>
-                                            {{bookConfirmData.shipmentsShipToCountryCode}}<br/>
-                                            {{bookConfirmData.shipmentsShipToPostalCode}}<br/>
-                                        </p>
-                                        <div class="edit-deliver-addr" [hidden]="editAddress">
+                                        <div class="edit-deliver-addr" formGroupName="edittoAddDetails">
                                             <div class="row">
                                                 <div class="col-md-8">
                                                     <input 
@@ -221,7 +239,7 @@
                                                     id="modifydropState"
                                                     name="modifydropState"
                                                     placeholder="state" 
-                                                    formControlName="modifypickupState"
+                                                    formControlName="modifydropState"
                                                     minlength="2"
                                                     maxlength="2"
                                                     required />
@@ -259,9 +277,48 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-primary btn-icon-split" [disabled]="modifyShipForm.invalid"> <!--  [disabled]="shipmentForm.invalid" -->
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-arrow-right"></i>
+                                      </span>
+                                      <span class="text">Get Rates</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div [hidden]="!error" class="errormsg text-center">
+                            <h6>Record Not Found. Please try again</h6>
+                        </div>
+                        <div [hidden]="!adderror" class="errormsg text-center">
+                            <h6><span class="red-astrik">*</span> Incorrect Address. Please enter the correct and valid Address</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div [hidden]="!loading" class="loader text-center">
+                            <span></span>
+                            <h4>Loading...</h4>
+                        </div>
+                        <app-delivery-shipment-details *ngIf="showQuotes"></app-delivery-shipment-details>
+                    </div>
+                </div>
+                
+                <!-- <div class="row">
+                    <div class="col-md-12">
+                        <div [hidden]="!loading" class="loader text-center">
+                            <span></span>
+                            <h4>Loading...</h4>
+                        </div>
+                        <app-delivery-shipment-details *ngIf="showQuotes"></app-delivery-shipment-details>
+                    </div>
+                </div> -->
                 <hr>
                 <div class="row">
                     <div class="col-md-8">

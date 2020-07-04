@@ -12,9 +12,6 @@ import { PincodeValidator } from './pincode-validate';
 })
 export class RecipientInformationComponent implements OnInit{
 
-  // bookShipForm : FormGroup;
-  // fromAddDetails: FormGroup;
-
   public showQuotes: boolean;
   public loading: boolean;
   public error: boolean;

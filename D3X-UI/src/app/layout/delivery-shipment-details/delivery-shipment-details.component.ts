@@ -68,8 +68,29 @@ export class DeliveryShipmentDetailsComponent implements AfterContentChecked {
     return this.first === 0;
   }
 
+  // Random shipment Id generator code
+  shipmentIDGenerate() {
+    let min = 51000;
+    let max = 99999;
+    let num = Math.floor(Math.random() * (max - min + 1)) + min;
+    let shipIDNo = "se-18"+num;
+    console.log(typeof(shipIDNo));
+    console.log(shipIDNo);
+  }
+
   confirmQuote(confirmQuotes): void {
+    this.shipmentIDGenerate();
+
+    
+
+
+
+
+    console.log("confirmQuotes : ",confirmQuotes);
+    console.log(this.router.url);
     let bookingData = this.dataService.getBookingData;
+    console.log("bookingData : " +JSON.stringify(bookingData));
+    // console.log("Hello there");
 
     let headers = new HttpHeaders({
       'Authorization':'Basic c2ctZGV2OnNnZGV2MTIz',
@@ -77,7 +98,6 @@ export class DeliveryShipmentDetailsComponent implements AfterContentChecked {
     });
 
     let reqURL = "https://v2-api.sheety.co/abad2b72fac02e07a97e26f8ff7d83bd/shipGenieEcoservity/shipment" 
-    // "https://s0020806703trial-trial.apim1.hanatrial.ondemand.com/s0020806703trial/http/get_Order_Shipment/json";
   
 
     let passData = JSON.stringify({
@@ -145,4 +165,6 @@ export class DeliveryShipmentDetailsComponent implements AfterContentChecked {
       this.router.navigate(['/dashboard/manage-shipment'], {state: {confirmQuotesData: confirmQuotes}});
     })
   }
+
+  
 }

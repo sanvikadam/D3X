@@ -34,12 +34,10 @@ export class DataserviceService {
    }
 
    public confirmQuote(response){
-     console.log("Confirm Quotes Data : " +response.shipment);
      this.bookedData=response.shipment;
    }
 
    public getBookData(getResponse){
-     console.log("Data service getResponse : ", getResponse);
      this.getBookingData = getResponse;
    }
 }

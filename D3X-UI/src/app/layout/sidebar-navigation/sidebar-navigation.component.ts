@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarNavigationComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+  ) { }
 
   ngOnInit() {
+
   }
 
 }

@@ -68,29 +68,9 @@ export class DeliveryShipmentDetailsComponent implements AfterContentChecked {
     return this.first === 0;
   }
 
-  // Random shipment Id generator code
-  shipmentIDGenerate() {
-    let min = 51000;
-    let max = 99999;
-    let num = Math.floor(Math.random() * (max - min + 1)) + min;
-    let shipIDNo = "se-18"+num;
-    console.log(typeof(shipIDNo));
-    console.log(shipIDNo);
-  }
 
   confirmQuote(confirmQuotes): void {
-    this.shipmentIDGenerate();
-
-    
-
-
-
-
-    console.log("confirmQuotes : ",confirmQuotes);
-    console.log(this.router.url);
     let bookingData = this.dataService.getBookingData;
-    console.log("bookingData : " +JSON.stringify(bookingData));
-    // console.log("Hello there");
 
     let headers = new HttpHeaders({
       'Authorization':'Basic c2ctZGV2OnNnZGV2MTIz',

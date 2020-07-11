@@ -13,7 +13,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">Order Summary</h6>
             </div>
             <div class="card-body">
-                <div class="row">
+                <div class="row" *ngIf="confirmRemove">
                     <div class="col-md-8">
                         <div class="row">
                             <div class="col-sm-6 space-content">
@@ -81,13 +81,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row" [hidden]="displayAddress">
+                        <div class="row">
                             <div class="col-sm-6 space-content">
                                 <div class="row">
                                     <h6 class="m-2 font-weight-bold text-primary">Sender Address</h6>
                                 </div>
                                 <div class="row">
-                                    <p class="value-field">
+                                    <p class="value-field mx-2">
                                         {{bookConfirmData.shipmentsShipFromAddressLine1}}<br/>
                                         {{bookConfirmData.shipmentsShipFromCityLocality}}<br/>
                                         {{bookConfirmData.shipmentsShipFromStateProvince}}<br/>
@@ -102,7 +102,7 @@
                                     <h6 class="m-2 font-weight-bold text-primary">Delivery Address</h6>
                                 </div>
                                 <div class="row">
-                                    <p class="value-field">
+                                    <p class="value-field mx-2">
                                         {{bookConfirmData.shipmentsShipToAddressLine1}}<br/>
                                         {{bookConfirmData.shipmentsShipToCityLocality}}<br/>
                                         {{bookConfirmData.shipmentsShipToStateProvince}}<br/>
@@ -112,213 +112,8 @@
                                 </div>
                             </div>
                         </div>
-                        <form [formGroup]="modifyShipForm" #updateShipForm="ngForm" [hidden]="editAddress" (ngSubmit)="modifyOrderShipment()">
-                        <div class="row">
-                            <div class="col-sm-6 space-content">
-                                <div class="row">
-                                    <h6 class="m-2 font-weight-bold text-primary">Sender Address</h6>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="edit-sender-addr" formGroupName="editfromAddDetails">
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <input 
-                                                    type="text" 
-                                                    class="form-control" 
-                                                    id="modifypickupAddr" 
-                                                    name="modifypickupAddr"
-                                                    placeholder="pickup address" 
-                                                    formControlName = "modifypickupAddr"
-                                                    pattern="^[a-zA-Z0-9\s,'-.]*$"
-                                                    required/>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <input 
-                                                    type="text" 
-                                                    class="form-control" 
-                                                    id="modifypickupCity" 
-                                                    name="modifypickupCity"
-                                                    placeholder="city" 
-                                                    formControlName = "modifypickupCity"
-                                                    pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$"
-                                                    required/>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    id="modifypickupState"
-                                                    name="modifypickupState"
-                                                    placeholder="state" 
-                                                    formControlName="modifypickupState"
-                                                    minlength="2"
-                                                    maxlength="2"
-                                                    required />
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <input 
-                                                    type="text" 
-                                                    class="form-control" 
-                                                    id="modifypickupCountry" 
-                                                    name="modifypickupCountry"
-                                                    placeholder="Country" 
-                                                    formControlName = "modifypickupCountry"
-                                                    pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$"
-                                                    required/>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <input 
-                                                    type="text" 
-                                                    class="form-control" 
-                                                    id="modifypickupZip" 
-                                                    name="modifypickupZip"
-                                                    placeholder="zipcode" 
-                                                    formControlName = "modifypickupZip" 
-                                                    pattern="(^\d{5}$)|(^\d{5}-\d{4}$)"
-                                                    required/>
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 space-content">
-                                <div class="row">
-                                    <h6 class="m-2 font-weight-bold text-primary">Delivery Address</h6>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="edit-deliver-addr" formGroupName="edittoAddDetails">
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <input 
-                                                    type="text" 
-                                                    class="form-control" 
-                                                    id="modifydropAddr" 
-                                                    name="modifydropAddr"
-                                                    placeholder="Drop address" 
-                                                    formControlName = "modifydropAddr"
-                                                    pattern="^[a-zA-Z0-9\s,'-.]*$"
-                                                    required/>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <input 
-                                                    type="text" 
-                                                    class="form-control" 
-                                                    id="modifydropCity" 
-                                                    name="modifydropCity"
-                                                    placeholder="city" 
-                                                    formControlName = "modifydropCity"
-                                                    pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$"
-                                                    required/>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    id="modifydropState"
-                                                    name="modifydropState"
-                                                    placeholder="state" 
-                                                    formControlName="modifydropState"
-                                                    minlength="2"
-                                                    maxlength="2"
-                                                    required />
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <input 
-                                                    type="text" 
-                                                    class="form-control" 
-                                                    id="modifydropCountry" 
-                                                    name="modifydropCountry"
-                                                    placeholder="Country" 
-                                                    formControlName = "modifydropCountry"
-                                                    pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$"
-                                                    required/>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <input 
-                                                    type="text" 
-                                                    class="form-control" 
-                                                    id="modifydropZip" 
-                                                    name="modifydropZip"
-                                                    placeholder="zipcode" 
-                                                    formControlName = "modifydropZip" 
-                                                    pattern="(^\d{5}$)|(^\d{5}-\d{4}$)"
-                                                    required/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <button type="submit" class="btn btn-primary btn-icon-split" [disabled]="modifyShipForm.invalid"> <!--  [disabled]="shipmentForm.invalid" -->
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-arrow-right"></i>
-                                      </span>
-                                      <span class="text">Get Rates</span>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div [hidden]="!error" class="errormsg text-center">
-                            <h6>Record Not Found. Please try again</h6>
-                        </div>
-                        <div [hidden]="!adderror" class="errormsg text-center">
-                            <h6><span class="red-astrik">*</span> Incorrect Address. Please enter the correct and valid Address</h6>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div [hidden]="!loading" class="loader text-center">
-                            <span></span>
-                            <h4>Loading...</h4>
-                        </div>
-                        <app-delivery-shipment-details *ngIf="showQuotes"></app-delivery-shipment-details>
-                    </div>
-                </div>
-                
-                <!-- <div class="row">
-                    <div class="col-md-12">
-                        <div [hidden]="!loading" class="loader text-center">
-                            <span></span>
-                            <h4>Loading...</h4>
-                        </div>
-                        <app-delivery-shipment-details *ngIf="showQuotes"></app-delivery-shipment-details>
-                    </div>
-                </div> -->
                 <hr>
                 <div class="row">
                     <div class="col-md-8">
@@ -333,7 +128,7 @@
                                     <span class="icon text-white-50">
                                         <i class="fas fa-arrow-right"></i>
                                       </span>
-                                    <a (click)="modifyShipment(bookConfirmData)">  
+                                    <a (click)="modifyShipment()">  
                                         <span class="text">Modify Shipment</span>
                                     </a>
                                 </button>
@@ -341,7 +136,9 @@
                                 <span class="icon text-white-50">
                                     <i class="fas fa-arrow-right"></i>
                                   </span>
-                                <span class="text">Cancel Shipment</span>
+                                  <a (click)="deleteShipment()">
+                                    <span class="text">Cancel Shipment</span>
+                                  </a>
                             </button>
                      </div>
                     </div>
@@ -350,3 +147,24 @@
         </div>
     </div>
 </div>
+
+<!-- Error message popup Modal -->
+<div *ngIf="confirmCancel" class="error-popup modal" id="myModal" role="dialog">
+    <div class="overlay"></div>
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" (click)="closePopup()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete the order?</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)=yesConfirmOrder(bookConfirmData)>Yes</button>
+            <button type="button" class="btn btn-secondary" (click)=noConfirmOrder()>No</button>
+          </div>
+      </div>
+    </div>
+  </div>
